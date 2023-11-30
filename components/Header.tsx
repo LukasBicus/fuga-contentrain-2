@@ -15,9 +15,9 @@ export const Header: React.FC = () => {
           />
         </a>
         <nav className="flex items-center justify-center text-base md:ml-auto h-full">
-          <a href="#_" className="mr-5 hover:text-red-600">Home</a>
-          <a href="#_" className="mr-5 hover:text-red-600">About</a>
-          <a href="#_" className="hover:text-red-600">Contact</a>
+          <a href="#" className="mr-5 hover:text-red-600">Home</a>
+          <a href="#" className="mr-5 hover:text-red-600">About</a>
+          <a href="#" className="hover:text-red-600">Contact</a>
         </nav>
       </div>
     </header>
