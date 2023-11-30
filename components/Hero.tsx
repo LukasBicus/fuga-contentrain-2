@@ -20,7 +20,7 @@ export const Hero: React.FC = () => {
             <div className="lg:max-w-xl lg:pr-5 relative z-40">
               <h5 className="flex text-xl uppercase text-g1">{data.date}</h5>
               <h2
-                className="mb-6 max-w-lg leading-snug tracking-tight text-g1 text-4xl sm:leading-snug font-bold">
+                className="mb-6 max-w-lg leading-snug tracking-tight text-g1 text-4xl sm:leading-snug">
                 {data.title}
               </h2>
               <p className="text-base text-gray-500">{data.description}</p>
