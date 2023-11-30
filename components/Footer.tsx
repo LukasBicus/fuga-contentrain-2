@@ -56,7 +56,7 @@ export const Footer: React.FC = () => {
 
           {data.sections.map(section => (
             <div key={section.name}>
-              <h5 className="text-sm font-medium text-white">{section.name}</h5>
+              <h5 className="text-sm text-white">{section.name}</h5>
 
               <div className="flex flex-col items-start mt-4 space-y-4 text-gray-500">
                 {section.body}
@@ -68,9 +68,9 @@ export const Footer: React.FC = () => {
           <p className="mt-4 text-sm sm:mt-0 text-gray-500">©</p>
         </div>
         <div className="flex flex-col items-center justify-center sm:flex-row">
-          <a href="#_" className="mr-5 font-medium text-gray-500 hover:text-red-600">GDPR</a>
+          <a href="#_" className="mr-5 text-gray-500 hover:text-red-600">GDPR</a>
           <p className="text-gray-700">|</p>
-          <a href="#_" className="ml-5 font-medium text-gray-500 hover:text-red-600">Všeobecné obchodné podmienky</a>
+          <a href="#_" className="ml-5 text-gray-500 hover:text-red-600">Všeobecné obchodné podmienky</a>
         </div>
       </div>
     </footer>
