@@ -74,7 +74,7 @@ const data = [
 
 export const Program: React.FC = () => {
   return (
-    <div className="w-full bg-gray-400">
+    <div className="w-full">
       <div className="mx-auto h-full px-4 pb-20 md:pb-10 sm:max-w-xl md:max-w-full md:px-24 lg:max-w-screen-xl lg:px-8">
         <h2 className="py-6 max-w-lg text-4xl">
           Program
