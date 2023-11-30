@@ -26,7 +26,7 @@ export const Hero: React.FC = () => {
               <p className="text-base text-gray-500">{data.description}</p>
               <div className="mt-10 flex flex-col items-center md:flex-row">
                 <a href="/"
-                   className="mb-3 inline-flex h-12 w-full items-center justify-center rounded px-6 tracking-wide text-white shadow-md transition hover:bg-red-800 focus:outline-none md:mr-4 md:mb-0 md:w-auto border border-white">
+                   className="mb-3 inline-flex h-12 w-full items-center justify-center rounded px-6 tracking-wide text-white shadow-md transition focus:outline-none md:mr-4 md:mb-0 md:w-auto border border-white">
                   Vstupenky</a>
               </div>
             </div>
