@@ -12,6 +12,13 @@
         "ID": "a0f9c048-5915-4e9b-a8de-4caa56d79e3c",
         "skSinglePage": "10393357-3fb0-44d6-a7d0-b99e127d39f2",
         "createdAt": 1701438482419
+      },
+      {
+        "ID": "9741c6d9-250c-4852-8555-2e6f3532bec7",
+        "skSinglePage": "",
+        "label": "Program",
+        "path": "/",
+        "createdAt": 1701438708692
       }
     ],
     "createdAt": 1701438372462
