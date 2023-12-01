@@ -14,5 +14,13 @@
     "path": "",
     "order": 3,
     "createdAt": 1701439194247
+  },
+  {
+    "ID": "3b2a4391-a97d-4b72-8fdc-04db6d690701",
+    "simplePageId": "",
+    "label": "Program",
+    "path": "/",
+    "order": 1,
+    "createdAt": 1701439216713
   }
 ]
