@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 import React from 'react'
 
 const data = [{
@@ -27,7 +28,7 @@ export const Header: React.FC = () => {
         </a>
         <nav className="flex items-center justify-center text-base md:ml-auto h-full">
           {data.map(item => (
-            <a key={item.link} href={item.link} className="mr-5">{item.label}</a>
+            <Link key={item.link} href={item.link} className="mr-5">{item.label}</Link>
           ))}
         </nav>
       </div>
