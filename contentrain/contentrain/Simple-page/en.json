@@ -10,8 +10,9 @@
   {
     "ID": "b3ebd917-84c5-4dfc-870a-29bf73efa6e2",
     "title": "Contact",
-    "slug": "kontakt",
+    "slug": "contact",
     "content": "# Cultural Center\nFUGA - Christian Cultural Center\nMoyzesova 62\n040 01 Kosice\n\nPhone No.: +421 915 33 11 11\ne-mail: fuga.kck@gmail.com\n\n# Billing Information\nFUGA, o.z.\nVaršavská 8, 040 13 Kosice\n\nCompany ID: 42103339\nTax ID: 2022824925\nIBAN: SK73 1100 0000 0029 2984 1801",
-    "createdAt": 1701421280830
+    "createdAt": 1701421280830,
+    "updatedAt": 1701439461636
   }
 ]
