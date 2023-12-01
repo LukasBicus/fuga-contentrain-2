@@ -1,6 +1,17 @@
 import Image from "next/image";
 import React from 'react'
 
+const data = [{
+  label: 'Program',
+  link: '/'
+}, {
+  label: 'O nás',
+  link: '/o-nas'
+}, {
+  label: 'Contact',
+  link: '/kontakt'
+},]
+
 export const Header: React.FC = () => {
   return (
     <header className="w-full text-gray-700 bg-white shadow-sm body-font">
@@ -15,9 +26,9 @@ export const Header: React.FC = () => {
           />
         </a>
         <nav className="flex items-center justify-center text-base md:ml-auto h-full">
-          <a href="#" className="mr-5">Home</a>
-          <a href="#" className="mr-5">About</a>
-          <a href="#" >Contact</a>
+          {data.map(item => (
+            <a key={item.link} href={item.link} className="mr-5">{item.label}</a>
+          ))}
         </nav>
       </div>
     </header>
