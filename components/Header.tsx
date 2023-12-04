@@ -44,7 +44,10 @@ export const Header: React.FC<IHeaderProps> = async ({
   return (
     <header className="w-full text-gray-700 bg-white shadow-sm body-font">
       <div className="container flex flex-col p-6 mx-auto md:flex-row items-center">
-        <a className="flex items-center mb-4 text-gray-900 title-font md:mb-0">
+        <Link
+          className="flex items-center mb-4 text-gray-900 title-font md:mb-0"
+          href="/"
+        >
           <Image
             src="/fuga-logo.png"
             alt="Fuga Logo"
@@ -52,7 +55,7 @@ export const Header: React.FC<IHeaderProps> = async ({
             height={120}
             priority
           />
-        </a>
+        </Link>
         <nav className="flex items-center justify-center text-base md:ml-auto h-full">
           {orderBy(headerData, 'order').map((item) => (
             <Link
