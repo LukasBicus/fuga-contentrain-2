@@ -44,5 +44,13 @@
     "simplePageIdEn": "b3ebd917-84c5-4dfc-870a-29bf73efa6e2",
     "simplePageIdCs": "",
     "createdAt": 1701439514084
+  },
+  {
+    "ID": "c63ba1f3-5e94-401a-a937-498b1244d4ee",
+    "label": "Mapa",
+    "path": "/mapa",
+    "order": 4,
+    "simplePageId": [],
+    "createdAt": 1701682751965
   }
 ]
