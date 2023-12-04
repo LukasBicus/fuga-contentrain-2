@@ -1,5 +1,6 @@
 import { loadLocalizedCollectionData } from '@/lib/api'
 import { HeaderItem, LocaleCode, SimplePage } from '@/types'
+import { orderBy } from 'lodash'
 import Image from 'next/image'
 import Link from 'next/link'
 import React from 'react'
@@ -44,7 +45,7 @@ export const Header: React.FC<IHeaderProps> = async ({ localeCode }) => {
           />
         </a>
         <nav className="flex items-center justify-center text-base md:ml-auto h-full">
-          {headerData.map((item) =>
+          {orderBy(headerData, 'order').map((item) =>
             item.simplePage ? (
               <Link
                 key={item.simplePage.slug}
