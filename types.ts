@@ -12,3 +12,11 @@ export type SimplePage = {
   updatedAt?: number
   content: string
 }
+
+export type HeaderItem = {
+  ID: string
+  label: string
+  path: string
+  order: number
+  simplePageId: Record<LocaleCode, string>
+}

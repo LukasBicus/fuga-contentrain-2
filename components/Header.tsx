@@ -1,39 +1,35 @@
 import { loadLocalizedCollectionData } from '@/lib/api'
-import { LocaleCode } from '@/types'
+import { HeaderItem, LocaleCode, SimplePage } from '@/types'
 import Image from 'next/image'
 import Link from 'next/link'
 import React from 'react'
 import 'server-only'
 
-const data = [
-  {
-    label: 'Program',
-    link: '/',
-  },
-  {
-    label: 'O nás',
-    link: '/o-nas',
-  },
-  {
-    label: 'Contact',
-    link: '/kontakt',
-  },
-]
-
 interface IHeaderProps {
   localeCode: LocaleCode
 }
 
+type HeaderData = (HeaderItem & {
+  simplePage?: SimplePage
+})[]
+
 export const Header: React.FC<IHeaderProps> = async ({ localeCode }) => {
-  const headerItemData = await loadLocalizedCollectionData<{
-    ID: string
-    label: string
-    path: string
-    order: number
-    simplePageId: Record<LocaleCode, string>
-  }>('Header-item', LocaleCode.sk)
-  console.log('headerItemData', headerItemData)
-  console.log('v', headerItemData[0].simplePageId[LocaleCode.sk])
+  const headerItemsData = await loadLocalizedCollectionData<HeaderItem>(
+    'Header-item',
+    localeCode
+  )
+  const simplePagesData = await loadLocalizedCollectionData<SimplePage>(
+    'Simple-page',
+    localeCode
+  )
+  const headerData: HeaderData = [...headerItemsData]
+  for (const headerItem of headerData) {
+    if (headerItem.simplePageId[localeCode]) {
+      headerItem['simplePage'] = simplePagesData.find(
+        (sp) => sp.ID === headerItem.simplePageId[localeCode]
+      )
+    }
+  }
 
   return (
     <header className="w-full text-gray-700 bg-white shadow-sm body-font">
@@ -48,11 +44,21 @@ export const Header: React.FC<IHeaderProps> = async ({ localeCode }) => {
           />
         </a>
         <nav className="flex items-center justify-center text-base md:ml-auto h-full">
-          {data.map((item) => (
-            <Link key={item.link} href={item.link} className="mr-5">
-              {item.label}
-            </Link>
-          ))}
+          {headerData.map((item) =>
+            item.simplePage ? (
+              <Link
+                key={item.simplePage.slug}
+                href={`/${item.simplePage.slug}`}
+                className="mr-5"
+              >
+                {item.simplePage.title}
+              </Link>
+            ) : (
+              <Link key={item.path} href={item.path} className="mr-5">
+                {item.label}
+              </Link>
+            )
+          )}
         </nav>
       </div>
     </header>
