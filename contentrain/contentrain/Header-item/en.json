@@ -25,7 +25,13 @@
   },
   {
     "ID": "f18ebb52-6188-469e-98b3-d769606888b0",
-    "simplePageId": "",
+    "simplePageId": {
+      "ID": "7c96904b-aa74-479c-82eb-2e6d8d65c2c7",
+      "sk": "",
+      "en": "b3ebd917-84c5-4dfc-870a-29bf73efa6e2",
+      "cs": "",
+      "createdAt": 1701682317071
+    },
     "label": "",
     "path": "",
     "order": 3,
