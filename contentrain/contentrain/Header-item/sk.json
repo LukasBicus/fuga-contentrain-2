@@ -20,7 +20,14 @@
     "path": "",
     "order": 3,
     "createdAt": 1701439194247,
-    "simplePageIdSk": "10393357-3fb0-44d6-a7d0-b99e127d39f2"
+    "simplePageIdSk": "10393357-3fb0-44d6-a7d0-b99e127d39f2",
+    "simplePageId": {
+      "ID": "1b7028c1-83e4-4699-aead-b30375dcc049",
+      "sk": "10393357-3fb0-44d6-a7d0-b99e127d39f2",
+      "en": "",
+      "cs": "",
+      "createdAt": 1701682266890
+    }
   },
   {
     "ID": "3b2a4391-a97d-4b72-8fdc-04db6d690701",
