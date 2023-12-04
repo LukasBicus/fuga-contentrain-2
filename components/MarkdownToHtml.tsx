@@ -1,4 +1,4 @@
-import markdownToHtml from "@/lib/markdownToHtml";
+import markdownToHtml from '@/lib/markdownToHtml'
 import styles from './MarkdownToHtml-styles.module.css'
 import React from 'react'
 
@@ -7,7 +7,7 @@ interface IMarkdownToHtmlProps {
 }
 
 export const MarkdownToHtml: React.FC<IMarkdownToHtmlProps> = async ({
-  content
+  content,
 }: IMarkdownToHtmlProps) => {
   const html = await markdownToHtml(content || '')
   return (

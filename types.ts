@@ -1,7 +1,7 @@
 export enum LocaleCode {
-  en= 'en',
+  en = 'en',
   sk = 'sk',
-  cs = 'cs'
+  cs = 'cs',
 }
 
 export type SimplePage = {

@@ -1,4 +1,4 @@
-import Image from "next/image";
+import Image from 'next/image'
 import React from 'react'
 
 const data = [
@@ -13,11 +13,11 @@ const data = [
     event: {
       name: 'Monika Ližbetin - Vianočný zázrak',
       dateLabel: 'sobota • 16. 12. 2023 • 19:00',
-      tagline: 'Nádherný vianočný koncert'
+      tagline: 'Nádherný vianočný koncert',
     },
     venue: {
-      name: 'FUGA - kultúrne centrum kresťanov'
-    }
+      name: 'FUGA - kultúrne centrum kresťanov',
+    },
   },
   {
     id: 2,
@@ -30,11 +30,11 @@ const data = [
     event: {
       name: 'Monika Ližbetin - Vianočný zázrak',
       dateLabel: 'nedela • 17. 12. 2023 • 19:00',
-      tagline: 'Výnimočný Vianočný koncert'
+      tagline: 'Výnimočný Vianočný koncert',
     },
     venue: {
-      name: 'FUGA - kultúrne centrum kresťanov'
-    }
+      name: 'FUGA - kultúrne centrum kresťanov',
+    },
   },
   {
     id: 3,
@@ -47,11 +47,11 @@ const data = [
     event: {
       name: 'ŠTEFAN ŠTEC a FAJTA - Vianoce 2023',
       dateLabel: 'nedela • 17. 12. 2023 • 19:00',
-      tagline: 'Nádherný vianočný koncert'
+      tagline: 'Nádherný vianočný koncert',
     },
     venue: {
-      name: 'FUGA - kultúrne centrum kresťanov'
-    }
+      name: 'FUGA - kultúrne centrum kresťanov',
+    },
   },
   {
     id: 4,
@@ -64,24 +64,24 @@ const data = [
     event: {
       name: 'Monika Ližbetin - Vianočný zázrak',
       dateLabel: 'pondelok • 18. 12. 2023 • 19:00',
-      tagline: 'Nádherný vianočný koncert'
+      tagline: 'Nádherný vianočný koncert',
     },
     venue: {
-      name: 'FUGA - kultúrne centrum kresťanov'
-    }
-  }
+      name: 'FUGA - kultúrne centrum kresťanov',
+    },
+  },
 ]
 
 export const Program: React.FC = () => {
   return (
     <div className="w-full">
       <div className="mx-auto h-full px-4 pb-20 md:pb-10 sm:max-w-xl md:max-w-full md:px-24 lg:max-w-screen-xl lg:px-8">
-        <h2 className="py-6 max-w-lg text-4xl">
-          Program
-        </h2>
-        {data.map(item => (
-          <div key={item.id}
-               className="max-w-md mx-auto bg-white rounded-xl shadow-md overflow-hidden md:max-w-2xl m-5">
+        <h2 className="py-6 max-w-lg text-4xl">Program</h2>
+        {data.map((item) => (
+          <div
+            key={item.id}
+            className="max-w-md mx-auto bg-white rounded-xl shadow-md overflow-hidden md:max-w-2xl m-5"
+          >
             <div className="md:flex">
               <div className="md:flex-shrink-0">
                 <Image
@@ -93,10 +93,14 @@ export const Program: React.FC = () => {
                 />
               </div>
               <div className="p-8">
-                <h5 className="uppercase tracking-wide text-sm">{item.event.name}</h5>
+                <h5 className="uppercase tracking-wide text-sm">
+                  {item.event.name}
+                </h5>
                 <p className="mt-2 text-gray-500">{item.event.dateLabel}</p>
                 <p className="mt-2 text-gray-500">{item.venue.name}</p>
-                <p className="block mt-1 text-lg leading-tight font-medium text-black">{item.event.tagline}</p>
+                <p className="block mt-1 text-lg leading-tight font-medium text-black">
+                  {item.event.tagline}
+                </p>
               </div>
             </div>
           </div>

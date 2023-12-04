@@ -1,8 +1,8 @@
-import {Footer} from "@/components/Footer";
-import {Header} from "@/components/Header";
-import {Hero} from "@/components/Hero";
-import {Partners} from "@/components/Partners";
-import {Program} from "@/components/Program";
+import { Footer } from '@/components/Footer'
+import { Header } from '@/components/Header'
+import { Hero } from '@/components/Hero'
+import { Partners } from '@/components/Partners'
+import { Program } from '@/components/Program'
 
 export default function Home() {
   return (

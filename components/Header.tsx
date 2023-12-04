@@ -1,17 +1,21 @@
-import Image from "next/image";
-import Link from "next/link";
+import Image from 'next/image'
+import Link from 'next/link'
 import React from 'react'
 
-const data = [{
-  label: 'Program',
-  link: '/'
-}, {
-  label: 'O nás',
-  link: '/o-nas'
-}, {
-  label: 'Contact',
-  link: '/kontakt'
-},]
+const data = [
+  {
+    label: 'Program',
+    link: '/',
+  },
+  {
+    label: 'O nás',
+    link: '/o-nas',
+  },
+  {
+    label: 'Contact',
+    link: '/kontakt',
+  },
+]
 
 export const Header: React.FC = () => {
   return (
@@ -27,8 +31,10 @@ export const Header: React.FC = () => {
           />
         </a>
         <nav className="flex items-center justify-center text-base md:ml-auto h-full">
-          {data.map(item => (
-            <Link key={item.link} href={item.link} className="mr-5">{item.label}</Link>
+          {data.map((item) => (
+            <Link key={item.link} href={item.link} className="mr-5">
+              {item.label}
+            </Link>
           ))}
         </nav>
       </div>
