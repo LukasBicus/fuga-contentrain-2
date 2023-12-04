@@ -9,7 +9,13 @@
   },
   {
     "ID": "5a5e92b0-1dd3-4a0d-b293-164cdeaec1bd",
-    "simplePageId": "",
+    "simplePageId": {
+      "ID": "688aeac1-39c6-4b05-a395-377775378d8f",
+      "sk": "",
+      "en": "73deaa4a-5e53-44c7-a228-7d8561d4677d",
+      "cs": "",
+      "createdAt": 1701682298516
+    },
     "label": "",
     "path": "",
     "order": 2,
@@ -19,7 +25,13 @@
   },
   {
     "ID": "f18ebb52-6188-469e-98b3-d769606888b0",
-    "simplePageId": "",
+    "simplePageId": {
+      "ID": "7c96904b-aa74-479c-82eb-2e6d8d65c2c7",
+      "sk": "",
+      "en": "b3ebd917-84c5-4dfc-870a-29bf73efa6e2",
+      "cs": "",
+      "createdAt": 1701682317071
+    },
     "label": "",
     "path": "",
     "order": 3,
