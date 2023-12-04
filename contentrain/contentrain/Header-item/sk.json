@@ -5,7 +5,14 @@
     "path": "",
     "order": 2,
     "createdAt": 1701439170841,
-    "simplePageIdSk": "2096e567-19ce-4c68-b6f0-8ee7a5536e40"
+    "simplePageIdSk": "2096e567-19ce-4c68-b6f0-8ee7a5536e40",
+    "simplePageId": {
+      "ID": "3ddc3357-18b4-44be-9c5b-6e92051348a6",
+      "sk": "2096e567-19ce-4c68-b6f0-8ee7a5536e40",
+      "en": "",
+      "cs": "",
+      "createdAt": 1701682228968
+    }
   },
   {
     "ID": "aacbb7fc-1ed7-4d11-83bc-77053bca56f6",
