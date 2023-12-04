@@ -47,7 +47,11 @@ async function getData() {
       {
         query: EVENTS_QUERY,
         variables: {
-          filter: {},
+          filter: {
+            divisionId: 3,
+            state: 'published',
+            fromStartsAt: new Date().toISOString(),
+          },
           type: 'poster',
         },
       },
