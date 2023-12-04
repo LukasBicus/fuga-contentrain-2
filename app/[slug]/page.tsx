@@ -16,7 +16,7 @@ export default async function Page({ params }: { params: { slug: string } }) {
   const simplePage = getSimplePageBySlug(params.slug)
   return (
     <main className="flex min-h-screen flex-col">
-      <Header localeCode={LocaleCode.sk} />
+      <Header localeCode={LocaleCode.sk} currentPath={`/${params.slug}`} />
       <MarkdownToHtml content={simplePage.content} />
     </main>
   )

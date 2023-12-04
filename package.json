@@ -11,6 +11,7 @@
     "format:fix": "prettier --write --list-different ."
   },
   "dependencies": {
+    "clsx": "^2.0.0",
     "gray-matter": "^4.0.3",
     "lodash": "^4.17.21",
     "next": "14.0.3",

@@ -8,7 +8,7 @@ import { LocaleCode } from '@/types'
 export default function Home() {
   return (
     <main className="flex min-h-screen flex-col items-center">
-      <Header localeCode={LocaleCode.sk} />
+      <Header localeCode={LocaleCode.sk} currentPath="/" />
       <Hero />
       <Program />
       <Partners />
