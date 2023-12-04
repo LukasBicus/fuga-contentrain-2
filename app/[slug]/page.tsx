@@ -1,6 +1,7 @@
 import { Header } from '@/components/Header'
 import { MarkdownToHtml } from '@/components/MarkdownToHtml'
 import { getAllSimplePages, getSimplePageBySlug } from '@/lib/api'
+import { LocaleCode } from '@/types'
 
 export async function generateStaticParams() {
   const simplePages = getAllSimplePages()
@@ -15,7 +16,7 @@ export default async function Page({ params }: { params: { slug: string } }) {
   const simplePage = getSimplePageBySlug(params.slug)
   return (
     <main className="flex min-h-screen flex-col">
-      <Header />
+      <Header localeCode={LocaleCode.sk} />
       <MarkdownToHtml content={simplePage.content} />
     </main>
   )

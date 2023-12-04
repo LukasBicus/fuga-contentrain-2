@@ -1,6 +1,9 @@
+import { loadLocalizedCollectionData } from '@/lib/api'
+import { LocaleCode } from '@/types'
 import Image from 'next/image'
 import Link from 'next/link'
 import React from 'react'
+import 'server-only'
 
 const data = [
   {
@@ -17,7 +20,21 @@ const data = [
   },
 ]
 
-export const Header: React.FC = () => {
+interface IHeaderProps {
+  localeCode: LocaleCode
+}
+
+export const Header: React.FC<IHeaderProps> = async ({ localeCode }) => {
+  const headerItemData = await loadLocalizedCollectionData<{
+    ID: string
+    label: string
+    path: string
+    order: number
+    simplePageId: Record<LocaleCode, string>
+  }>('Header-item', LocaleCode.sk)
+  console.log('headerItemData', headerItemData)
+  console.log('v', headerItemData[0].simplePageId[LocaleCode.sk])
+
   return (
     <header className="w-full text-gray-700 bg-white shadow-sm body-font">
       <div className="container flex flex-col p-6 mx-auto md:flex-row items-center">
