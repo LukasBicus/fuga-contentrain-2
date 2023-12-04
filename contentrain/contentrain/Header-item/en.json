@@ -1,7 +1,13 @@
 [
   {
     "ID": "296c6262-1e33-4b6f-b35e-3755a903cdd0",
-    "simplePageId": "",
+    "simplePageId": {
+      "ID": "3bdd1dd8-0e8b-49da-b981-eb1b2e292442",
+      "sk": "",
+      "en": "",
+      "cs": "",
+      "createdAt": 1701682712978
+    },
     "label": "Program",
     "path": "/",
     "order": 1,
