@@ -10,7 +10,7 @@ export default function Home() {
     <main className="flex min-h-screen flex-col items-center">
       <Header localeCode={LocaleCode.sk} currentPath="/" />
       <Hero />
-      <Program />
+      <Program localeCode={LocaleCode.sk} />
       <Partners />
       <Footer />
     </main>

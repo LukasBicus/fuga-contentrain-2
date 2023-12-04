@@ -8,6 +8,12 @@ const nextConfig = {
         port: '',
         pathname: '/**',
       },
+      {
+        protocol: 'https',
+        hostname: 'uploadtest1.fra1.digitaloceanspaces.com',
+        port: '',
+        pathname: '/**',
+      },
     ],
   },
 }
