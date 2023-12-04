@@ -31,7 +31,13 @@
   },
   {
     "ID": "3b2a4391-a97d-4b72-8fdc-04db6d690701",
-    "simplePageId": "",
+    "simplePageId": {
+      "ID": "47dfa296-98f6-4f39-bf25-8ff9ad1f983e",
+      "sk": "",
+      "en": "",
+      "cs": "",
+      "createdAt": 1701682646739
+    },
     "label": "Program",
     "path": "/",
     "order": 1,
