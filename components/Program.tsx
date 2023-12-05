@@ -1,5 +1,4 @@
 import { LocaleCode } from '@/types'
-import axios from 'axios'
 import Image from 'next/image'
 import React from 'react'
 
