@@ -8,7 +8,8 @@
     "start": "next start",
     "lint": "next lint",
     "format": "prettier --check .",
-    "format:fix": "prettier --write --list-different ."
+    "format:fix": "prettier --write --list-different .",
+    "generate:entradio-api-types": "graphql-codegen"
   },
   "dependencies": {
     "clsx": "^2.0.0",
@@ -22,6 +23,8 @@
     "server-only": "^0.0.1"
   },
   "devDependencies": {
+    "@graphql-codegen/cli": "^5.0.0",
+    "@graphql-codegen/typescript": "^4.0.1",
     "@types/lodash": "^4.14.202",
     "@types/node": "^20",
     "@types/react": "^18",
