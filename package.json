@@ -13,6 +13,7 @@
     "generate:entradio-api-types": "graphql-codegen"
   },
   "dependencies": {
+    "assert": "^2.1.0",
     "clsx": "^2.0.0",
     "gray-matter": "^4.0.3",
     "lodash": "^4.17.21",
