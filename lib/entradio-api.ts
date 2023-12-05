@@ -1,12 +1,12 @@
 import { ENTRADIO_API_KEY, ENTRADIO_API_URL } from '@/envs'
 
-export async function entradioApiGraphqlRequest(
+export async function entradioApiGraphqlRequest<TVariables, TResult>(
   body: {
     query: string
-    variables: any
+    variables: TVariables
   },
   next: NextFetchRequestConfig | undefined = { revalidate: 60 }
-) {
+): Promise<TResult> {
   const response = await fetch(ENTRADIO_API_URL, {
     method: 'POST',
     headers: {
@@ -17,7 +17,10 @@ export async function entradioApiGraphqlRequest(
     next,
   })
 
-  const data = await response.json()
+  const data = (await response.json()) as {
+    data: TResult
+    errors: any
+  }
   if (data.errors) {
     throw data
   }

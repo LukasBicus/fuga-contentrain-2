@@ -1,4 +1,13 @@
-import { LocaleCode } from '@/__generated__/api-types'
+import {
+  EventState,
+  LocaleCode,
+  Event,
+  Query,
+  QueryEventsArgs,
+  ShowImageType,
+  ShowPrimaryImageArgs,
+  ShowTranslation,
+} from '@/__generated__/api-types'
 import { entradioApiGraphqlRequest } from '@/lib/entradio-api'
 import {
   capitalizeFirstLetter,
@@ -48,23 +57,24 @@ query EventsQuery($filter: EventsFilter, $type: ShowImageType!) {
 export const Program: React.FC<{ localeCode: LocaleCode }> = async ({
   localeCode,
 }) => {
-  const data = await entradioApiGraphqlRequest({
+  const data = await entradioApiGraphqlRequest<
+    QueryEventsArgs & ShowPrimaryImageArgs,
+    Pick<Query, 'events'>
+  >({
     query: EVENTS_QUERY,
     variables: {
       filter: {
         divisionId: 3,
-        state: 'published',
+        state: EventState.Published,
         fromStartsAt: new Date().toISOString(),
       },
-      type: 'poster',
+      type: ShowImageType.Poster,
     },
   })
 
   const {
     events: { items },
   } = data
-
-  console.log(data)
 
   const formatWeekDay = getFormatWeekDay(localeCode)
   const formatDayNumeric = getFormatDayNumeric(localeCode)
@@ -73,8 +83,7 @@ export const Program: React.FC<{ localeCode: LocaleCode }> = async ({
     <div className="w-full">
       <div className="mx-auto h-full px-4 pb-20 md:pb-10 sm:max-w-xl md:max-w-full md:px-24 lg:max-w-screen-xl lg:px-8">
         <h2 className="py-6 max-w-lg text-4xl">Program</h2>
-        {/*// @ts-ignore*/}
-        {items.map((item) => {
+        {items.map((item: Event) => {
           const startsAtDate = new Date(item.startsAt)
           return (
             <div
@@ -117,9 +126,9 @@ export const Program: React.FC<{ localeCode: LocaleCode }> = async ({
                   <p className="mt-2 text-gray-500">{item.venue.name}</p>
                   <p className="block mt-1 text-lg leading-tight font-medium text-black">
                     {item.show.translations.find(
-                      // @ts-ignore
-                      (translation) => translation.localeCode === localeCode
-                    ).tagline || item.show.translations[0].tagline}
+                      (translation: ShowTranslation) =>
+                        translation.localeCode === localeCode
+                    )?.tagline || item.show.translations[0].tagline}
                   </p>
                 </div>
               </div>
