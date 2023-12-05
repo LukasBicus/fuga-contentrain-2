@@ -1,4 +1,4 @@
-import { LocaleCode } from '@/types'
+import { LocaleCode } from '@/__generated__/api-types'
 
 export const getFormatWeekDay = (localeCode: LocaleCode) => (date: Date) => {
   const formatter = Intl.DateTimeFormat(localeCode, {

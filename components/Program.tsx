@@ -1,3 +1,4 @@
+import { LocaleCode } from '@/__generated__/api-types'
 import {
   capitalizeFirstLetter,
   getFormatDayNumeric,
@@ -5,7 +6,6 @@ import {
   getFormatWeekDay,
   joinTroughDot,
 } from '@/lib/format'
-import { LocaleCode } from '@/types'
 import Image from 'next/image'
 import React from 'react'
 

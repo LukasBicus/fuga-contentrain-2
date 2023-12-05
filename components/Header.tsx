@@ -1,5 +1,6 @@
+import { LocaleCode } from '@/__generated__/api-types'
 import { loadLocalizedCollectionData } from '@/lib/api'
-import { HeaderItem, LocaleCode, SimplePage } from '@/types'
+import { HeaderItem, SimplePage } from '@/types'
 import { clsx } from 'clsx'
 import { orderBy } from 'lodash'
 import Image from 'next/image'
