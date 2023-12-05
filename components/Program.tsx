@@ -39,12 +39,14 @@ query EventsQuery($filter: EventsFilter, $type: ShowImageType!) {
 `
 async function getData() {
   const { ENTRADIO_API_URL, ENTRADIO_API_KEY } = process.env
-  console.log('ENTRADIO_API_KEY', ENTRADIO_API_KEY)
-  console.log('ENTRADIO_API_URL', ENTRADIO_API_URL)
   if (ENTRADIO_API_KEY && ENTRADIO_API_URL) {
-    const response = await axios.post(
-      ENTRADIO_API_URL,
-      {
+    const response = await fetch(ENTRADIO_API_URL, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${ENTRADIO_API_KEY}`,
+      },
+      body: JSON.stringify({
         query: EVENTS_QUERY,
         variables: {
           filter: {
@@ -54,18 +56,15 @@ async function getData() {
           },
           type: 'poster',
         },
-      },
-      {
-        headers: {
-          Authorization: `Bearer ${ENTRADIO_API_KEY}`,
-        },
-      }
-    )
+      }),
+      next: { revalidate: 60 },
+    })
 
-    if (response.data.errors) {
-      throw response.data
+    const data = await response.json()
+    if (data.errors) {
+      throw data
     }
-    return response.data.data
+    return data.data
   }
   return null
 }
@@ -74,13 +73,10 @@ export const Program: React.FC<{ localeCode: LocaleCode }> = async ({
   localeCode,
 }) => {
   const data = await getData()
-  console.log('data', data)
 
   const {
     events: { items },
   } = data
-
-  console.log('items', items)
 
   return (
     <div className="w-full">
