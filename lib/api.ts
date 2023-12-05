@@ -1,10 +1,11 @@
-import { LocaleCode, SimplePage } from '@/types'
+import { LocaleCode } from '@/__generated__/api-types'
+import { SimplePage } from '@/types'
 import fs from 'fs'
 import fsPromises from 'fs/promises'
 import { join } from 'path'
 import matter from 'gray-matter'
 
-const defaultLocaleCode = LocaleCode.sk
+const defaultLocaleCode = LocaleCode.Sk
 
 export const loadJsonFile = async (filePath: string) => {
   try {

@@ -1,8 +1,4 @@
-export enum LocaleCode {
-  en = 'en',
-  sk = 'sk',
-  cs = 'cs',
-}
+import { LocaleCode } from '@/__generated__/api-types'
 
 export type SimplePage = {
   ID: string
