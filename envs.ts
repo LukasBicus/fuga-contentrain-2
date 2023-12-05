@@ -1,11 +1,9 @@
 import assert from 'assert'
 
-const { ENTRADIO_API_URL, ENTRADIO_API_KEY } = process.env
+assert(process.env.ENTRADIO_API_URL, 'ENTRADIO_API_URL is required')
+const ENTRADIO_API_URL = process.env.ENTRADIO_API_URL satisfies string
 
-;(function makeAssertions() {
-  console.log('makeAssertions')
-  assert(ENTRADIO_API_URL, 'ENTRADIO_API_URL is required')
-  assert(ENTRADIO_API_KEY, 'ENTRADIO_API_KEY is required')
-})()
+assert(process.env.ENTRADIO_API_KEY, 'ENTRADIO_API_KEY is required')
+const ENTRADIO_API_KEY = process.env.ENTRADIO_API_KEY satisfies string
 
 export { ENTRADIO_API_URL, ENTRADIO_API_KEY }
