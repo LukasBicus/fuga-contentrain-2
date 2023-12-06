@@ -29,7 +29,6 @@ export const EventDetail: React.FC<{
 
   const formatDayNumeric = getFormatDayNumeric(localeCode)
   const formatTime = getFormatTime(localeCode)
-  console.log('description', description)
   const startsAtDate = new Date(event.startsAt)
   return (
     <>
