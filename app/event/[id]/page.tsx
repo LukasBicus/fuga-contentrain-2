@@ -6,7 +6,7 @@ import {
 } from '@/__generated__/api-types'
 import { EVENT_QUERY } from '@/app/event/[id]/graphql'
 import { Header } from '@/components/Header'
-import { graphqlClient } from '@/lib/entradio-api'
+import { graphqlClient } from '@/lib/graphqlClient'
 
 export const revalidate = 60 // revalidate at most every 15s
 

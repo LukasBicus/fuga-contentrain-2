@@ -6,7 +6,7 @@ import {
   EventsQueryQuery,
 } from '@/__generated__/api-types'
 import { EVENTS_QUERY } from '@/components/Program/graphql'
-import { graphqlClient } from '@/lib/entradio-api'
+import { graphqlClient } from '@/lib/graphqlClient'
 import {
   capitalizeFirstLetter,
   getFormatDayNumeric,
