@@ -5,6 +5,7 @@ import {
   ShowImageType,
 } from '@/__generated__/api-types'
 import { EVENT_QUERY } from '@/app/event/[id]/graphql'
+import { EventDetail } from '@/components/EventDetail'
 import { Header } from '@/components/Header'
 import { graphqlClient } from '@/lib/graphqlClient'
 import { notFound } from 'next/navigation'
@@ -30,12 +31,10 @@ export default async function Page({ params }: { params: { id: string } }) {
   if (!data) {
     notFound()
   }
-  const { event } = data
   return (
     <main className="flex min-h-screen flex-col">
       <Header localeCode={LocaleCode.Sk} currentPath={`/event/id`} />
-      <div>{params.id}</div>
-      <div>{JSON.stringify(event)}</div>
+      <EventDetail localeCode={LocaleCode.Sk} event={data.event} />
     </main>
   )
 }

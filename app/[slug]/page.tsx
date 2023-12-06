@@ -17,7 +17,9 @@ export default async function Page({ params }: { params: { slug: string } }) {
   return (
     <main className="flex min-h-screen flex-col">
       <Header localeCode={LocaleCode.Sk} currentPath={`/${params.slug}`} />
-      <MarkdownToHtml content={simplePage.content} />
+      <div className="p-8 md:px-24 md:py-16">
+        <MarkdownToHtml content={simplePage.content} />
+      </div>
     </main>
   )
 }
