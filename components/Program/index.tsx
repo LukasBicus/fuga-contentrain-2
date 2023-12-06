@@ -1,14 +1,12 @@
 import {
   EventState,
   LocaleCode,
-  Event,
-  Query,
-  QueryEventsArgs,
   ShowImageType,
-  ShowPrimaryImageArgs,
-  ShowTranslation,
+  EventsQueryQueryVariables,
+  EventsQueryQuery,
 } from '@/__generated__/api-types'
-import { entradioApiGraphqlRequest } from '@/lib/entradio-api'
+import { EVENTS_QUERY } from '@/components/Program/graphql'
+import { graphqlClient } from '@/lib/entradio-api'
 import {
   capitalizeFirstLetter,
   getFormatDayNumeric,
@@ -19,57 +17,19 @@ import {
 import Image from 'next/image'
 import React from 'react'
 
-const EVENTS_QUERY = `
-query EventsQuery($filter: EventsFilter, $type: ShowImageType!) {
-  events(filter: $filter) {
-    items {
-      id
-      show {
-        id
-        translations {
-          tagline
-          localeCode
-        }
-        primaryImage(type: $type) {
-          url
-          width
-          height
-          key
-          id
-        }
-      }
-      names {
-        cs
-        en
-        sk
-      }
-      startsAt
-      venue {
-        id
-        name
-      }
-      state
-    }
-  }
-}
-`
-
 export const Program: React.FC<{ localeCode: LocaleCode }> = async ({
   localeCode,
 }) => {
-  const data = await entradioApiGraphqlRequest<
-    QueryEventsArgs & ShowPrimaryImageArgs,
-    Pick<Query, 'events'>
-  >({
-    query: EVENTS_QUERY,
-    variables: {
-      filter: {
-        divisionId: 3,
-        state: EventState.Published,
-        fromStartsAt: new Date().toISOString(),
-      },
-      type: ShowImageType.Poster,
+  const data = await graphqlClient.request<
+    EventsQueryQuery,
+    EventsQueryQueryVariables
+  >(EVENTS_QUERY, {
+    filter: {
+      divisionId: 3,
+      state: EventState.Published,
+      fromStartsAt: new Date().toISOString(),
     },
+    type: ShowImageType.Poster,
   })
 
   const {
@@ -83,7 +43,7 @@ export const Program: React.FC<{ localeCode: LocaleCode }> = async ({
     <div className="w-full">
       <div className="mx-auto h-full px-4 pb-20 md:pb-10 sm:max-w-xl md:max-w-full md:px-24 lg:max-w-screen-xl lg:px-8">
         <h2 className="py-6 max-w-lg text-4xl">Program</h2>
-        {items.map((item: Event) => {
+        {items.map((item) => {
           const startsAtDate = new Date(item.startsAt)
           return (
             <div
@@ -126,8 +86,7 @@ export const Program: React.FC<{ localeCode: LocaleCode }> = async ({
                   <p className="mt-2 text-gray-500">{item.venue.name}</p>
                   <p className="block mt-1 text-lg leading-tight font-medium text-black">
                     {item.show.translations.find(
-                      (translation: ShowTranslation) =>
-                        translation.localeCode === localeCode
+                      (translation) => translation.localeCode === localeCode
                     )?.tagline || item.show.translations[0].tagline}
                   </p>
                 </div>
