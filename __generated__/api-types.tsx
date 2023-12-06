@@ -2271,3 +2271,11 @@ export type Venue = {
   name: Scalars['String']['output'];
   secondaryName?: Maybe<Scalars['String']['output']>;
 };
+
+export type EventQueryVariables = Exact<{
+  eventId: Scalars['PositiveInt']['input'];
+  type: ShowImageType;
+}>;
+
+
+export type EventQuery = { __typename?: 'Query', event: { __typename?: 'Event', ageClassificationCode?: ShowAgeClassificationCode | null, endsAt: any, duration: any, ecommerceEventURL: string, formatCode?: ShowFormatCode | null, gateOpensAt: any, gateClosedAt: any, id: any, organizerNote: string, soundMixCode?: ShowSoundMixCode | null, startsAt: any, state: EventState, versionCode?: ShowVersionCode | null, auditorium: { __typename?: 'Auditorium', id: any, name: string }, client: { __typename?: 'Client', id: any, name: any }, division: { __typename?: 'Division', id: any, name: any, email?: any | null, phoneNumber?: any | null }, names: { __typename?: 'Translated', cs?: string | null, en?: string | null, hu?: string | null, sk?: string | null }, show: { __typename?: 'Show', id: any, languageCodes: Array<LanguageCode>, images: Array<{ __typename?: 'ShowImage', id: number, key: string, height?: number | null, url: string, width?: number | null }>, primaryImage?: { __typename?: 'ShowImage', id: number, key: string, height?: number | null, width?: number | null, url: string } | null, translations: Array<{ __typename?: 'ShowTranslation', tagline?: string | null, localeCode: LocaleCode, description?: string | null }> }, venue: { __typename?: 'Venue', id: any, name: string, secondaryName?: string | null, address: { __typename?: 'Address', complex: string, country: string, postalCode: string, street: string, town: string } } } };

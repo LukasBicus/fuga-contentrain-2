@@ -1,8 +1,8 @@
 import { gql } from 'graphql-request'
 
 export const EVENT_QUERY = gql`
-  query Event($id: PositiveInt!, $type: ShowImageType!) {
-    event(id: $id) {
+  query Event($eventId: PositiveInt!, $type: ShowImageType!) {
+    event(id: $eventId) {
       ageClassificationCode
       auditorium {
         id
