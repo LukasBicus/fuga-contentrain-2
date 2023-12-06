@@ -13,5 +13,12 @@
     "slug": "kontakt",
     "content": "# Kultúrne centrum\nFUGA - kultúrne centrum kresťanov\nMoyzesova 62\n040 01 Košice\n\nTel. č.: +421 915 33 11 11\ne-mail: fuga.kck@gmail.com\n\n# Fakturačné údaje\nFUGA, o.z.\nVaršavská 8, 040 13 Košice\n\nIČO: 42103339\nDIČ: 2022824925\nIBAN: SK73 1100 0000 0029 2984 1801",
     "createdAt": 1701418123195
+  },
+  {
+    "ID": "de10b3eb-f91e-4726-bb05-0bf1515b87d7",
+    "title": "Mapa",
+    "slug": "mapa",
+    "content": "Mapa *na googli*",
+    "createdAt": 1701780688894
   }
 ]
