@@ -15,6 +15,7 @@ import {
   joinTroughDot,
 } from '@/lib/format'
 import Image from 'next/image'
+import Link from 'next/link'
 import React from 'react'
 
 export const Program: React.FC<{ localeCode: LocaleCode }> = async ({
@@ -50,7 +51,10 @@ export const Program: React.FC<{ localeCode: LocaleCode }> = async ({
               key={item.id}
               className="max-w-md mx-auto bg-white rounded-xl shadow-md overflow-hidden md:max-w-2xl m-5"
             >
-              <div className="md:flex">
+              <Link
+                className="md:flex font-body hover:scale-105 hover:bg-transparent"
+                href={`/event/${item.id}`}
+              >
                 <div className="md:flex-shrink-0">
                   {item.show.primaryImage?.url ? (
                     <Image
@@ -90,7 +94,7 @@ export const Program: React.FC<{ localeCode: LocaleCode }> = async ({
                     )?.tagline || item.show.translations[0].tagline}
                   </p>
                 </div>
-              </div>
+              </Link>
             </div>
           )
         })}

@@ -18,6 +18,12 @@
   }
 }
 
+@layer base {
+  html {
+    @apply font-body
+  }
+}
+
 body {
   color: rgb(var(--foreground-rgb));
   background: linear-gradient(
@@ -26,7 +32,6 @@ body {
       rgb(var(--background-end-rgb))
     )
     rgb(var(--background-start-rgb));
-  font-family: var(--font-rubik), sans-serif;
 }
 
 h1,
@@ -36,7 +41,7 @@ h4,
 h5,
 h6,
 a {
-  font-family: var(--font-rubik-mono-one), sans-serif;
+  @apply font-mono
 }
 
 h1,
