@@ -1,4 +1,5 @@
 import { ENTRADIO_API_KEY, ENTRADIO_API_URL } from '@/envs'
+import { GraphQLClient } from 'graphql-request'
 
 export async function entradioApiGraphqlRequest<TVariables, TResult>(
   body: {
@@ -26,3 +27,10 @@ export async function entradioApiGraphqlRequest<TVariables, TResult>(
   }
   return data.data
 }
+
+export const graphqlClient = new GraphQLClient(ENTRADIO_API_URL, {
+  headers: {
+    Authorization: `Bearer ${ENTRADIO_API_KEY}`,
+  },
+  fetch,
+})
