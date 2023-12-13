@@ -20,5 +20,12 @@
     "slug": "mapa",
     "content": "Mapa *na googli*",
     "createdAt": 1701780688894
+  },
+  {
+    "ID": "7f41ea2d-2758-4e36-a7a6-5e754a81b344",
+    "content": "",
+    "slug": "kontakt",
+    "title": "Ahoj",
+    "createdAt": 1702470200871
   }
 ]
