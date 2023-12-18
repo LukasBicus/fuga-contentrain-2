@@ -1,5 +1,5 @@
 import { LocaleCode } from '@/__generated__/api-types'
-import { loadLocalizedCollectionData } from '@/lib/api'
+import { getAllArticles, loadLocalizedCollectionData } from '@/lib/api'
 import { Article, HeaderItem } from '@/types'
 import { clsx } from 'clsx'
 import { orderBy } from 'lodash'
@@ -25,20 +25,16 @@ export const Header: React.FC<IHeaderProps> = async ({
     'Header-item',
     localeCode
   )
-  // todo: replace
-  const simplePagesData = await loadLocalizedCollectionData<Article>(
-    'Simple-page',
-    localeCode
-  )
+  const articles = getAllArticles(localeCode)
   const headerData: HeaderData = [...headerItemsData]
   for (const headerItem of headerData) {
     if (headerItem.simplePageId[localeCode]) {
-      const simplePage = simplePagesData.find(
-        (sp) => sp.ID === headerItem.simplePageId[localeCode]
+      const article = articles.find(
+        (article) => article.ID === headerItem.simplePageId[localeCode]
       )
-      if (simplePage) {
-        headerItem['article'] = simplePage
-        headerItem.path = `/${simplePage.slug}`
+      if (article) {
+        headerItem['article'] = article
+        headerItem.path = `/${article.slug}`
       }
     }
   }
