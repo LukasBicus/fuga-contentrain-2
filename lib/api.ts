@@ -2,8 +2,8 @@ import { LocaleCode } from '@/__generated__/api-types'
 import { SimplePage } from '@/types'
 import fs from 'fs'
 import fsPromises from 'fs/promises'
-import { join } from 'path'
 import matter from 'gray-matter'
+import { join } from 'path'
 
 const defaultLocaleCode = LocaleCode.Sk
 
@@ -29,8 +29,9 @@ export const loadLocalizedCollectionData = async <T extends object>(
     )
   )
 
+// todo: rename
 const getSimplePagesDirectory = (localeCode: LocaleCode = defaultLocaleCode) =>
-  join(process.cwd(), 'content/page/Simple-page', localeCode)
+  join(process.cwd(), 'data/article', localeCode)
 export function getSimplePagesFilenames(
   localeCode: LocaleCode = defaultLocaleCode
 ) {
