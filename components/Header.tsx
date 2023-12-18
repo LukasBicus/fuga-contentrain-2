@@ -1,5 +1,6 @@
 import { LocaleCode } from '@/__generated__/api-types'
 import { getAllArticles, loadLocalizedJSONData } from '@/lib/api'
+import { transformSlugToRoute } from '@/lib/routes'
 import { Article, HeaderItem } from '@/types'
 import { clsx } from 'clsx'
 import { orderBy } from 'lodash'
@@ -40,30 +41,16 @@ export const Header: React.FC<IHeaderProps> = async ({
         return {
           ...item,
           article,
-          path: `/${item.slug}`,
+          path: transformSlugToRoute(item.slug, localeCode),
         }
       }
     }
     // todo: add page
     return {
       ...item,
-      path: `/${item.slug}`,
+      path: transformSlugToRoute(item.slug, localeCode),
     }
   })
-  for (const headerItem of items) {
-    if (headerItem.articleId) {
-      const article = articles.find(
-        (article) => article.ID === headerItem.articleId
-      )
-      if (article) {
-        headerItem['article'] = article
-        headerItem.path = `/${article.slug}`
-      }
-    } else {
-      // todo: replace - get
-      headerItem.path = '/'
-    }
-  }
 
   return (
     <header className="w-full text-gray-700 bg-white shadow-sm body-font">
