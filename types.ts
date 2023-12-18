@@ -1,6 +1,6 @@
 import { LocaleCode } from '@/__generated__/api-types'
 
-export type SimplePage = {
+export type Article = {
   ID: string
   title: string
   slug: string

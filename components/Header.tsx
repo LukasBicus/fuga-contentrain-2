@@ -1,6 +1,6 @@
 import { LocaleCode } from '@/__generated__/api-types'
 import { loadLocalizedCollectionData } from '@/lib/api'
-import { HeaderItem, SimplePage } from '@/types'
+import { Article, HeaderItem } from '@/types'
 import { clsx } from 'clsx'
 import { orderBy } from 'lodash'
 import Image from 'next/image'
@@ -14,7 +14,7 @@ interface IHeaderProps {
 }
 
 type HeaderData = (HeaderItem & {
-  simplePage?: SimplePage
+  article?: Article
 })[]
 
 export const Header: React.FC<IHeaderProps> = async ({
@@ -25,7 +25,8 @@ export const Header: React.FC<IHeaderProps> = async ({
     'Header-item',
     localeCode
   )
-  const simplePagesData = await loadLocalizedCollectionData<SimplePage>(
+  // todo: replace
+  const simplePagesData = await loadLocalizedCollectionData<Article>(
     'Simple-page',
     localeCode
   )
@@ -36,7 +37,7 @@ export const Header: React.FC<IHeaderProps> = async ({
         (sp) => sp.ID === headerItem.simplePageId[localeCode]
       )
       if (simplePage) {
-        headerItem['simplePage'] = simplePage
+        headerItem['article'] = simplePage
         headerItem.path = `/${simplePage.slug}`
       }
     }
@@ -67,7 +68,7 @@ export const Header: React.FC<IHeaderProps> = async ({
                 ['border-l-transparent']: item.path !== currentPath,
               })}
             >
-              {item.simplePage ? item.simplePage.title : item.label}
+              {item.article ? item.article.title : item.label}
             </Link>
           ))}
         </nav>

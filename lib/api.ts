@@ -1,5 +1,5 @@
 import { LocaleCode } from '@/__generated__/api-types'
-import { SimplePage } from '@/types'
+import { Article } from '@/types'
 import fs from 'fs'
 import fsPromises from 'fs/promises'
 import matter from 'gray-matter'
@@ -29,33 +29,32 @@ export const loadLocalizedCollectionData = async <T extends object>(
     )
   )
 
-// todo: rename
-const getSimplePagesDirectory = (localeCode: LocaleCode = defaultLocaleCode) =>
+const getArticlesDirectory = (localeCode: LocaleCode = defaultLocaleCode) =>
   join(process.cwd(), 'data/article', localeCode)
-export function getSimplePagesFilenames(
+export function getArticlesFilenames(
   localeCode: LocaleCode = defaultLocaleCode
 ) {
-  return fs.readdirSync(getSimplePagesDirectory(localeCode))
+  return fs.readdirSync(getArticlesDirectory(localeCode))
 }
 
 const getSlugFromMdFilename = (filename: string) =>
   filename.replace(/\.md$/, '')
 
-export function getSimplePageBySlug(
+export function getArticleBySlug(
   slug: string,
   localeCode: LocaleCode = defaultLocaleCode
-): SimplePage {
-  const fullPath = join(getSimplePagesDirectory(localeCode), `${slug}.md`)
+): Article {
+  const fullPath = join(getArticlesDirectory(localeCode), `${slug}.md`)
   const fileContents = fs.readFileSync(fullPath, 'utf8')
   const { data, content } = matter(fileContents)
 
-  return { ...(data as Omit<SimplePage, 'content'>), content }
+  return { ...(data as Omit<Article, 'content'>), content }
 }
 
-export function getAllSimplePages(localeCode: LocaleCode = defaultLocaleCode) {
-  return getSimplePagesFilenames(localeCode)
-    .map((filename) => getSimplePageBySlug(getSlugFromMdFilename(filename)))
-    .sort((simplePage1, simplePage2) =>
-      simplePage1.createdAt > simplePage2.createdAt ? -1 : 1
+export function getAllArticles(localeCode: LocaleCode = defaultLocaleCode) {
+  return getArticlesFilenames(localeCode)
+    .map((filename) => getArticleBySlug(getSlugFromMdFilename(filename)))
+    .sort((articleA, articleB) =>
+      articleA.createdAt > articleB.createdAt ? -1 : 1
     )
 }
