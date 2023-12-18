@@ -16,17 +16,17 @@ export const loadJsonFile = async (filePath: string) => {
   }
 }
 
-export const loadLocalizedCollectionData = async <T extends object>(
-  collection: string,
+export const loadLocalizedJSONData = async <T extends object>({
+  directory,
+  localeCode,
+  slug,
+}: {
+  directory: string
   localeCode: LocaleCode
-): Promise<T[]> =>
+  slug: string
+}): Promise<T> =>
   loadJsonFile(
-    join(
-      process.cwd(),
-      'contentrain/contentrain',
-      collection,
-      `${localeCode}.json`
-    )
+    join(process.cwd(), 'data', directory, localeCode, `${slug}.json`)
   )
 
 const getArticlesDirectory = (localeCode: LocaleCode = defaultLocaleCode) =>

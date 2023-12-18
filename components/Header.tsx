@@ -1,5 +1,5 @@
 import { LocaleCode } from '@/__generated__/api-types'
-import { getAllArticles, loadLocalizedCollectionData } from '@/lib/api'
+import { getAllArticles, loadLocalizedJSONData } from '@/lib/api'
 import { Article, HeaderItem } from '@/types'
 import { clsx } from 'clsx'
 import { orderBy } from 'lodash'
@@ -15,27 +15,53 @@ interface IHeaderProps {
 
 type HeaderData = (HeaderItem & {
   article?: Article
+  path: string
 })[]
 
+// todo: finish localisation
 export const Header: React.FC<IHeaderProps> = async ({
   localeCode,
   currentPath,
 }) => {
-  const headerItemsData = await loadLocalizedCollectionData<HeaderItem>(
-    'Header-item',
-    localeCode
-  )
+  const headerData = await loadLocalizedJSONData<{
+    ID: string
+    items: HeaderItem[]
+  }>({
+    directory: 'header',
+    localeCode,
+    slug: 'index',
+  })
   const articles = getAllArticles(localeCode)
-  const headerData: HeaderData = [...headerItemsData]
-  for (const headerItem of headerData) {
-    if (headerItem.simplePageId[localeCode]) {
+
+  const items: HeaderData = headerData.items.map((item) => {
+    if (item.articleId) {
+      const article = articles.find((article) => article.ID === item.articleId)
+      if (article) {
+        return {
+          ...item,
+          article,
+          path: `/${item.slug}`,
+        }
+      }
+    }
+    // todo: add page
+    return {
+      ...item,
+      path: `/${item.slug}`,
+    }
+  })
+  for (const headerItem of items) {
+    if (headerItem.articleId) {
       const article = articles.find(
-        (article) => article.ID === headerItem.simplePageId[localeCode]
+        (article) => article.ID === headerItem.articleId
       )
       if (article) {
         headerItem['article'] = article
         headerItem.path = `/${article.slug}`
       }
+    } else {
+      // todo: replace - get
+      headerItem.path = '/'
     }
   }
 
@@ -55,7 +81,7 @@ export const Header: React.FC<IHeaderProps> = async ({
           />
         </Link>
         <nav className="flex items-center justify-center text-base md:ml-auto h-full">
-          {orderBy(headerData, 'order').map((item) => (
+          {orderBy(items, 'order').map((item) => (
             <Link
               key={item.path}
               href={item.path}
