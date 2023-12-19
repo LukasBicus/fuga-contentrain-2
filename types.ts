@@ -1,8 +1,7 @@
 export interface IObjectWithID {
   ID: string
 }
-export type Article = {
-  ID: string
+export interface IArticleData extends IObjectWithID {
   title: string
   slug: string
   createdAt: number
@@ -10,18 +9,18 @@ export type Article = {
   content: string
 }
 
-export type HeaderItem = {
+export interface IHeaderItemData {
   label: string
   articleId?: string
   pageId?: string
   slug: string
 }
 
-export interface IHeader extends IObjectWithID {
-  items: HeaderItem
+export interface IHeaderData extends IObjectWithID {
+  items: IHeaderItemData
 }
 
-export interface IPage extends IObjectWithID {
+export interface IPageData extends IObjectWithID {
   title: string
   slug: string
 }

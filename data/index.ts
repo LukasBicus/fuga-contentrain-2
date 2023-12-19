@@ -1,6 +1,6 @@
 import { LocaleCode } from '@/__generated__/api-types'
 import { getDataDirectory, loadJsonFile } from '@/lib/api'
-import { IHeader, IPage } from '@/types'
+import { IHeaderData, IPageData } from '@/types'
 import fs from 'fs'
 import path from 'path'
 
@@ -48,11 +48,11 @@ const loadDataForJSONDir = <T extends object>(
 }
 
 const data: {
-  page: ComponentDirectoryContent<IPage>
-  header: ComponentDirectoryContent<IHeader>
+  page: ComponentDirectoryContent<IPageData>
+  header: ComponentDirectoryContent<IHeaderData>
 } = {
-  page: loadDataForJSONDir<IPage>('page'),
-  header: loadDataForJSONDir<IHeader>('header'),
+  page: loadDataForJSONDir<IPageData>('page'),
+  header: loadDataForJSONDir<IHeaderData>('header'),
 }
 
 export { data }

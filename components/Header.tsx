@@ -1,7 +1,7 @@
 import { LocaleCode } from '@/__generated__/api-types'
 import { getAllArticles, loadLocalizedJSONData } from '@/lib/api'
 import { transformSlugToRoute } from '@/lib/routes'
-import { Article, HeaderItem } from '@/types'
+import { IArticleData, IHeaderItemData } from '@/types'
 import { clsx } from 'clsx'
 import { orderBy } from 'lodash'
 import Image from 'next/image'
@@ -14,8 +14,8 @@ interface IHeaderProps {
   currentPath: string
 }
 
-type HeaderData = (HeaderItem & {
-  article?: Article
+type HeaderData = (IHeaderItemData & {
+  article?: IArticleData
   path: string
 })[]
 
@@ -26,7 +26,7 @@ export const Header: React.FC<IHeaderProps> = async ({
 }) => {
   const headerData = loadLocalizedJSONData<{
     ID: string
-    items: HeaderItem[]
+    items: IHeaderItemData[]
   }>({
     directory: 'header',
     localeCode,

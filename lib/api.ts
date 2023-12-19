@@ -1,6 +1,6 @@
 import { LocaleCode } from '@/__generated__/api-types'
 import { DEFAULT_LOCALE_CODE } from '@/envs'
-import { Article } from '@/types'
+import { IArticleData } from '@/types'
 import fs from 'fs'
 import matter from 'gray-matter'
 import { join } from 'path'
@@ -52,12 +52,12 @@ const getSlugFromMdFilename = (filename: string) =>
 export function getArticleBySlug(
   slug: string,
   localeCode: LocaleCode = defaultLocaleCode
-): Article {
+): IArticleData {
   const fullPath = join(getArticlesDirectory(localeCode), `${slug}.md`)
   const fileContents = fs.readFileSync(fullPath, 'utf8')
   const { data, content } = matter(fileContents)
 
-  return { ...(data as Omit<Article, 'content'>), content }
+  return { ...(data as Omit<IArticleData, 'content'>), content }
 }
 
 export function getAllArticles(localeCode: LocaleCode = defaultLocaleCode) {
