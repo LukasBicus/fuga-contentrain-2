@@ -1,6 +1,5 @@
 import { LocaleCode } from '@/__generated__/api-types'
 import { data } from '@/data'
-import { getAllArticles } from '@/lib/api'
 import { transformSlugToRoute } from '@/lib/routes'
 import { IArticleData, IHeaderItemData } from '@/types'
 import { clsx } from 'clsx'
@@ -29,7 +28,7 @@ export const Header: React.FC<IHeaderProps> = async ({
   if (!headerData2) {
     return null
   }
-  const articles = getAllArticles(localeCode)
+  const articles = Object.values(data.article[localeCode] || {})
 
   const items: HeaderData = headerData2.items.map((item) => {
     if (item.articleId) {

@@ -1,12 +1,15 @@
 export interface IObjectWithID {
   ID: string
 }
-export interface IArticleData extends IObjectWithID {
+
+export interface IMarkdownObject {
+  content: string
+}
+export interface IArticleData extends IObjectWithID, IMarkdownObject {
   title: string
   slug: string
   createdAt: number
   updatedAt?: number
-  content: string
 }
 
 export interface IHeaderItemData {
