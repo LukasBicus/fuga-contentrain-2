@@ -18,6 +18,7 @@ export const getDataDirectory = (dirname: string) =>
   join(process.cwd(), 'data', dirname)
 
 const isJSONFilePath = (filepath: string) => filepath.endsWith('.json')
+const isMarkdownFilePath = (filepath: string) => filepath.endsWith('.md')
 
 type ComponentDirectoryContent<T> = {
   [key in LocaleCode]?: Record<string, T>
@@ -74,7 +75,7 @@ const loadDataFromMarkdownDir = <T extends IMarkdownObject>(
   for (const localeDir of localeDirs) {
     const filenames = (
       fs.readdirSync(path.join(dirPath, localeDir)) as string[]
-    ).filter(isJSONFilePath)
+    ).filter(isMarkdownFilePath)
 
     result[localeDir] = filenames.reduce(
       (acc: Record<string, T> = {}, filename) => {
