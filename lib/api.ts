@@ -1,4 +1,5 @@
 import { LocaleCode } from '@/__generated__/api-types'
+import { DEFAULT_LOCALE_CODE } from '@/envs'
 import { Article } from '@/types'
 import fs from 'fs'
 import matter from 'gray-matter'
@@ -28,8 +29,17 @@ export const loadLocalizedJSONData = <T extends object>({
     join(process.cwd(), 'data', directory, localeCode, `${slug}.json`)
   )
 
+export const getDataDirectory = (dirname: string) =>
+  join(process.cwd(), 'data', dirname)
+
+export const getLocalisedDataDirectory = (
+  dirname: string,
+  localeCode: LocaleCode = DEFAULT_LOCALE_CODE
+) => join(getDataDirectory(dirname), localeCode)
+
 const getArticlesDirectory = (localeCode: LocaleCode = defaultLocaleCode) =>
-  join(process.cwd(), 'data/article', localeCode)
+  getLocalisedDataDirectory('article', localeCode)
+
 export function getArticlesFilenames(
   localeCode: LocaleCode = defaultLocaleCode
 ) {
