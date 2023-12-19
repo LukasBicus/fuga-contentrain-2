@@ -1,35 +1,58 @@
 import { LocaleCode } from '@/__generated__/api-types'
 import { getDataDirectory, loadJsonFile } from '@/lib/api'
-import { IPage } from '@/types'
+import { IHeader, IPage } from '@/types'
 import fs from 'fs'
 import path from 'path'
 
 const isJSONFilePath = (path: string) => path.endsWith('.json')
 
-const data: {
-  page: { [key in LocaleCode]?: Record<string, IPage> }
-} = {
-  page: {},
+type ComponentDirectoryContent<T> = {
+  [key in LocaleCode]?: Record<string, T>
 }
 
-const dirname = getDataDirectory('page')
+const loadDataForJSONDir = <T extends object>(
+  dirname: string
+): ComponentDirectoryContent<T> => {
+  const dirPath = getDataDirectory(dirname)
+  const result: ComponentDirectoryContent<T> = {}
+  const localeDirs = fs
+    .readdirSync(dirPath)
+    .filter((p) =>
+      Object.values(LocaleCode).includes(p as LocaleCode)
+    ) as LocaleCode[]
+  for (const localeDir of localeDirs) {
+    const acc: Record<string, T> = {}
 
-const localeDirs = fs.readdirSync(dirname) as LocaleCode[]
-for (const localeDir of localeDirs) {
-  const localisedDir: Record<string, IPage> = {}
+    const filenames = (
+      fs.readdirSync(path.join(dirPath, localeDir)) as string[]
+    ).filter(isJSONFilePath)
 
-  const filenames = fs.readdirSync(path.join(dirname, localeDir)) as string[]
-  for (const filename of filenames.filter(isJSONFilePath)) {
-    const pathname = path.join(dirname, localeDir, filename)
-    console.log('pathname', pathname)
-    localisedDir[filename] = loadJsonFile(pathname) as IPage
+    for (const filename of filenames) {
+      const pathname = path.join(dirPath, localeDir, filename)
+      console.log('pathname', pathname)
+      acc[filename] = loadJsonFile(pathname) as T
+    }
+
+    result[localeDir] = filenames.reduce(
+      (acc: Record<string, T> = {}, filename) => {
+        const pathname = path.join(dirPath, localeDir, filename)
+        return {
+          ...acc,
+          [filename]: loadJsonFile(pathname) as T,
+        }
+      },
+      {}
+    )
   }
-
-  data.page[localeDir] = localisedDir
+  return result
 }
-console.log(JSON.stringify(data))
+
+const data: {
+  page: ComponentDirectoryContent<IPage>
+  header: ComponentDirectoryContent<IHeader>
+} = {
+  page: loadDataForJSONDir<IPage>('page'),
+  header: loadDataForJSONDir<IHeader>('header'),
+}
 
 export { data }
-
-export const getAllPagesForLocale = (localeCode: LocaleCode): IPage[] =>
-  Object.values(data.page[localeCode] || {})

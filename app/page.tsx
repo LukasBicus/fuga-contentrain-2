@@ -7,7 +7,7 @@ import { Program } from '@/components/Program'
 import { data } from '@/data'
 
 export default function Home() {
-  console.log('data', data)
+  console.log('data', JSON.stringify(data))
   return (
     <main className="flex min-h-screen flex-col items-center">
       <Header localeCode={LocaleCode.Sk} currentPath="/" />

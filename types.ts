@@ -17,6 +17,10 @@ export type HeaderItem = {
   slug: string
 }
 
+export interface IHeader extends IObjectWithID {
+  items: HeaderItem
+}
+
 export interface IPage extends IObjectWithID {
   title: string
   slug: string
