@@ -10,7 +10,7 @@ type ComponentDirectoryContent<T> = {
   [key in LocaleCode]?: Record<string, T>
 }
 
-const loadDataForJSONDir = <T extends object>(
+const loadDataFromJSONDir = <T extends object>(
   dirname: string
 ): ComponentDirectoryContent<T> => {
   const dirPath = getDataDirectory(dirname)
@@ -51,8 +51,8 @@ const data: {
   page: ComponentDirectoryContent<IPageData>
   header: ComponentDirectoryContent<IHeaderData>
 } = {
-  page: loadDataForJSONDir<IPageData>('page'),
-  header: loadDataForJSONDir<IHeaderData>('header'),
+  page: loadDataFromJSONDir<IPageData>('page'),
+  header: loadDataFromJSONDir<IHeaderData>('header'),
 }
 
 export { data }
