@@ -1,22 +1,21 @@
 import { LocaleCode } from '@/__generated__/api-types'
 import { Article } from '@/types'
 import fs from 'fs'
-import fsPromises from 'fs/promises'
 import matter from 'gray-matter'
 import { join } from 'path'
 
 const defaultLocaleCode = LocaleCode.Sk
 
-export const loadJsonFile = async (filePath: string) => {
+export const loadJsonFile = (filePath: string) => {
   try {
-    const data = await fsPromises.readFile(filePath, 'utf-8')
+    const data = fs.readFileSync(filePath, 'utf-8')
     return JSON.parse(data)
   } catch (err) {
     console.error(`Error reading file from disk: ${err}`)
   }
 }
 
-export const loadLocalizedJSONData = async <T extends object>({
+export const loadLocalizedJSONData = <T extends object>({
   directory,
   localeCode,
   slug,
@@ -24,7 +23,7 @@ export const loadLocalizedJSONData = async <T extends object>({
   directory: string
   localeCode: LocaleCode
   slug: string
-}): Promise<T> =>
+}): T =>
   loadJsonFile(
     join(process.cwd(), 'data', directory, localeCode, `${slug}.json`)
   )

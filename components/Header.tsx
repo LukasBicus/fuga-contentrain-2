@@ -24,7 +24,7 @@ export const Header: React.FC<IHeaderProps> = async ({
   localeCode,
   currentPath,
 }) => {
-  const headerData = await loadLocalizedJSONData<{
+  const headerData = loadLocalizedJSONData<{
     ID: string
     items: HeaderItem[]
   }>({
