@@ -112,3 +112,6 @@ export const getArticleBySlug = (
   localeCode: LocaleCode = DEFAULT_LOCALE_CODE
 ): IArticleData | undefined =>
   getAllArticles(localeCode).find((a) => a.slug === slug)
+
+export const getAllPages = (localeCode: LocaleCode = DEFAULT_LOCALE_CODE) =>
+  Object.values(data.page[localeCode] || {})

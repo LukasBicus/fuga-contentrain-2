@@ -1,7 +1,6 @@
 import { LocaleCode } from '@/__generated__/api-types'
 import { data } from '@/data'
 import { transformSlugToRoute } from '@/lib/routes'
-import { IArticleData, IHeaderItemData } from '@/types'
 import { clsx } from 'clsx'
 import { orderBy } from 'lodash'
 import Image from 'next/image'
@@ -14,34 +13,16 @@ interface IHeaderProps {
   currentPath: string
 }
 
-type HeaderData = (IHeaderItemData & {
-  article?: IArticleData
-  path: string
-})[]
-
-// todo: finish localisation
 export const Header: React.FC<IHeaderProps> = async ({
   localeCode,
   currentPath,
 }) => {
-  const headerData2 = Object.values(data.header[localeCode] || {}).at(0)
-  if (!headerData2) {
+  const headerData = Object.values(data.header[localeCode] || {}).at(0)
+  if (!headerData) {
     return null
   }
-  const articles = Object.values(data.article[localeCode] || {})
 
-  const items: HeaderData = headerData2.items.map((item) => {
-    if (item.articleId) {
-      const article = articles.find((article) => article.ID === item.articleId)
-      if (article) {
-        return {
-          ...item,
-          article,
-          path: transformSlugToRoute(item.slug, localeCode),
-        }
-      }
-    }
-    // todo: add page
+  const items = headerData.items.map((item) => {
     return {
       ...item,
       path: transformSlugToRoute(item.slug, localeCode),
@@ -73,7 +54,7 @@ export const Header: React.FC<IHeaderProps> = async ({
                 ['border-l-transparent']: item.path !== currentPath,
               })}
             >
-              {item.article ? item.article.title : item.label}
+              {item.label}
             </Link>
           ))}
         </nav>
