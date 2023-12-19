@@ -1,7 +1,8 @@
 import { LocaleCode } from '@/__generated__/api-types'
 import { Header } from '@/components/Header'
 import { MarkdownToHtml } from '@/components/MarkdownToHtml'
-import { getAllArticles, getArticleBySlug } from '@/lib/api'
+import { getAllArticles, getArticleBySlug } from '@/data'
+import { notFound } from 'next/navigation'
 
 export async function generateStaticParams() {
   const articles = getAllArticles()
@@ -14,6 +15,9 @@ export const dynamicParams = false
 
 export default async function Page({ params }: { params: { slug: string } }) {
   const article = getArticleBySlug(params.slug)
+  if (!article) {
+    notFound()
+  }
   return (
     <main className="flex min-h-screen flex-col">
       <Header localeCode={LocaleCode.Sk} currentPath={`/${params.slug}`} />

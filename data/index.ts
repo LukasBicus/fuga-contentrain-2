@@ -1,9 +1,21 @@
 import { LocaleCode } from '@/__generated__/api-types'
-import { getDataDirectory, loadJsonFile } from '@/lib/api'
+import { DEFAULT_LOCALE_CODE } from '@/envs'
 import { IArticleData, IHeaderData, IMarkdownObject, IPageData } from '@/types'
 import fs from 'fs'
 import matter from 'gray-matter'
-import path from 'path'
+import path, { join } from 'path'
+
+export const loadJsonFile = (filePath: string) => {
+  try {
+    const data = fs.readFileSync(filePath, 'utf-8')
+    return JSON.parse(data)
+  } catch (err) {
+    console.error(`Error reading file from disk: ${err}`)
+  }
+}
+
+export const getDataDirectory = (dirname: string) =>
+  join(process.cwd(), 'data', dirname)
 
 const isJSONFilePath = (filepath: string) => filepath.endsWith('.json')
 
@@ -89,3 +101,14 @@ const data: {
 }
 
 export { data }
+
+export const getAllArticles = (localeCode: LocaleCode = DEFAULT_LOCALE_CODE) =>
+  Object.values(data.article[localeCode] || {}).sort((articleA, articleB) =>
+    articleA.createdAt > articleB.createdAt ? -1 : 1
+  )
+
+export const getArticleBySlug = (
+  slug: string,
+  localeCode: LocaleCode = DEFAULT_LOCALE_CODE
+): IArticleData | undefined =>
+  getAllArticles(localeCode).find((a) => a.slug === slug)
