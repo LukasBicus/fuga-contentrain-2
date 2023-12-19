@@ -16,19 +16,6 @@ export const loadJsonFile = (filePath: string) => {
   }
 }
 
-export const loadLocalizedJSONData = <T extends object>({
-  directory,
-  localeCode,
-  slug,
-}: {
-  directory: string
-  localeCode: LocaleCode
-  slug: string
-}): T =>
-  loadJsonFile(
-    join(process.cwd(), 'data', directory, localeCode, `${slug}.json`)
-  )
-
 export const getDataDirectory = (dirname: string) =>
   join(process.cwd(), 'data', dirname)
 

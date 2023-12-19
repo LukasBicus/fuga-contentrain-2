@@ -17,7 +17,7 @@ export interface IHeaderItemData {
 }
 
 export interface IHeaderData extends IObjectWithID {
-  items: IHeaderItemData
+  items: IHeaderItemData[]
 }
 
 export interface IPageData extends IObjectWithID {

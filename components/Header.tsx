@@ -1,5 +1,6 @@
 import { LocaleCode } from '@/__generated__/api-types'
-import { getAllArticles, loadLocalizedJSONData } from '@/lib/api'
+import { data } from '@/data'
+import { getAllArticles } from '@/lib/api'
 import { transformSlugToRoute } from '@/lib/routes'
 import { IArticleData, IHeaderItemData } from '@/types'
 import { clsx } from 'clsx'
@@ -24,17 +25,13 @@ export const Header: React.FC<IHeaderProps> = async ({
   localeCode,
   currentPath,
 }) => {
-  const headerData = loadLocalizedJSONData<{
-    ID: string
-    items: IHeaderItemData[]
-  }>({
-    directory: 'header',
-    localeCode,
-    slug: 'index',
-  })
+  const headerData2 = Object.values(data.header[localeCode] || {}).at(0)
+  if (!headerData2) {
+    return null
+  }
   const articles = getAllArticles(localeCode)
 
-  const items: HeaderData = headerData.items.map((item) => {
+  const items: HeaderData = headerData2.items.map((item) => {
     if (item.articleId) {
       const article = articles.find((article) => article.ID === item.articleId)
       if (article) {
