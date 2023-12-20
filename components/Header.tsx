@@ -1,6 +1,7 @@
 import { LocaleCode } from '@/__generated__/api-types'
 import { data } from '@/data'
 import { DEFAULT_LOCALE_CODE } from '@/envs'
+import { LocaleDropdown } from '@/internalComponents/LocaleDropdown'
 import { transformSlugToRoute } from '@/lib/routes'
 import { clsx } from 'clsx'
 import { compact, orderBy } from 'lodash'
@@ -69,6 +70,7 @@ export const Header: React.FC<IHeaderProps> = async ({
             </Link>
           ))}
         </nav>
+        <LocaleDropdown currentLocale={localeCode} />
       </div>
     </header>
   )
