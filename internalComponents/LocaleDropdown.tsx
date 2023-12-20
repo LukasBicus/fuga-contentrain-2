@@ -1,20 +1,24 @@
 'use client'
 import { LocaleCode } from '@/__generated__/api-types'
 import { clsx } from 'clsx'
+import Link from 'next/link'
 import React, { useState } from 'react'
 
 interface ILocaleDropdownProps {
   currentLocale: LocaleCode
+  defaultLocale: LocaleCode
+  availableLocales: LocaleCode[]
 }
 
 export const LocaleDropdown: React.FC<ILocaleDropdownProps> = ({
   currentLocale,
+  availableLocales,
+  defaultLocale,
 }) => {
   const [isOpen, setIsOpen] = useState<boolean>(false)
   return (
     <div className="relative">
       <button
-        id="dropdown-button"
         className="inline-flex justify-center w-full px-4 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-100 focus:ring-blue-500"
         onClick={() => {
           setIsOpen((o) => !o)
@@ -46,24 +50,23 @@ export const LocaleDropdown: React.FC<ILocaleDropdownProps> = ({
           aria-orientation="vertical"
           aria-labelledby="dropdown-button"
         >
-          <a
-            className="flex rounded-md px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 active:bg-blue-100 cursor-pointer"
-            role="menuitem"
-          >
-            Light
-          </a>
-          <a
-            className="flex rounded-md px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 active:bg-blue-100 cursor-pointer"
-            role="menuitem"
-          >
-            Dark
-          </a>
-          <a
-            className="flex rounded-md px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 active:bg-blue-100 cursor-pointer"
-            role="menuitem"
-          >
-            System
-          </a>
+          {availableLocales.map((localeCode) => (
+            <div
+              key={localeCode}
+              className={clsx('border-l-4', {
+                ['border-l-red-700']: localeCode === currentLocale,
+                ['border-l-transparent']: localeCode !== currentLocale,
+              })}
+            >
+              <Link
+                href={localeCode !== defaultLocale ? `/${localeCode}` : '/'}
+                className={'flex px-2 py-2 text-sm'}
+                role="menuitem"
+              >
+                {localeCode}
+              </Link>
+            </div>
+          ))}
         </div>
       </div>
     </div>

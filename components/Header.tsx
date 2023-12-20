@@ -70,7 +70,11 @@ export const Header: React.FC<IHeaderProps> = async ({
             </Link>
           ))}
         </nav>
-        <LocaleDropdown currentLocale={localeCode} />
+        <LocaleDropdown
+          currentLocale={localeCode}
+          availableLocales={[LocaleCode.Sk, LocaleCode.En]}
+          defaultLocale={DEFAULT_LOCALE_CODE}
+        />
       </div>
     </header>
   )
