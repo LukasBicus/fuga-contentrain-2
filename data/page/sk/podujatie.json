@@ -1,0 +1,15 @@
+{
+  "ID": "126",
+  "title": "Podujatie",
+  "slug": "podujatie",
+  "components": [
+    {
+      "type": "header",
+      "commonProps": ["localeCode", "currentPath"]
+    },
+    {
+      "type": "EventDetail",
+      "commonProps": ["localeCode", "routeParams"]
+    }
+  ]
+}

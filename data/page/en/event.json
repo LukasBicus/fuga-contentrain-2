@@ -1,0 +1,15 @@
+{
+  "ID": "125",
+  "title": "Event",
+  "slug": "event",
+  "components": [
+    {
+      "type": "header",
+      "commonProps": ["localeCode", "currentPath"]
+    },
+    {
+      "type": "EventDetail",
+      "commonProps": ["localeCode", "routeParams"]
+    }
+  ]
+}

@@ -23,7 +23,13 @@ export interface IHeaderData extends IObjectWithID {
   items: IHeaderItemData[]
 }
 
+export interface IComponentData {
+  type: 'header' | 'eventDetail'
+  commonProps: ('localeCode' | 'currentPath' | 'routeParams')[]
+}
+
 export interface IPageData extends IObjectWithID {
   title: string
   slug: string
+  components: IComponentData[]
 }

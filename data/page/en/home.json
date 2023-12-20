@@ -1,5 +1,6 @@
 {
   "ID": "123",
   "title": "Home",
-  "slug": ""
+  "slug": "",
+  "components": []
 }
