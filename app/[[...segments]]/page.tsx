@@ -1,6 +1,7 @@
 import { LocaleCode } from '@/__generated__/api-types'
 import { getAllArticles, getAllPages } from '@/data'
 import { DEFAULT_LOCALE_CODE } from '@/envs'
+import { notFound } from 'next/navigation'
 
 const mapToSegments = (items: { slug: string }[], prefix?: string) =>
   items.map((item) => ({
@@ -56,17 +57,36 @@ export default async function Page({
 }) {
   console.log('params.segments', params.segments)
   const { localeCode, slug } = analyzeSegments(params.segments)
-  // check segments
-  // if segments is unempty array and first of segements is one of LocaleCodes, set it as localeCode, otherwise use DEFAULT_LOCALE_CODE. Rest of route is slug  + other segments
-  // const article = getArticleBySlug(params.slug)
-  // if (!article) {
-  //   notFound()
-  // }
-  return (
-    <main className="flex min-h-screen flex-col">
-      All pages...
-      <p>{localeCode}</p>
-      <p>{slug}</p>
-    </main>
-  )
+
+  const pages = getAllPages(localeCode)
+  const page = pages.find((p) => p.slug === slug)
+
+  const articles = getAllArticles(localeCode)
+  const article = articles.find((a) => a.slug === slug)
+
+  if (page) {
+    return (
+      <main className="flex min-h-screen flex-col">
+        <p>{localeCode}</p>
+        <p>{slug}</p>
+        <p>
+          page with title &quot;{page.title}&quot; and id {page.ID}
+        </p>
+      </main>
+    )
+  }
+  if (article) {
+    return (
+      <main className="flex min-h-screen flex-col">
+        <p>{localeCode}</p>
+        <p>{slug}</p>
+        <p>
+          article with title &quot;{article.title}&quot; and id {article.ID}
+        </p>
+      </main>
+    )
+  }
+  if (!page && !article) {
+    return notFound()
+  }
 }
