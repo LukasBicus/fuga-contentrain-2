@@ -1,8 +1,9 @@
 import { LocaleCode } from '@/__generated__/api-types'
 import { data } from '@/data'
+import { DEFAULT_LOCALE_CODE } from '@/envs'
 import { transformSlugToRoute } from '@/lib/routes'
 import { clsx } from 'clsx'
-import { orderBy } from 'lodash'
+import { compact, orderBy } from 'lodash'
 import Image from 'next/image'
 import Link from 'next/link'
 import React from 'react'
@@ -11,6 +12,16 @@ import 'server-only'
 interface IHeaderProps {
   localeCode: LocaleCode
   currentPath: string
+}
+
+const getLogoLink = (currentPath: string) => {
+  const slugs = compact(currentPath.split('/'))
+  const firstSlug = slugs.at(0)
+  return Object.values(LocaleCode)
+    .filter((lc) => lc !== DEFAULT_LOCALE_CODE)
+    .includes(firstSlug as LocaleCode)
+    ? `/${firstSlug}`
+    : `/`
 }
 
 export const Header: React.FC<IHeaderProps> = async ({
@@ -34,7 +45,7 @@ export const Header: React.FC<IHeaderProps> = async ({
       <div className="container flex flex-col p-6 mx-auto md:flex-row items-center">
         <Link
           className="flex items-center mb-4 text-gray-900 title-font md:mb-0"
-          href="/"
+          href={getLogoLink(currentPath)}
         >
           <Image
             src="/fuga-logo.png"
