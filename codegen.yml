@@ -1,5 +1,5 @@
 schema: 'https://api.test.entradio.cz/graphql'
-documents: "**/graphql.ts"
+documents: '**/graphql.ts'
 generates:
   __generated__/api-types.tsx:
     plugins:

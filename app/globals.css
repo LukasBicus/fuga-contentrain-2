@@ -20,7 +20,7 @@
 
 @layer base {
   html {
-    @apply font-body
+    @apply font-body;
   }
 }
 
@@ -40,8 +40,9 @@ h3,
 h4,
 h5,
 h6,
-a, button {
-  @apply font-mono
+a,
+button {
+  @apply font-mono;
 }
 
 h1,
