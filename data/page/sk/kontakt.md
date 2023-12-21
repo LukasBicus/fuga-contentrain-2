@@ -5,7 +5,6 @@ title: 'Kontakt'
 createdAt: 1702470200871
 updatedAt: 1702470385687
 components:
-  - type: 'header'
   - type: 'markdown'
 ---
 
