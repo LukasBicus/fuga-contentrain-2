@@ -27,7 +27,13 @@ const mapComponent = ({
     case 'hero':
       return <Hero key={key} />
     case 'program':
-      return <Program key={key} {...commonProps} />
+      return (
+        <Program
+          key={key}
+          {...commonProps}
+          detailSlug={componentData.props.detailSlug}
+        />
+      )
     case 'partners':
       return <Partners key={key} />
     case 'footer':

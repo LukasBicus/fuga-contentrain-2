@@ -2,9 +2,11 @@ import {
   EventsQueryQuery,
   EventsQueryQueryVariables,
   EventState,
+  LocaleCode,
   ShowImageType,
 } from '@/__generated__/api-types'
 import { EVENTS_QUERY } from '@/components/Program/graphql'
+import { DEFAULT_LOCALE_CODE } from '@/envs'
 import {
   capitalizeFirstLetter,
   getFormatDayNumeric,
@@ -18,9 +20,30 @@ import Image from 'next/image'
 import Link from 'next/link'
 import React from 'react'
 
-export const Program: React.FC<ICommonComponentProps> = async ({
+const getDetailLink = ({
+  detailSlug,
   localeCode,
+  id,
+}: {
+  detailSlug: string
+  localeCode: LocaleCode
+  id: number
+}) =>
+  localeCode === DEFAULT_LOCALE_CODE
+    ? `/${detailSlug}/${id}`
+    : `/${localeCode}/${detailSlug}/${id}`
+
+interface IProgramProps extends ICommonComponentProps {
+  detailSlug?: string
+}
+
+export const Program: React.FC<IProgramProps> = async ({
+  localeCode,
+  detailSlug,
 }) => {
+  if (typeof detailSlug !== 'string') {
+    throw new Error('Missing prop ' + detailSlug)
+  }
   const data = await graphqlClient.request<
     EventsQueryQuery,
     EventsQueryQueryVariables
@@ -53,7 +76,11 @@ export const Program: React.FC<ICommonComponentProps> = async ({
             >
               <Link
                 className="md:flex font-body hover:scale-105 hover:bg-transparent"
-                href={`/event/${item.id}`}
+                href={getDetailLink({
+                  detailSlug,
+                  localeCode,
+                  id: item.id,
+                })}
               >
                 <div className="md:flex-shrink-0">
                   {item.show.primaryImage?.url ? (

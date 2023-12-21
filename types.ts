@@ -23,6 +23,7 @@ export interface IComponentData {
     | 'partners'
     | 'footer'
     | 'markdown'
+  props: Record<string, any>
 }
 
 export interface ICommonComponentProps {

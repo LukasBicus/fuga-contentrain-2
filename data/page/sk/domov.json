@@ -10,7 +10,10 @@
       "type": "hero"
     },
     {
-      "type": "program"
+      "type": "program",
+      "props": {
+        "detailSlug": "podujatie"
+      }
     },
     {
       "type": "partners"
