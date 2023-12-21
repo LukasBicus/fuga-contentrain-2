@@ -1,5 +1,5 @@
 import { LocaleCode } from '@/__generated__/api-types'
-import { data } from '@/data'
+import { getHeaders } from '@/data'
 import { DEFAULT_LOCALE_CODE } from '@/envs'
 import { LocaleDropdown } from '@/internalComponents/LocaleDropdown'
 import { transformSlugToRoute } from '@/lib/routes'
@@ -25,7 +25,7 @@ export const Header: React.FC<ICommonComponentProps> = async ({
   localeCode,
   currentPath,
 }) => {
-  const headerData = Object.values(data.header[localeCode] || {}).at(0)
+  const headerData = getHeaders().at(0)
   if (!headerData) {
     return null
   }

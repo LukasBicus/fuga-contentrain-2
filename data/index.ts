@@ -93,3 +93,8 @@ export function getPages(localeCode: LocaleCode = DEFAULT_LOCALE_CODE) {
   'use server'
   return Object.values(data.page[localeCode] || {})
 }
+
+export function getHeaders(localeCode: LocaleCode = DEFAULT_LOCALE_CODE) {
+  'use server'
+  return Object.values(data.header[localeCode] || {})
+}
