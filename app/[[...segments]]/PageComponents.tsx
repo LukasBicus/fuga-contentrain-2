@@ -53,7 +53,6 @@ export const PageComponents: React.FC<{
   currentPath: string
   remainingSegments: string[]
 }> = ({ localeCode, page, currentPath, remainingSegments }) => {
-  console.log('page', page)
   const commonProps: ICommonComponentProps = {
     localeCode,
     currentPath,
