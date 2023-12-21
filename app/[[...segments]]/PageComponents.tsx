@@ -41,7 +41,7 @@ const mapComponent = ({
     case 'eventDetail':
       return <EventDetail key={key} {...commonProps} />
     case 'markdown':
-      return <Markdown content={page.content || 'No content'} />
+      return <Markdown key={key} content={page.content || 'No content'} />
     default:
       throw new Error('Unknown component ' + componentData.type)
   }
