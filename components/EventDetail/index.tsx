@@ -1,12 +1,12 @@
 import {
   EventQuery,
   EventQueryVariables,
-  LocaleCode,
   ShowImageType,
 } from '@/__generated__/api-types'
 import { getFormatDayNumeric, getFormatTime, joinTroughDot } from '@/lib/format'
 import { getTranslation } from '@/lib/getters'
 import { graphqlClient } from '@/lib/graphqlClient'
+import { ICommonComponentProps } from '@/types'
 import Image from 'next/image'
 import Link from 'next/link'
 import { notFound } from 'next/navigation'
@@ -34,10 +34,14 @@ const getData = async (eventId: number) => {
   }
 }
 
-export const EventDetail: React.FC<{
-  localeCode: LocaleCode
-  id: number
-}> = async ({ localeCode, id }) => {
+export const EventDetail: React.FC<ICommonComponentProps> = async ({
+  localeCode,
+  remainingSegments,
+}) => {
+  const id = parseInt(remainingSegments.at(0) ?? 'NaN', 10)
+  if (isNaN(id)) {
+    notFound()
+  }
   const data = await getData(id)
   if (!data) {
     notFound()

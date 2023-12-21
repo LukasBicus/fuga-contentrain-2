@@ -1,4 +1,5 @@
 import { LocaleCode } from '@/__generated__/api-types'
+import { EventDetail } from '@/components/EventDetail'
 import { Footer } from '@/components/Footer'
 import { Header } from '@/components/Header'
 import { Hero } from '@/components/Hero'
@@ -32,7 +33,7 @@ const mapComponent = ({
     case 'footer':
       return <Footer key={key} />
     case 'eventDetail':
-      return null
+      return <EventDetail key={key} {...commonProps} />
     case 'markdown':
       return <Markdown content={page.content || 'No content'} />
     default:
