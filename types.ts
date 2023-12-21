@@ -4,7 +4,6 @@ export interface IObjectWithID {
 
 export interface IHeaderItemData {
   label: string
-  // articleId?: string
   pageId: string
   slug: string
 }

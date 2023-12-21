@@ -7,12 +7,12 @@
       "slug": ""
     },
     {
-      "articleId": "73deaa4a-5e53-44c7-a228-7d8561d4677d",
+      "pageId": "73deaa4a-5e53-44c7-a228-7d8561d4677d",
       "label": "About us",
       "slug": "about-us"
     },
     {
-      "articleId": "b3ebd917-84c5-4dfc-870a-29bf73efa6e2",
+      "pageId": "b3ebd917-84c5-4dfc-870a-29bf73efa6e2",
       "label": "Contact",
       "slug": "contact"
     }

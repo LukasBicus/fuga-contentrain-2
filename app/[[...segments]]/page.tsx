@@ -14,15 +14,11 @@ export async function generateStaticParams(): Promise<
 > {
   let allSlugs: { segments: string[] }[] = []
   allSlugs = allSlugs.concat(mapToSegments(getAllPages()))
-  // allSlugs = allSlugs.concat(mapToSegments(getAllArticles()))
 
   for (const localeCode of Object.values(LocaleCode)) {
     allSlugs = allSlugs.concat(
       mapToSegments(getAllPages(localeCode), localeCode)
     )
-    // allSlugs = allSlugs.concat(
-    //   mapToSegments(getAllArticles(localeCode), localeCode)
-    // )
   }
   return allSlugs
 }
@@ -65,9 +61,6 @@ export default async function Page({
   const pages = getAllPages(localeCode)
   const page = pages.find((p) => p.slug === slug)
 
-  // const articles = getAllArticles(localeCode)
-  // const article = articles.find((a) => a.slug === slug)
-
   if (page) {
     return (
       <ColumnPage
@@ -77,15 +70,6 @@ export default async function Page({
       />
     )
   }
-  // if (article) {
-  //   return (
-  //     <Article
-  //       article={article}
-  //       localeCode={localeCode}
-  //       currentPath={getPathFromSegments(params.segments)}
-  //     />
-  //   )
-  // }
   if (!page) {
     return notFound()
   }
