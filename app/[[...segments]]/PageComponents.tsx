@@ -40,7 +40,7 @@ const mapComponent = ({
   }
 }
 
-export const ColumnPage: React.FC<{
+export const PageComponents: React.FC<{
   localeCode: LocaleCode
   page: IPageData
   currentPath: string

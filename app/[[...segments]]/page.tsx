@@ -1,8 +1,8 @@
 import { LocaleCode } from '@/__generated__/api-types'
-import { ColumnPage } from '@/app/[[...segments]]/ColumnPage'
 import { getAllPages } from '@/data'
 import { DEFAULT_LOCALE_CODE } from '@/envs'
 import { notFound } from 'next/navigation'
+import { PageComponents } from './PageComponents'
 
 const mapToSegments = (items: { slug: string }[], prefix?: string) =>
   items.map((item) => ({
@@ -60,17 +60,15 @@ export default async function Page({
 
   const pages = getAllPages(localeCode)
   const page = pages.find((p) => p.slug === slug)
-
-  if (page) {
-    return (
-      <ColumnPage
-        page={page}
-        currentPath={getPathFromSegments(params.segments)}
-        localeCode={localeCode}
-      />
-    )
-  }
   if (!page) {
     return notFound()
   }
+
+  return (
+    <PageComponents
+      page={page}
+      currentPath={getPathFromSegments(params.segments)}
+      localeCode={localeCode}
+    />
+  )
 }
