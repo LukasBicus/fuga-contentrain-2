@@ -1,6 +1,12 @@
-import markdownToHtml from '@/lib/markdownToHtml'
 import React from 'react'
-import styles from './MarkdownToHtml-styles.module.css'
+import { remark } from 'remark'
+import html from 'remark-html'
+import styles from './styles.module.css'
+
+const markdownToHtml = async (markdown: string): Promise<string> => {
+  const result = await remark().use(html).process(markdown)
+  return result.toString()
+}
 
 interface IMarkdownToHtmlProps {
   content: string
