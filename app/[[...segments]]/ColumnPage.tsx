@@ -2,6 +2,7 @@ import { LocaleCode } from '@/__generated__/api-types'
 import { Footer } from '@/components/Footer'
 import { Header } from '@/components/Header'
 import { Hero } from '@/components/Hero'
+import { Markdown } from '@/components/Markdown'
 import { Partners } from '@/components/Partners'
 import { Program } from '@/components/Program'
 import { IComponentData, IPageData } from '@/types'
@@ -11,10 +12,12 @@ const mapComponent = ({
   index,
   commonProps,
   componentData,
+  page,
 }: {
   index: number
   componentData: IComponentData
   commonProps: { localeCode: LocaleCode; currentPath: string }
+  page: IPageData
 }) => {
   const key = `${componentData.type}-${index}`
   switch (componentData.type) {
@@ -30,8 +33,10 @@ const mapComponent = ({
       return <Footer key={key} />
     case 'eventDetail':
       return null
+    case 'markdown':
+      return <Markdown content={page.content || 'No content'} />
     default:
-      throw new Error('Unknown component')
+      throw new Error('Unknown component ' + componentData.type)
   }
 }
 
@@ -48,7 +53,7 @@ export const ColumnPage: React.FC<{
   return (
     <main className="flex min-h-screen flex-col items-center">
       {page.components.map((componentData, index) =>
-        mapComponent({ componentData, commonProps, index })
+        mapComponent({ componentData, commonProps, index, page })
       )}
     </main>
   )

@@ -1,12 +1,16 @@
 ---
-ID: "73deaa4a-5e53-44c7-a228-7d8561d4677d"
-title: "About us"
-slug: "about-us"
+ID: '73deaa4a-5e53-44c7-a228-7d8561d4677d'
+title: 'About us'
+slug: 'about-us'
 createdAt: 1701418374289
 updatedAt: 1701439444464
-
+components:
+  - type: 'header'
+  - type: 'markdown'
 ---
+
 # About us
+
 FUGA - Christian Cultural Center is an independent cultural center that aims to support, present, and create art and culture based on traditional Christian moral principles.
 
 Our vision is to be a space where truth, goodness, and beauty meet in art and culture. We aspire to become a sought-after place for gaining an overview of the Christian cultural scene in Kosice.

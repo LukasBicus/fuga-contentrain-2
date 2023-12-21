@@ -2,20 +2,10 @@ export interface IObjectWithID {
   ID: string
 }
 
-export interface IMarkdownObject {
-  content: string
-}
-export interface IArticleData extends IObjectWithID, IMarkdownObject {
-  title: string
-  slug: string
-  createdAt: number
-  updatedAt?: number
-}
-
 export interface IHeaderItemData {
   label: string
-  articleId?: string
-  pageId?: string
+  // articleId?: string
+  pageId: string
   slug: string
 }
 
@@ -24,12 +14,22 @@ export interface IHeaderData extends IObjectWithID {
 }
 
 export interface IComponentData {
-  type: 'header' | 'eventDetail' | 'hero' | 'program' | 'partners' | 'footer'
+  type:
+    | 'header'
+    | 'eventDetail'
+    | 'hero'
+    | 'program'
+    | 'partners'
+    | 'footer'
+    | 'markdown'
   commonProps: ('localeCode' | 'currentPath' | 'routeParams')[]
 }
 
 export interface IPageData extends IObjectWithID {
   title: string
   slug: string
+  content?: string
+  createdAt: 1701418374289
+  updatedAt?: 1701439444464
   components: IComponentData[]
 }

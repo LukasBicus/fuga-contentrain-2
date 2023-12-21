@@ -1,9 +1,8 @@
 import { LocaleCode } from '@/__generated__/api-types'
 import { ColumnPage } from '@/app/[[...segments]]/ColumnPage'
-import { getAllArticles, getAllPages } from '@/data'
+import { getAllPages } from '@/data'
 import { DEFAULT_LOCALE_CODE } from '@/envs'
 import { notFound } from 'next/navigation'
-import { Article } from './Article'
 
 const mapToSegments = (items: { slug: string }[], prefix?: string) =>
   items.map((item) => ({
@@ -15,15 +14,15 @@ export async function generateStaticParams(): Promise<
 > {
   let allSlugs: { segments: string[] }[] = []
   allSlugs = allSlugs.concat(mapToSegments(getAllPages()))
-  allSlugs = allSlugs.concat(mapToSegments(getAllArticles()))
+  // allSlugs = allSlugs.concat(mapToSegments(getAllArticles()))
 
   for (const localeCode of Object.values(LocaleCode)) {
     allSlugs = allSlugs.concat(
       mapToSegments(getAllPages(localeCode), localeCode)
     )
-    allSlugs = allSlugs.concat(
-      mapToSegments(getAllArticles(localeCode), localeCode)
-    )
+    // allSlugs = allSlugs.concat(
+    //   mapToSegments(getAllArticles(localeCode), localeCode)
+    // )
   }
   return allSlugs
 }
@@ -66,8 +65,8 @@ export default async function Page({
   const pages = getAllPages(localeCode)
   const page = pages.find((p) => p.slug === slug)
 
-  const articles = getAllArticles(localeCode)
-  const article = articles.find((a) => a.slug === slug)
+  // const articles = getAllArticles(localeCode)
+  // const article = articles.find((a) => a.slug === slug)
 
   if (page) {
     return (
@@ -78,16 +77,16 @@ export default async function Page({
       />
     )
   }
-  if (article) {
-    return (
-      <Article
-        article={article}
-        localeCode={localeCode}
-        currentPath={getPathFromSegments(params.segments)}
-      />
-    )
-  }
-  if (!page && !article) {
+  // if (article) {
+  //   return (
+  //     <Article
+  //       article={article}
+  //       localeCode={localeCode}
+  //       currentPath={getPathFromSegments(params.segments)}
+  //     />
+  //   )
+  // }
+  if (!page) {
     return notFound()
   }
 }
