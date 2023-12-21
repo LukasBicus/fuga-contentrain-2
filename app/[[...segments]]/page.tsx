@@ -13,10 +13,12 @@ export async function generateStaticParams(): Promise<
   { segments: string[] }[]
 > {
   let allSlugs: { segments: string[] }[] = []
-  allSlugs = allSlugs.concat(mapToSegments(getPages()))
+  allSlugs = allSlugs.concat(mapToSegments(await getPages()))
 
   for (const localeCode of Object.values(LocaleCode)) {
-    allSlugs = allSlugs.concat(mapToSegments(getPages(localeCode), localeCode))
+    allSlugs = allSlugs.concat(
+      mapToSegments(await getPages(localeCode), localeCode)
+    )
   }
   return allSlugs
 }
@@ -61,7 +63,7 @@ export default async function Page({
     params.segments
   )
 
-  const pages = getPages(localeCode)
+  const pages = await getPages(localeCode)
   const page = pages.find((p) => p.slug === slug)
   if (!page) {
     return notFound()

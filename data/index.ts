@@ -1,12 +1,13 @@
+'use server'
+
 import { LocaleCode } from '@/__generated__/api-types'
 import { DEFAULT_LOCALE_CODE } from '@/envs'
 import { IHeaderData, IPageData } from '@/types'
 import fs from 'fs'
 import matter from 'gray-matter'
 import path, { join } from 'path'
-import 'server-only'
 
-export const loadJsonFile = (filePath: string) => {
+const loadJsonFile = (filePath: string) => {
   try {
     const data = fs.readFileSync(filePath, 'utf-8')
     return JSON.parse(data)
@@ -15,13 +16,13 @@ export const loadJsonFile = (filePath: string) => {
   }
 }
 
-export const loadMarkdownFile = <T extends object>(filepath: string): T => {
+const loadMarkdownFile = <T extends object>(filepath: string): T => {
   const fileContents = fs.readFileSync(filepath, 'utf8')
   const { data, content } = matter(fileContents)
   return { ...data, content } as T
 }
 
-export const getDataDirectory = (dirname: string) =>
+const getDataDirectory = (dirname: string) =>
   join(process.cwd(), 'data', dirname)
 
 const isJSONFilePath = (filepath: string) => filepath.endsWith('.json')
@@ -87,14 +88,10 @@ const data: {
   header: loadDataFromDir<IHeaderData>('header'),
 }
 
-export { data }
-
-export function getPages(localeCode: LocaleCode = DEFAULT_LOCALE_CODE) {
-  'use server'
-  return Object.values(data.page[localeCode] || {})
+export async function getPages(localeCode: LocaleCode = DEFAULT_LOCALE_CODE) {
+  return Promise.resolve(Object.values(data.page[localeCode] || {}))
 }
 
-export function getHeaders(localeCode: LocaleCode = DEFAULT_LOCALE_CODE) {
-  'use server'
-  return Object.values(data.header[localeCode] || {})
+export async function getHeaders(localeCode: LocaleCode = DEFAULT_LOCALE_CODE) {
+  return Promise.resolve(Object.values(data.header[localeCode] || {}))
 }
