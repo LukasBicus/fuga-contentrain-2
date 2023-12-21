@@ -1,9 +1,17 @@
-import { EventQuery, LocaleCode } from '@/__generated__/api-types'
+import {
+  EventQuery,
+  EventQueryVariables,
+  LocaleCode,
+  ShowImageType,
+} from '@/__generated__/api-types'
 import { getFormatDayNumeric, getFormatTime, joinTroughDot } from '@/lib/format'
 import { getTranslation } from '@/lib/getters'
+import { graphqlClient } from '@/lib/graphqlClient'
 import Image from 'next/image'
 import Link from 'next/link'
+import { notFound } from 'next/navigation'
 import React from 'react'
+import { EVENT_QUERY } from './graphql'
 
 const placeholderImageProps = {
   src: 'https://placehold.co/600x400/jpeg?text=Entradio+placeholder',
@@ -12,10 +20,29 @@ const placeholderImageProps = {
   height: 400,
 }
 
+const getData = async (eventId: number) => {
+  try {
+    return await graphqlClient.request<EventQuery, EventQueryVariables>(
+      EVENT_QUERY,
+      {
+        eventId,
+        type: ShowImageType.Poster,
+      }
+    )
+  } catch (e) {
+    return null
+  }
+}
+
 export const EventDetail: React.FC<{
   localeCode: LocaleCode
-  event: EventQuery['event']
-}> = async ({ event, localeCode }) => {
+  id: number
+}> = async ({ localeCode, id }) => {
+  const data = await getData(id)
+  if (!data) {
+    notFound()
+  }
+  const { event } = data
   const primaryImageProps = event.show.primaryImage
     ? {
         src: event.show.primaryImage.url,
