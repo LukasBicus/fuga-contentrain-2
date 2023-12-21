@@ -1,3 +1,5 @@
+import { LocaleCode } from '@/__generated__/api-types'
+
 export interface IObjectWithID {
   ID: string
 }
@@ -21,7 +23,12 @@ export interface IComponentData {
     | 'partners'
     | 'footer'
     | 'markdown'
-  commonProps: ('localeCode' | 'currentPath' | 'routeParams')[]
+}
+
+export interface ICommonComponentProps {
+  localeCode: LocaleCode
+  currentPath: string
+  remainingSegments: string[]
 }
 
 export interface IPageData extends IObjectWithID {

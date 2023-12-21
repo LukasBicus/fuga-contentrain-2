@@ -4,12 +4,10 @@
   "slug": "podujatie",
   "components": [
     {
-      "type": "header",
-      "commonProps": ["localeCode", "currentPath"]
+      "type": "header"
     },
     {
-      "type": "EventDetail",
-      "commonProps": ["localeCode", "routeParams"]
+      "type": "eventDetail"
     }
   ]
 }

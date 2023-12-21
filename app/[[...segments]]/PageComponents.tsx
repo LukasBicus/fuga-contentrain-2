@@ -5,7 +5,7 @@ import { Hero } from '@/components/Hero'
 import { Markdown } from '@/components/Markdown'
 import { Partners } from '@/components/Partners'
 import { Program } from '@/components/Program'
-import { IComponentData, IPageData } from '@/types'
+import { ICommonComponentProps, IComponentData, IPageData } from '@/types'
 import React from 'react'
 
 const mapComponent = ({
@@ -16,7 +16,7 @@ const mapComponent = ({
 }: {
   index: number
   componentData: IComponentData
-  commonProps: { localeCode: LocaleCode; currentPath: string }
+  commonProps: ICommonComponentProps
   page: IPageData
 }) => {
   const key = `${componentData.type}-${index}`
@@ -44,11 +44,13 @@ export const PageComponents: React.FC<{
   localeCode: LocaleCode
   page: IPageData
   currentPath: string
-}> = ({ localeCode, page, currentPath }) => {
+  remainingSegments: string[]
+}> = ({ localeCode, page, currentPath, remainingSegments }) => {
   console.log('page', page)
-  const commonProps = {
+  const commonProps: ICommonComponentProps = {
     localeCode,
     currentPath,
+    remainingSegments,
   }
   return (
     <main className="flex min-h-screen flex-col items-center">

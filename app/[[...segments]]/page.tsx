@@ -29,12 +29,15 @@ export const dynamicParams = false
 const getPathFromSegments = (segments?: string[]) =>
   `/${(segments ?? []).join('/')}`
 
-const analyzeSegments = (segments?: string[]) => {
+const analyzeSegments = (
+  segments?: string[]
+): { localeCode: LocaleCode; slug: string; remainingSegments: string[] } => {
   const firstSegment = segments?.at(0)
   if (!Array.isArray(segments) || !firstSegment) {
     return {
       localeCode: DEFAULT_LOCALE_CODE,
       slug: '',
+      remainingSegments: [],
     }
   }
   const secondSegment = segments.at(1)
@@ -42,11 +45,13 @@ const analyzeSegments = (segments?: string[]) => {
     return {
       localeCode: firstSegment as LocaleCode,
       slug: secondSegment ?? '',
+      remainingSegments: segments.slice(2),
     }
   }
   return {
     localeCode: DEFAULT_LOCALE_CODE,
     slug: firstSegment ?? '',
+    remainingSegments: segments.slice(1),
   }
 }
 
@@ -55,8 +60,9 @@ export default async function Page({
 }: {
   params: { segments?: string[] }
 }) {
-  console.log('params.segments', params.segments)
-  const { localeCode, slug } = analyzeSegments(params.segments)
+  const { localeCode, slug, remainingSegments } = analyzeSegments(
+    params.segments
+  )
 
   const pages = getAllPages(localeCode)
   const page = pages.find((p) => p.slug === slug)
@@ -69,6 +75,7 @@ export default async function Page({
       page={page}
       currentPath={getPathFromSegments(params.segments)}
       localeCode={localeCode}
+      remainingSegments={remainingSegments}
     />
   )
 }

@@ -1,12 +1,10 @@
 import {
-  EventState,
-  LocaleCode,
-  ShowImageType,
-  EventsQueryQueryVariables,
   EventsQueryQuery,
+  EventsQueryQueryVariables,
+  EventState,
+  ShowImageType,
 } from '@/__generated__/api-types'
 import { EVENTS_QUERY } from '@/components/Program/graphql'
-import { graphqlClient } from '@/lib/graphqlClient'
 import {
   capitalizeFirstLetter,
   getFormatDayNumeric,
@@ -14,11 +12,13 @@ import {
   getFormatWeekDay,
   joinTroughDot,
 } from '@/lib/format'
+import { graphqlClient } from '@/lib/graphqlClient'
+import { ICommonComponentProps } from '@/types'
 import Image from 'next/image'
 import Link from 'next/link'
 import React from 'react'
 
-export const Program: React.FC<{ localeCode: LocaleCode }> = async ({
+export const Program: React.FC<ICommonComponentProps> = async ({
   localeCode,
 }) => {
   const data = await graphqlClient.request<
