@@ -13,7 +13,12 @@ import { notFound } from 'next/navigation'
 import React from 'react'
 import { EVENT_QUERY } from './graphql'
 
-const placeholderImageProps = {
+const placeholderImageProps: {
+  src: string
+  alt: string
+  width: number
+  height: number
+} = {
   src: 'https://placehold.co/600x400/jpeg?text=Entradio+placeholder',
   alt: 'Entradio placeholder',
   width: 600,
@@ -65,26 +70,42 @@ export const EventDetail: React.FC<ICommonComponentProps> = async ({
     <>
       <div className="md:flex items-start justify-center py-12 2xl:px-20 md:px-6 px-4">
         <div className="xl:w-2/6 lg:w-2/5 w-80 md:block hidden">
-          <Image className="w-full" {...primaryImageProps} />
-          <Image className="mt-6 w-full" {...placeholderImageProps} />
+          <Image
+            className="w-full"
+            {...primaryImageProps}
+            alt={primaryImageProps.alt}
+          />
+          <Image
+            className="mt-6 w-full"
+            {...placeholderImageProps}
+            alt={placeholderImageProps.alt}
+          />
         </div>
         <div className="md:hidden">
-          <Image className="w-full" {...primaryImageProps} />
+          <Image
+            className="w-full"
+            {...primaryImageProps}
+            alt={primaryImageProps.alt}
+          />
           <div className="flex items-center justify-between mt-3 space-x-4 md:space-x-0">
             <Image
               className="md:w-48 md:h-48 w-full"
               {...placeholderImageProps}
+              alt={placeholderImageProps.alt}
             />
             <Image
               {...placeholderImageProps}
+              alt={placeholderImageProps.alt}
               className="md:w-48 md:h-48 w-full"
             />
             <Image
               className="md:w-48 md:h-48 w-full"
               {...placeholderImageProps}
+              alt={placeholderImageProps.alt}
             />
             <Image
               {...placeholderImageProps}
+              alt={placeholderImageProps.alt}
               className="md:w-48 md:h-48 w-full"
             />
           </div>
@@ -120,7 +141,7 @@ export const EventDetail: React.FC<ICommonComponentProps> = async ({
             </div>
           </div>
           <Link href={event.ecommerceEventURL}>
-            <button className="font-mono dark:bg-white dark:text-gray-900 dark:hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-800 text-base flex items-center justify-center leading-none text-white bg-gray-800 w-full py-4 hover:bg-gray-700 focus:outline-none">
+            <button className="font-mono dark:bg-white dark:text-gray-900 dark:hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-800 text-base flex items-center justify-center leading-none text-white bg-gray-800 w-full py-4 hover:bg-gray-700">
               Prejdi do obchodu
             </button>
           </Link>
