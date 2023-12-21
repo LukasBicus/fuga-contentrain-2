@@ -2,5 +2,21 @@
   "ID": "123",
   "title": "Home",
   "slug": "",
-  "components": []
+  "components": [
+    {
+      "type": "header"
+    },
+    {
+      "type": "hero"
+    },
+    {
+      "type": "program"
+    },
+    {
+      "type": "partners"
+    },
+    {
+      "type": "footer"
+    }
+  ]
 }

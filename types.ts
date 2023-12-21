@@ -24,7 +24,7 @@ export interface IHeaderData extends IObjectWithID {
 }
 
 export interface IComponentData {
-  type: 'header' | 'eventDetail'
+  type: 'header' | 'eventDetail' | 'hero' | 'program' | 'partners' | 'footer'
   commonProps: ('localeCode' | 'currentPath' | 'routeParams')[]
 }
 
