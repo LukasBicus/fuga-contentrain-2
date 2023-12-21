@@ -4,6 +4,7 @@ import { IHeaderData, IPageData } from '@/types'
 import fs from 'fs'
 import matter from 'gray-matter'
 import path, { join } from 'path'
+import 'server-only'
 
 export const loadJsonFile = (filePath: string) => {
   try {
