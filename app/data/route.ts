@@ -1,6 +1,6 @@
-import { getAllPages } from '@/data'
+import { getPages } from '@/data'
 
 export async function GET(request: Request) {
   console.log('request', request)
-  return Response.json(getAllPages())
+  return Response.json(getPages())
 }

@@ -1,5 +1,5 @@
 import { LocaleCode } from '@/__generated__/api-types'
-import { getAllPages } from '@/data'
+import { getPages } from '@/data'
 import { DEFAULT_LOCALE_CODE } from '@/envs'
 import { notFound } from 'next/navigation'
 import { PageComponents } from './PageComponents'
@@ -13,12 +13,10 @@ export async function generateStaticParams(): Promise<
   { segments: string[] }[]
 > {
   let allSlugs: { segments: string[] }[] = []
-  allSlugs = allSlugs.concat(mapToSegments(getAllPages()))
+  allSlugs = allSlugs.concat(mapToSegments(getPages()))
 
   for (const localeCode of Object.values(LocaleCode)) {
-    allSlugs = allSlugs.concat(
-      mapToSegments(getAllPages(localeCode), localeCode)
-    )
+    allSlugs = allSlugs.concat(mapToSegments(getPages(localeCode), localeCode))
   }
   return allSlugs
 }
@@ -63,7 +61,7 @@ export default async function Page({
     params.segments
   )
 
-  const pages = getAllPages(localeCode)
+  const pages = getPages(localeCode)
   const page = pages.find((p) => p.slug === slug)
   if (!page) {
     return notFound()

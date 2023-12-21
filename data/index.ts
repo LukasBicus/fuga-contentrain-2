@@ -89,5 +89,7 @@ const data: {
 
 export { data }
 
-export const getAllPages = (localeCode: LocaleCode = DEFAULT_LOCALE_CODE) =>
-  Object.values(data.page[localeCode] || {})
+export function getPages(localeCode: LocaleCode = DEFAULT_LOCALE_CODE) {
+  'use server'
+  return Object.values(data.page[localeCode] || {})
+}
