@@ -24,7 +24,7 @@ export async function generateStaticParams(): Promise<
   return allSlugs
 }
 
-export const revalidate = 60 // revalidate at most every 60s
+export const revalidate = 60 // revalidate most often once in 60s
 
 const getPathFromSegments = (segments?: string[]) =>
   `/${(segments ?? []).join('/')}`
