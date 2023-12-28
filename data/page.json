@@ -38,6 +38,9 @@
       "slug": "event",
       "components": [
         {
+          "type": "header"
+        },
+        {
           "type": "eventDetail"
         }
       ]
