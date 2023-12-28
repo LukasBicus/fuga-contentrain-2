@@ -1,9 +1,18 @@
 import { gql } from 'graphql-request'
 
 export const EVENT_QUERY = gql`
+  fragment TranslatedFields on Translated {
+    en
+    sk
+    cs
+    hu
+  }
+
   query Event($eventId: PositiveInt!, $type: ShowImageType!) {
     event(id: $eventId) {
-      ageClassificationCode
+      ageClassificationTranslated {
+        ...TranslatedFields
+      }
       auditorium {
         id
         name
@@ -21,15 +30,14 @@ export const EVENT_QUERY = gql`
       endsAt
       duration
       ecommerceEventURL
-      formatCode
+      formatTranslated {
+        ...TranslatedFields
+      }
       gateOpensAt
       gateClosedAt
       id
       names {
-        cs
-        en
-        hu
-        sk
+        ...TranslatedFields
       }
       organizerNote
       show {
@@ -55,10 +63,14 @@ export const EVENT_QUERY = gql`
           description
         }
       }
-      soundMixCode
+      soundMixTranslated {
+        ...TranslatedFields
+      }
       startsAt
       state
-      versionCode
+      versionTranslated {
+        ...TranslatedFields
+      }
       venue {
         address {
           complex

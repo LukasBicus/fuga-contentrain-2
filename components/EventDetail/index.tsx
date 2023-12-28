@@ -150,18 +150,27 @@ export const EventDetail: React.FC<ICommonComponentProps> = async ({
               className="xl:pr-48 text-base lg:leading-tight leading-normal text-gray-600 dark:text-gray-300 mt-7"
               dangerouslySetInnerHTML={{ __html: description }}
             />
-            <p className="text-base leading-4 mt-7 text-gray-600 dark:text-gray-300">
-              Age classification code: {event.ageClassificationCode}
-            </p>
-            <p className="text-base leading-4 mt-4 text-gray-600 dark:text-gray-300">
-              Format code: {event.formatCode}
-            </p>
-            <p className="text-base leading-4 mt-4 text-gray-600 dark:text-gray-300">
-              Sound mix code: {event.soundMixCode}
-            </p>
-            <p className="text-base leading-4 mt-4 text-gray-600 dark:text-gray-300">
-              Version code: {event.versionCode}
-            </p>
+            {event.ageClassificationTranslated ? (
+              <p className="text-base leading-4 mt-7 text-gray-600 dark:text-gray-300">
+                Age classification:{' '}
+                {event.ageClassificationTranslated[localeCode]}
+              </p>
+            ) : null}
+            {event.formatTranslated ? (
+              <p className="text-base leading-4 mt-4 text-gray-600 dark:text-gray-300">
+                Format: {event.formatTranslated[localeCode]}
+              </p>
+            ) : null}
+            {event.soundMixTranslated ? (
+              <p className="text-base leading-4 mt-4 text-gray-600 dark:text-gray-300">
+                Sound mix: {event.soundMixTranslated[localeCode]}
+              </p>
+            ) : null}
+            {event.versionTranslated ? (
+              <p className="text-base leading-4 mt-4 text-gray-600 dark:text-gray-300">
+                Version: {event.versionTranslated[localeCode]}
+              </p>
+            ) : null}
           </div>
           <div>
             <div className="border-b border-t py-4 border-gray-200 mt-4">
