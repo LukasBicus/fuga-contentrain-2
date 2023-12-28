@@ -6,6 +6,7 @@ import { IHeaderData, IPageData } from '@/types'
 import fs from 'fs'
 import matter from 'gray-matter'
 import path, { join } from 'path'
+import pageData from './page/index.json'
 
 const loadJsonFile = (filePath: string) => {
   try {
@@ -30,6 +31,10 @@ const isMarkdownFilePath = (filepath: string) => filepath.endsWith('.md')
 
 type ComponentDirectoryContent<T> = {
   [key in LocaleCode]?: Record<string, T>
+}
+
+type DataDirectoryContent<T> = {
+  [key in LocaleCode]?: T[]
 }
 
 const loadDataFromDir = <T extends object>(
@@ -81,17 +86,19 @@ const loadDataFromDir = <T extends object>(
 }
 
 export interface IData {
-  page: ComponentDirectoryContent<IPageData>
+  page: DataDirectoryContent<IPageData>
+  // header: DataDirectoryContent<IHeaderData>
   header: ComponentDirectoryContent<IHeaderData>
 }
 
 const data: IData = {
-  page: loadDataFromDir<IPageData>('page'),
+  page: pageData as DataDirectoryContent<IPageData>,
+  // header: headerData as DataDirectoryContent<IHeaderData>,
   header: loadDataFromDir<IHeaderData>('header'),
 }
 
 export async function getPages(localeCode: LocaleCode = DEFAULT_LOCALE_CODE) {
-  return Promise.resolve(Object.values(data.page[localeCode] || {}))
+  return Promise.resolve(data.page[localeCode] || [])
 }
 
 export async function getHeaders(localeCode: LocaleCode = DEFAULT_LOCALE_CODE) {
