@@ -1,0 +1,155 @@
+{
+  "en": [
+    {
+      "ID": "73deaa4a-5e53-44c7-a228-7d8561d4677d",
+      "title": "About us",
+      "slug": "about-us",
+      "createdAt": 1701418374289,
+      "updatedAt": 1701439444464,
+      "components": [
+        {
+          "type": "header"
+        },
+        {
+          "type": "markdown"
+        }
+      ],
+      "content": "\n# About us\n\nFUGA - Christian Cultural Center is an independent cultural center that aims to support, present, and create art and culture based on traditional Christian moral principles.\n\nOur vision is to be a space where truth, goodness, and beauty meet in art and culture. We aspire to become a sought-after place for gaining an overview of the Christian cultural scene in Kosice.\n\nWhy the name \"FUGA\"?\nFUGA is: A contrapuntal musical composition with consistent equality of all voices.\nFUGA is: escape.\nFUGA MUNDI is: a conscious decision for something that has greater meaning and value.\nFUGA is: gap.\n\nThat's why we gave our cultural center such a name :-)\n"
+    },
+    {
+      "ID": "b3ebd917-84c5-4dfc-870a-29bf73efa6e2",
+      "title": "Contact",
+      "slug": "contact",
+      "createdAt": 1701421280830,
+      "updatedAt": 1701439461636,
+      "components": [
+        {
+          "type": "header"
+        },
+        {
+          "type": "markdown"
+        }
+      ],
+      "content": "\n# Cultural Center\n\nFUGA - Christian Cultural Center\nMoyzesova 62\n040 01 Kosice\n\nPhone No.: +421 915 33 11 11\ne-mail: fuga.kck@gmail.com\n\n# Billing Information\n\nFUGA, o.z.\nVaršavská 8, 040 13 Kosice\n\nCompany ID: 42103339\nTax ID: 2022824925\nIBAN: SK73 1100 0000 0029 2984 1801\n"
+    },
+    {
+      "ID": "125",
+      "title": "Event",
+      "slug": "event",
+      "components": [
+        {
+          "type": "eventDetail"
+        }
+      ]
+    },
+    {
+      "ID": "123",
+      "title": "Home",
+      "slug": "",
+      "components": [
+        {
+          "type": "header"
+        },
+        {
+          "type": "hero"
+        },
+        {
+          "type": "program",
+          "props": {
+            "detailSlug": "event"
+          }
+        },
+        {
+          "type": "partners"
+        },
+        {
+          "type": "footer"
+        }
+      ]
+    }
+  ],
+  "sk": [
+    {
+      "ID": "7f41ea2d-2758-4e36-a7a6-5e754a81b344",
+      "slug": "kontakt",
+      "title": "Kontakt",
+      "createdAt": 1702470200871,
+      "updatedAt": 1702470385687,
+      "components": [
+        {
+          "type": "markdown"
+        }
+      ],
+      "content": "\n# Kultúrne centrum\n\nFUGA - kultúrne centrum kresťanov\nMoyzesova 62\n040 01 Košice\n\nTel. č.: +421 915 33 11 11\ne-mail: fuga.kck@gmail.com\n\n# Fakturačné údaje\n\nFUGA, o.z.\nVaršavská 8, 040 13 Košice\n\nIČO: 42103339\nDIČ: 2022824925\nIBAN: SK73 1100 0000 0029 2984 1801\n"
+    },
+    {
+      "ID": "de10b3eb-f91e-4726-bb05-0bf1515b87d7",
+      "title": "Mapa",
+      "slug": "mapa",
+      "createdAt": 1701780688894,
+      "components": [
+        {
+          "type": "header"
+        },
+        {
+          "type": "markdown"
+        }
+      ],
+      "content": "\nMapa _na googli_\n"
+    },
+    {
+      "ID": "2096e567-19ce-4c68-b6f0-8ee7a5536e40",
+      "title": "O nás",
+      "slug": "o-nas",
+      "createdAt": 1701418034225,
+      "updatedAt": 1701418149208,
+      "components": [
+        {
+          "type": "header"
+        },
+        {
+          "type": "markdown"
+        }
+      ],
+      "content": "\n# O nás\n\nFUGA – kultúrne centrum kresťanov je nezávislé kultúrne centrum, ktoré chce podporovať, prezentovať a vytvárať umenie a kultúru postavenú na tradičných kresťanských morálnych princípoch.\n\nNašou víziou je byť priestorom, kde sa v umení a kultúre stretávajú pravda, dobro a krása. Máme ambíciu stať sa vyhľadávaným miestom získania prehľadu o košickej kresťanskej kultúrnej scéne.\n\nPrečo názov \"FUGA\"?\nFUGA je: Kontrapunktická hudobná skladba s dôslednou rovnosťou všetkých hlasov.\nFUGA je: únik.\nFUGA MUNDI je: vedomé rozhodnutie sa pre niečo, čo má väčší zmysel a cenu.\nFUGA je: medzera.\n\nPreto sme dali nášmu kultúrnemu centru také meno :-)\n"
+    },
+    {
+      "ID": "124",
+      "title": "Domov",
+      "slug": "",
+      "components": [
+        {
+          "type": "header"
+        },
+        {
+          "type": "hero"
+        },
+        {
+          "type": "program",
+          "props": {
+            "detailSlug": "podujatie"
+          }
+        },
+        {
+          "type": "partners"
+        },
+        {
+          "type": "footer"
+        }
+      ]
+    },
+    {
+      "ID": "126",
+      "title": "Podujatie",
+      "slug": "podujatie",
+      "components": [
+        {
+          "type": "header"
+        },
+        {
+          "type": "eventDetail"
+        }
+      ]
+    }
+  ]
+}
