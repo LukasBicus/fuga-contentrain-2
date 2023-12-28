@@ -1,0 +1,2229 @@
+directive @resources(resources: [ApiResource!]!) on FIELD_DEFINITION
+
+type Address {
+  complex: String!
+  country: String!
+  postalCode: String!
+  street: String!
+  town: String!
+}
+
+type AdmissionType {
+  abbreviation: NonEmptyString!
+  capacityDecreaseCount: NonNegativeInt!
+  clientId: PositiveInt!
+  color: HexColorCode!
+  createdAt: DateTime!
+  createdBy: PositiveInt!
+  eCommerceDescriptions: Translated
+  eCommerceNames: Translated
+  icon: NonEmptyString
+  id: PositiveInt!
+  internalDescription: NonEmptyString
+  name: NonEmptyString!
+  startingQuantity: PositiveInt!
+  state: AdmissionTypeState!
+  updatedAt: DateTime!
+  updatedBy: PositiveInt!
+}
+
+enum AdmissionTypeState {
+  active
+  draft
+  inactive
+}
+
+type ApiContact {
+  email: EmailAddress!
+  name: NonEmptyString!
+  phone: NonEmptyString
+  role: NonEmptyString
+}
+
+type ApiGrant {
+  businessContact: ApiContact!
+  createdAt: DateTime!
+  creatorId: PositiveInt!
+  description: NonEmptyString!
+  expiresAt: DateTime!
+  grantedResources: [ApiResource!]!
+  id: PositiveInt!
+  maxRequestsPerHour: PositiveInt
+  maxRequestsPerMinute: PositiveInt
+  name: NonEmptyString!
+  state: ApiGrantState!
+  technicalContact: ApiContact!
+  updatedAt: DateTime!
+}
+
+enum ApiGrantState {
+  active
+  expired
+  inactive
+}
+
+enum ApiResource {
+  checkPassCode
+
+  """This resource protects data required for tests."""
+  e2eTests
+  events
+  shows
+  tourTimeSlots
+  tours
+  venues
+}
+
+type AppliedDiscount {
+  discount: Discount!
+  discountCode: DiscountCode
+}
+
+type Auditorium {
+  id: PositiveInt!
+  name: String!
+  shortcut: String!
+  state: AuditoriumState!
+  venue: Venue!
+  venueId: PositiveInt!
+}
+
+type AuditoriumLayout {
+  auditoriumId: PositiveInt!
+  capacity: Int!
+  id: PositiveInt!
+  name: String!
+  status: AuditoriumLayoutState!
+  type: AuditoriumLayoutType!
+}
+
+type AuditoriumLayoutPricing {
+  auditoriumLayoutId: PositiveInt!
+  id: PositiveInt!
+  maxNumberOfOccupiedSeatsOnEcommerce: PositiveInt!
+  maxNumberOfOccupiedSeatsOnRetail: PositiveInt!
+  maxTicketsPerOrder: PositiveInt!
+  name: String!
+}
+
+enum AuditoriumLayoutPricingState {
+  active
+  archived
+  draft
+}
+
+enum AuditoriumLayoutState {
+  active
+  archived
+  draft
+}
+
+enum AuditoriumLayoutType {
+  """Mixed seats with zone standing"""
+  seatingFloorPlan
+
+  """Currently NA"""
+  withoutSeats
+
+  """Zones standing with no seats"""
+  zoneFloor
+}
+
+enum AuditoriumState {
+  active
+  archived
+}
+
+"""BaseListFilter will be a standard part of all list filters."""
+input BaseListFilter {
+  clientIds: [PositiveInt!]
+  fromCreatedAt: DateTime
+  fromUpdatedAt: DateTime
+  ids: [PositiveInt!]
+  toCreatedAt: DateTime
+  toUpdatedAt: DateTime
+}
+
+enum CheckingOption {
+  entrance
+  entranceExit
+}
+
+type Client {
+  TAXId: NonEmptyString
+  VATId: NonEmptyString
+  VATRegistered: VatRegistered!
+  companyIdNumber: NonEmptyString!
+  countryCode: CountryCode!
+  currency: Currency!
+  id: PositiveInt!
+  legalAddress: Address!
+  localeCodes: [LocaleCode!]!
+  marketingInformationUrl: NonEmptyString
+  name: NonEmptyString!
+  termsOfServiceUrl: NonEmptyString
+}
+
+type CostCenter {
+  clientId: PositiveInt!
+  id: PositiveInt!
+  isActive: Boolean!
+  label: NonEmptyString
+  name: NonEmptyString!
+}
+
+enum CountryCode {
+  AD
+  AE
+  AF
+  AG
+  AI
+  AL
+  AM
+  AN
+  AO
+  AR
+  AS
+  AT
+  AU
+  AW
+  AZ
+  BA
+  BB
+  BD
+  BE
+  BF
+  BG
+  BH
+  BI
+  BJ
+  BM
+  BN
+  BO
+  BR
+  BS
+  BT
+  BW
+  BY
+  BZ
+  CA
+  CD
+  CF
+  CG
+  CH
+  CI
+  CK
+  CL
+  CM
+  CN
+  CO
+  CR
+  CS
+  CU
+  CV
+  CY
+  CZ
+  DD
+  DE
+  DJ
+  DK
+  DM
+  DO
+  DZ
+  EC
+  EE
+  EG
+  EH
+  ER
+  ES
+  ET
+  FI
+  FJ
+  FK
+  FM
+  FO
+  FR
+  GA
+  GB
+  GD
+  GE
+  GF
+  GH
+  GI
+  GL
+  GM
+  GN
+  GP
+  GQ
+  GR
+  GT
+  GU
+  GW
+  GY
+  HK
+  HN
+  HR
+  HT
+  HU
+  ID
+  IE
+  IL
+  IN
+  IQ
+  IR
+  IS
+  IT
+  JM
+  JO
+  JP
+  KE
+  KG
+  KH
+  KI
+  KM
+  KN
+  KP
+  KR
+  KW
+  KY
+  KZ
+  LA
+  LB
+  LC
+  LI
+  LK
+  LR
+  LS
+  LT
+  LU
+  LV
+  LY
+  MA
+  MC
+  MD
+  ME
+  MG
+  MH
+  MK
+  ML
+  MM
+  MN
+  MO
+  MP
+  MQ
+  MR
+  MS
+  MT
+  MU
+  MV
+  MW
+  MX
+  MY
+  MZ
+  NA
+  NC
+  NE
+  NF
+  NG
+  NI
+  NL
+  NO
+  NP
+  NR
+  NU
+  NZ
+  OM
+  PA
+  PE
+  PF
+  PG
+  PH
+  PK
+  PL
+  PM
+  PN
+  PR
+  PS
+  PT
+  PW
+  PY
+  QA
+  RE
+  RO
+  RS
+  RU
+  RW
+  SA
+  SB
+  SC
+  SD
+  SE
+  SG
+  SH
+  SI
+  SJ
+  SK
+  SL
+  SM
+  SN
+  SO
+  SR
+  SS
+  ST
+  SU
+  SV
+  SY
+  SZ
+  TC
+  TD
+  TG
+  TH
+  TJ
+  TK
+  TM
+  TN
+  TO
+  TR
+  TT
+  TV
+  TW
+  TZ
+  UA
+  UG
+  US
+  UY
+  UZ
+  VA
+  VC
+  VE
+  VG
+  VI
+  VN
+  VU
+  WF
+  WS
+  YE
+  YU
+  ZA
+  ZM
+  ZW
+}
+
+enum Currency {
+  AED
+  AFN
+  ALL
+  AMD
+  ANG
+  AOA
+  ARS
+  AUD
+  AWG
+  AZN
+  BAM
+  BBD
+  BDT
+  BGN
+  BHD
+  BIF
+  BMD
+  BND
+  BOB
+  BOV
+  BRL
+  BSD
+  BTN
+  BWP
+  BYN
+  BZD
+  CAD
+  CDF
+  CHE
+  CHF
+  CHW
+  CLF
+  CLP
+  CNY
+  COP
+  COU
+  CRC
+  CUC
+  CUP
+  CVE
+  CZK
+  DJF
+  DKK
+  DOP
+  DZD
+  EGP
+  ERN
+  ETB
+  EUR
+  FJD
+  FKP
+  GBP
+  GEL
+  GHS
+  GIP
+  GMD
+  GNF
+  GTQ
+  GYD
+  HKD
+  HNL
+  HRK
+  HTG
+  HUF
+  IDR
+  ILS
+  INR
+  IQD
+  IRR
+  ISK
+  JMD
+  JOD
+  JPY
+  KES
+  KGS
+  KHR
+  KMF
+  KPW
+  KRW
+  KWD
+  KYD
+  KZT
+  LAK
+  LBP
+  LKR
+  LRD
+  LSL
+  LYD
+  MAD
+  MDL
+  MGA
+  MKD
+  MMK
+  MNT
+  MOP
+  MRU
+  MUR
+  MVR
+  MWK
+  MXN
+  MXV
+  MYR
+  MZN
+  NAD
+  NGN
+  NIO
+  NOK
+  NPR
+  NZD
+  OMR
+  PAB
+  PEN
+  PGK
+  PHP
+  PKR
+  PLN
+  PYG
+  QAR
+  RON
+  RSD
+  RUB
+  RWF
+  SAR
+  SBD
+  SCR
+  SDG
+  SEK
+  SGD
+  SHP
+  SLL
+  SOS
+  SRD
+  SSP
+  STN
+  SVC
+  SYP
+  SZL
+  THB
+  TJS
+  TMT
+  TND
+  TOP
+  TRY
+  TTD
+  TWD
+  TZS
+  UAH
+  UGX
+  USD
+  USN
+  UYI
+  UYU
+  UYW
+  UZS
+  VES
+  VND
+  VUV
+  WST
+  XAF
+  XAG
+  XAU
+  XBA
+  XBB
+  XBC
+  XBD
+  XCD
+  XDR
+  XOF
+  XPD
+  XPF
+  XPT
+  XSU
+  XTS
+  XUA
+  XXX
+  YER
+  ZAR
+  ZMW
+  ZWL
+}
+
+"""
+A date string, such as 2007-12-03, compliant with the `full-date` format outlined in section 5.6 of the RFC 3339 profile of the ISO 8601 standard for representation of dates and times using the Gregorian calendar.
+"""
+scalar Date
+
+"""
+A date-time string at UTC, such as 2007-12-03T10:15:30Z, compliant with the `date-time` format outlined in section 5.6 of the RFC 3339 profile of the ISO 8601 standard for representation of dates and times using the Gregorian calendar.
+"""
+scalar DateTime
+
+type Discount {
+  clientId: PositiveInt!
+  id: PositiveInt!
+  internalDescription: String
+  name: String!
+  sellingChannels: [SellingChannel!]!
+  state: DiscountState!
+  type: DiscountType!
+  value: NonNegativeFloat!
+}
+
+enum DiscountAuthorizationMode {
+  authorizeAll
+  doNotAuthorize
+  eCommerceOnly
+  retailOnly
+}
+
+type DiscountCode {
+  activationDate: DateTime
+  createdAt: DateTime!
+  createdBy: PositiveInt!
+  description: String
+  discount: Discount!
+  expirationDate: DateTime
+  id: PositiveInt!
+  name: String!
+  state: DiscountCodeState!
+  updatedAt: DateTime!
+  updatedBy: PositiveInt!
+  usageCount: NonNegativeInt!
+  usageLimit: NonNegativeInt
+}
+
+enum DiscountCodeState {
+  active
+  inactive
+  invalid
+}
+
+enum DiscountState {
+  active
+  deleted
+  inactive
+}
+
+enum DiscountType {
+  fixedAmount
+  percentage
+}
+
+type Division {
+  address: Address!
+  email: EmailAddress
+  id: PositiveInt!
+  name: NonEmptyString!
+  phoneNumber: NonEmptyString
+  state: DivisionState!
+}
+
+enum DivisionOnlineReservationEnd {
+  afterStart
+  beforeStart
+  dayBeforeStart
+  duration
+  eventStart
+}
+
+enum DivisionPOSReservationEnd {
+  afterStart
+  beforeStart
+  dayBeforeStart
+  duration
+  eventStart
+}
+
+enum DivisionState {
+  active
+  draft
+  inactive
+}
+
+"""
+A field whose value conforms to the standard internet email address format as specified in HTML Spec: https://html.spec.whatwg.org/multipage/input.html#valid-e-mail-address.
+"""
+scalar EmailAddress
+
+type Event implements PaginationItem {
+  ageClassificationCode: ShowAgeClassificationCode
+  ageClassificationTranslated: Translated
+  allowedDiscountsSellingChannels: [SellingChannel!]!
+  auditorium: Auditorium!
+  auditoriumId: PositiveInt!
+  auditoriumLayout: AuditoriumLayout!
+  auditoriumLayoutId: PositiveInt!
+  auditoriumLayoutPricing: AuditoriumLayoutPricing!
+  auditoriumLayoutPricingId: PositiveInt!
+  checkingOption: CheckingOption!
+  client: Client!
+  clientId: PositiveInt!
+  costCenter: CostCenter
+  costCenterId: PositiveInt
+  createdAt: DateTime!
+  createdBy: PositiveInt!
+  division: Division!
+  divisionId: PositiveInt!
+  duration: PositiveInt!
+  eCommerceSaleAndReservationOptions: SaleAndReservationOptions!
+  ecommerceEventURL: String!
+  endsAt: DateTime!
+  eventCategory: EventCategory
+  eventCategoryId: PositiveInt
+  formatAbbreviationTranslated: Translated
+  formatCode: ShowFormatCode
+  formatTranslated: Translated
+  gateClosedAt: DateTime!
+  gateOpensAt: DateTime!
+  id: PositiveInt!
+  isRescheduled: Boolean!
+  marketingLabel: MarketingLabel
+  marketingLabelId: PositiveInt
+  maxNumberOfOccupiedSeatsOnEcommerce: NonNegativeInt!
+  maxNumberOfOccupiedSeatsOnRetail: NonNegativeInt!
+  names: Translated!
+  organizerNote: String!
+  passCodesCheckedInCount: NonNegativeInt!
+  passCodesCheckedOutCount: NonNegativeInt!
+  retailSaleAndReservationOptions: SaleAndReservationOptions!
+  serviceTime: NonNegativeInt!
+  show: Show!
+  showId: PositiveInt!
+  showOnWebsiteAndApi: Boolean!
+  soundMixAbbreviationTranslated: Translated
+  soundMixCode: ShowSoundMixCode
+  soundMixTranslated: Translated
+  startsAt: DateTime!
+  state: EventState!
+  ticketNote: String!
+  uniqueCheckedInCount: NonNegativeInt!
+  updatedAt: DateTime!
+  updatedBy: PositiveInt!
+  venue: Venue!
+  versionAbbreviationTranslated: Translated
+  versionCode: ShowVersionCode
+  versionTranslated: Translated
+}
+
+type EventCategory {
+  clientId: PositiveInt!
+  id: PositiveInt!
+  isActive: Boolean!
+  label: NonEmptyString
+  name: NonEmptyString!
+}
+
+enum EventOrderByKey {
+  createdAt
+  id
+  startsAt
+  updatedAt
+}
+
+type EventSeat {
+  createdAt: DateTime!
+  event: Event!
+  floor: String
+  id: Int!
+  label: String!
+  row: String
+  section: String
+  type: EventSeatType!
+  updatedAt: DateTime!
+  uuid: String!
+}
+
+enum EventSeatType {
+  seat
+  zone
+}
+
+enum EventState {
+  canceled
+  deleted
+  draft
+  published
+}
+
+input EventsFilter {
+  ageClassificationCode: ShowAgeClassificationCode
+  baseListFilter: BaseListFilter
+  costCenterId: PositiveInt
+  divisionId: PositiveInt
+  eventCategoryId: PositiveInt
+  formatCode: ShowFormatCode
+  fromStartsAt: DateTime
+  isAvailableOnEcommerce: Boolean
+  isAvailableOnRetail: Boolean
+  marketingLabelId: PositiveInt
+  showGenreCode: ShowGenreCode
+  showId: PositiveInt
+  showOnWebsiteAndApi: Boolean
+  showTypeCode: ShowTypeCode
+  soundMixCode: ShowSoundMixCode
+  state: EventState
+  toStartsAt: DateTime
+  venueId: PositiveInt
+  versionCode: ShowVersionCode
+}
+
+input EventsOrderBy {
+  direction: OrderByDirection!
+  key: EventOrderByKey!
+}
+
+enum ExceptionMessage {
+  AdmissionTypeNotFound
+  DiscountNotFound
+  EventNotFound
+  EventNotPublished
+
+  """
+  We found the grant for the token provided in Authorization header, but the grant is expired
+  """
+  GrantExpired
+
+  """
+  We were unable to find ApiGrant for the token provided in Authorization header
+  """
+  GrantNotFound
+
+  """
+  We found the grant for the token provided in Authorization header, but the grant's state is not active.
+  """
+  GrantStateIsNotActive
+  HourRequestLimitExceeded
+
+  """Max pageLimit is 100"""
+  MaxPageLimitExceeded
+  MinuteRequestLimitExceeded
+  PassCodeNotFound
+
+  """
+  This error may be thrown, if at least 2 of arguments **checkVenueIds**, **checkTourIds**, **checkTourTimeSlotIds** and **checkEventIds** are defined.
+  """
+  PassCodeNotFoundDueToCheckArguments
+
+  """
+  This error may be thrown, if argument **checkEventIds** is defined and arguments **checkTourIds**, **checkTourTimeSlotIds** and **checkVenueIds** are not defined.
+  """
+  PassCodeNotFoundDueToCheckEventIds
+
+  """
+  This error may be thrown, if argument **checkTourIds** is defined and arguments **checkEventIds**, **checkTourTimeSlotIds** and **checkVenueIds** are not defined.
+  """
+  PassCodeNotFoundDueToCheckTourIds
+
+  """
+  This error may be thrown, if argument **checkTourTimeSlotIds** is defined and arguments **checkTourIds**, **checkEventIds** and **checkVenueIds** are not defined.
+  """
+  PassCodeNotFoundDueToCheckTourTimeSlotIds
+
+  """
+  This error may be thrown, if argument **checkVenueIds** is defined and arguments **checkTourIds**, **checkTourTimeSlotIds** and **checkEventIds** are not defined.
+  """
+  PassCodeNotFoundDueToCheckVenueIds
+
+  """
+  We found the grant for the token provided in Authorization header, but the grant is missing a resource needed for the requested graphql operation
+  """
+  ResourceNotGranted
+  ShowNotFound
+  TicketItemNotFound
+  TourItemNotFound
+  TourNotFound
+  TourTimeSlotNotFound
+  TourTimeSlotNotPublished
+}
+
+enum ExpirationType {
+  expiresAt
+  lastFor
+}
+
+"""
+A field whose value is a hex color code: https://en.wikipedia.org/wiki/Web_colors.
+"""
+scalar HexColorCode
+
+enum ItemType {
+  product
+  ticket
+  tour
+}
+
+"""
+Language code is used for determining a language, that is used in a Show by actors.
+"""
+enum LanguageCode {
+  aar
+  abk
+  ace
+  ach
+  ada
+  ady
+  afa
+  afh
+  afr
+  ain
+  aka
+  akk
+  ale
+  alg
+  alt
+  amh
+  ang
+  anp
+  apa
+  ara
+  arc
+  arg
+  arn
+  arp
+  art
+  arw
+  asm
+  ast
+  ath
+  aus
+  ava
+  ave
+  awa
+  aym
+  aze
+  bad
+  bai
+  bak
+  bal
+  bam
+  ban
+  bas
+  bat
+  bej
+  bel
+  bem
+  ben
+  ber
+  bho
+  bih
+  bik
+  bin
+  bis
+  bla
+  bnt
+  bod
+  bos
+  bra
+  bre
+  btk
+  bua
+  bug
+  bul
+  byn
+  cad
+  cai
+  car
+  cat
+  cau
+  ceb
+  cel
+  ces
+  cha
+  chb
+  che
+  chk
+  chm
+  chn
+  cho
+  chp
+  chr
+  chu
+  chv
+  chy
+  cmc
+  cnr
+  cop
+  cor
+  cos
+  cre
+  crh
+  crp
+  csb
+  cus
+  cym
+  dak
+  dan
+  dar
+  day
+  del
+  den
+  deu
+  dgr
+  din
+  div
+  doi
+  dra
+  dsb
+  dua
+  dum
+  dyu
+  dzo
+  efi
+  egy
+  eka
+  ell
+  elx
+  eng
+  enm
+  epo
+  est
+  eus
+  ewe
+  ewo
+  fan
+  fao
+  fas
+  fat
+  fij
+  fil
+  fin
+  fiu
+  fon
+  fra
+  frm
+  fro
+  frr
+  frs
+  fry
+  ful
+  fur
+  gaa
+  gay
+  gba
+  gem
+  gez
+  gil
+  gla
+  gle
+  glg
+  glv
+  gmh
+  goh
+  gon
+  gor
+  got
+  grb
+  grc
+  grn
+  gsw
+  guj
+  gwi
+  hai
+  hat
+  hau
+  haw
+  heb
+  her
+  hil
+  him
+  hin
+  hit
+  hmn
+  hmo
+  hrv
+  hsb
+  hun
+  hup
+  hye
+  iba
+  ibo
+  ido
+  iii
+  ijo
+  iku
+  ile
+  ilo
+  ina
+  inc
+  ind
+  ine
+  inh
+  ipk
+  ira
+  iro
+  isl
+  ita
+  jav
+  jbo
+  jpn
+  jpr
+  jrb
+  kaa
+  kab
+  kac
+  kal
+  kam
+  kan
+  kar
+  kas
+  kat
+  kau
+  kaw
+  kaz
+  kbd
+  kha
+  khi
+  khm
+  kho
+  kik
+  kin
+  kir
+  kmb
+  kok
+  kom
+  kon
+  kor
+  kos
+  kpe
+  krc
+  krl
+  kro
+  kru
+  kua
+  kum
+  kur
+  kut
+  lad
+  lah
+  lam
+  lao
+  lat
+  lav
+  lez
+  lim
+  lin
+  lit
+  lol
+  loz
+  ltz
+  lua
+  lub
+  lug
+  lui
+  lun
+  luo
+  lus
+  mad
+  mag
+  mah
+  mai
+  mak
+  mal
+  man
+  map
+  mar
+  mas
+  mdf
+  mdr
+  men
+  mga
+  mic
+  min
+  mis
+  mkd
+  mkh
+  mlg
+  mlt
+  mnc
+  mni
+  mno
+  moh
+  mon
+  mos
+  mri
+  msa
+  mul
+  mun
+  mus
+  mwl
+  mwr
+  mya
+  myn
+  myv
+  nah
+  nai
+  nap
+  nau
+  nav
+  nbl
+  nde
+  ndo
+  nds
+  nep
+  nia
+  nic
+  niu
+  nld
+  nno
+  nob
+  nog
+  non
+  nor
+  nqo
+  nso
+  nub
+  nwc
+  nya
+  nym
+  nyn
+  nyo
+  nzi
+  oci
+  oji
+  ori
+  orm
+  osa
+  oss
+  ota
+  oto
+  paa
+  pag
+  pal
+  pam
+  pan
+  pap
+  pau
+  peo
+  phi
+  phn
+  pli
+  pol
+  pon
+  por
+  pra
+  pro
+  pus
+  que
+  raj
+  rap
+  rar
+  roa
+  roh
+  rom
+  ron
+  run
+  rup
+  rus
+  sad
+  sag
+  sah
+  sai
+  sam
+  san
+  sas
+  sat
+  scn
+  sco
+  sel
+  sem
+  sga
+  sgn
+  shn
+  sid
+  sin
+  sio
+  sit
+  sla
+  slk
+  slv
+  sma
+  sme
+  smi
+  smj
+  smn
+  smo
+  sms
+  sna
+  snd
+  snk
+  sog
+  som
+  son
+  sot
+  spa
+  sqi
+  srd
+  srn
+  srp
+  srr
+  ssa
+  ssw
+  suk
+  sun
+  sus
+  sux
+  swa
+  swe
+  syc
+  syr
+  tah
+  tai
+  tam
+  tat
+  tel
+  tem
+  ter
+  tet
+  tgk
+  tgl
+  tha
+  tig
+  tir
+  tiv
+  tkl
+  tlh
+  tli
+  tmh
+  tog
+  ton
+  tpi
+  tsi
+  tsn
+  tso
+  tuk
+  tum
+  tup
+  tur
+  tut
+  tvl
+  twi
+  tyv
+  udm
+  uga
+  uig
+  ukr
+  umb
+  und
+  urd
+  uzb
+  vai
+  ven
+  vie
+  vol
+  vot
+  wak
+  wal
+  war
+  was
+  wen
+  wln
+  wol
+  xal
+  xho
+  yao
+  yap
+  yid
+  yor
+  ypk
+  zap
+  zbl
+  zen
+  zgh
+  zha
+  zho
+  znd
+  zul
+  zun
+  zxx
+  zza
+}
+
+enum LocaleCode {
+  cs
+  en
+  hu
+  sk
+}
+
+type MarketingLabel {
+  clientId: PositiveInt!
+  id: PositiveInt!
+  isActive: Boolean!
+  label: NonEmptyString
+  name: NonEmptyString!
+}
+
+type Mutation {
+  """
+  * **passCode: "XXX0", discountAuthorizationMode: "doNotAuthorize"**	= state: allowed, additionalInformation: Checked in. Valid passcode after first check. Entrance allowed.
+  * **passCode: "XXX0", discountAuthorizationMode: "authorizeAll"** = state: pending, additionalInformation: discountAuthorizationPending. Passcode was not checked in yet and is required discount authorization to allow visitor.
+  * **passCode: "XXX1"** = state: denied, additionalInformation: gateIsNotOpen. Visitor can't enter. Event has not started yet or already finished.
+  * **passCode: "XXX2"** = state: denied, additionalInformation: ticketClaimed. Visitor can't enter. Ticket is claimed and may be refunded.
+  * **passCode: "XXX3"** = state: denied, additionalInformation: alreadyCheckedIn. Visitor can't enter. Ticket was used already.
+  * **passCode: "XXX4"** = Exception, message: TourTimeSlotNotPublished. Visitor can't enter.
+  * **passCode: "XXX5"** = Exception, message: EventNotPublished. Visitor can't enter.
+  * **passCode: "XXX6"** = Exception, message: PassCodeNotFoundDueToCheckEventIds. Visitor can't enter.
+  * **passCode: "XXX7"** = Exception, message: PassCodeNotFoundDueToCheckTourIds. Visitor can't enter.
+  * **passCode: "XXX8"** = Exception, message: PassCodeNotFoundDueToCheckTourTimeSlotIds. Visitor can't enter.
+  * **passCode: "XXX9"** = Exception, message: PassCodeNotFoundDueToCheckVenueIds. Visitor can't enter.
+  * **passCode: "XX10"** = Exception, message: PassCodeNotFoundDueToCheckArguments. Visitor can't enter.
+  * **passCode: "XX11"** = state: allowed, additionalInformation: Checked in. Valid passcode after first check. TourItem is partiallyCheckedIn. Entrance allowed.
+  * **passCode: "XXXX"** = Exception, message: PassCodeNotFound. Visitor can't enter.
+  
+  Only for apiGrants with granted resource(s): *checkPassCode*
+  """
+  checkPassCodeIn(checkEventIds: [PositiveInt!], checkTourIds: [PositiveInt!], checkTourTimeSlotIds: [PositiveInt!], checkVenueIds: [PositiveInt!], discountAuthorizationMode: DiscountAuthorizationMode!, inputType: PassCodeCheckInputType!, passCode: NonEmptyString!): PassCodeCheck!
+
+  """
+  * **passCode: "XXX0"** = state: allowed, additionalInformation: Checked out. Valid passcode after first check. Departure allowed.
+  * **passCode: "XXX1"** = state: denied, additionalInformation: gateIsNotOpen. Visitor can't depart. Event has not started yet or already finished.
+  * **passCode: "XXX2"** = state: denied, additionalInformation: ticketClaimed. Visitor can't depart. Ticket is claimed and may be refunded.
+  * **passCode: "XXX3"** = state: denied, additionalInformation: alreadyCheckedOut. Visitor can't depart. Ticket was used already.
+  * **passCode: "XXX4"** = Exception, message: TourTimeSlotNotPublished. Visitor can't depart.
+  * **passCode: "XXX5"** = Exception, message: EventNotPublished. Visitor can't depart.
+  * **passCode: "XXX6"** = Exception, message: PassCodeNotFoundDueToCheckEventIds. Visitor can't depart.
+  * **passCode: "XXX7"** = Exception, message: PassCodeNotFoundDueToCheckTourIds. Visitor can't depart.
+  * **passCode: "XXX8"** = Exception, message: PassCodeNotFoundDueToCheckTourTimeSlotIds. Visitor can't depart.
+  * **passCode: "XXX9"** = Exception, message: PassCodeNotFoundDueToCheckVenueIds. Visitor can't depart.
+  * **passCode: "XX10"** = Exception, message: PassCodeNotFoundDueToCheckArguments. Visitor can't depart.
+  * **passCode: "XX11"** = state: allowed, additionalInformation: Checked out. Valid passcode after first check. TourItem is partiallyCheckedIn. Depart allowed.
+  * **passCode: "XXXX"** = Exception, message: PassCodeNotFound. Visitor can't depart.
+  
+  Only for apiGrants with granted resource(s): *checkPassCode*
+  """
+  checkPassCodeOut(checkEventIds: [PositiveInt!], checkTourIds: [PositiveInt!], checkTourTimeSlotIds: [PositiveInt!], checkVenueIds: [PositiveInt!], inputType: PassCodeCheckInputType!, passCode: NonEmptyString!): PassCodeCheck!
+}
+
+"""A string that cannot be passed as an empty value"""
+scalar NonEmptyString
+
+"""Floats that will have a value of 0 or more."""
+scalar NonNegativeFloat
+
+"""Integers that will have a value of 0 or more."""
+scalar NonNegativeInt
+
+enum OrderByDirection {
+  asc
+  desc
+}
+
+type PaginatedEvents implements PaginationResult {
+  items: [Event!]!
+  pagination: Pagination!
+}
+
+type PaginatedShows implements PaginationResult {
+  items: [Show!]!
+  pagination: Pagination!
+}
+
+type Pagination {
+  """First page starts with index 1"""
+  currentPage: PositiveInt!
+  itemsCount: NonNegativeInt!
+  pageLimit: PositiveInt!
+  pagesCount: PositiveInt!
+}
+
+input PaginationInput {
+  currentPage: PositiveInt = 1
+
+  """Max allowed value for pageLimit is 100"""
+  pageLimit: PositiveInt = 25
+}
+
+interface PaginationItem {
+  id: PositiveInt!
+}
+
+interface PaginationResult {
+  items: [PaginationItem!]!
+  pagination: Pagination!
+}
+
+type PassCodeCheck {
+  additionalInformation: PassCodeCheckAdditionalInformation!
+  clientId: PositiveInt!
+  direction: PassCodeCheckDirection!
+  discountAuthorizationMode: DiscountAuthorizationMode!
+  divisionId: PositiveInt!
+  event: Event
+  id: PositiveInt!
+  inputType: PassCodeCheckInputType!
+  passCode: NonEmptyString!
+  state: PassCodeCheckState!
+  ticketItem: TicketItem
+  tourItem: TourItem
+  tourTimeSlot: TourTimeSlot
+}
+
+enum PassCodeCheckAdditionalInformation {
+  alreadyCheckedIn
+  alreadyCheckedOut
+  authorizedDiscount
+  checkedIn
+  checkedOut
+  discountAuthorizationPending
+  gateIsNotOpen
+  ticketClaimed
+  unauthorizedDiscount
+}
+
+enum PassCodeCheckDirection {
+  in
+  out
+}
+
+enum PassCodeCheckInputType {
+  scanned
+  typed
+}
+
+enum PassCodeCheckState {
+  allowed
+  denied
+  pending
+}
+
+"""Integers that will have a value greater than 0."""
+scalar PositiveInt
+
+type Query {
+  admissionType(id: PositiveInt!): AdmissionType!
+
+  """
+  Returns information about apiGrant related to bearer token in authorization header
+  """
+  apiGrant: ApiGrant!
+  discount(id: PositiveInt!): Discount!
+
+  """Only for apiGrants with granted resource(s): *events*"""
+  event(id: PositiveInt!): Event!
+
+  """Only for apiGrants with granted resource(s): *events*"""
+  events(filter: EventsFilter, orderBy: EventsOrderBy, paginationInput: PaginationInput): PaginatedEvents!
+
+  """Only for apiGrants with granted resource(s): *shows*"""
+  show(id: PositiveInt!): Show!
+
+  """Only for apiGrants with granted resource(s): *shows*"""
+  shows(filter: ShowsFilter, orderBy: ShowsOrderBy, paginationInput: PaginationInput): PaginatedShows!
+
+  """Only for apiGrants with granted resource(s): *e2eTests*"""
+  ticketItem(id: PositiveInt!): TicketItem!
+
+  """Only for apiGrants with granted resource(s): *tours*"""
+  tour(id: PositiveInt!): Tour!
+
+  """Only for apiGrants with granted resource(s): *e2eTests*"""
+  tourItem(id: PositiveInt!): TourItem!
+
+  """Only for apiGrants with granted resource(s): *tourTimeSlots*"""
+  tourTimeSlot(id: PositiveInt!): TourTimeSlot!
+
+  """Only for apiGrants with granted resource(s): *tourTimeSlots*"""
+  tourTimeSlots: [TourTimeSlot!]!
+
+  """Only for apiGrants with granted resource(s): *tours*"""
+  tours: [Tour!]!
+}
+
+type SaleAndReservationOptions {
+  isReservationActive: Boolean!
+  isSaleActive: Boolean!
+  reservationEndsAt: DateTime!
+  reservationStartsAt: DateTime!
+  saleEndsAt: DateTime!
+  saleStartsAt: DateTime!
+}
+
+enum SellingChannel {
+  """Online sales"""
+  eCommerce
+
+  """Sales on point of sale"""
+  retail
+}
+
+type Show implements PaginationItem {
+  ageClassificationCodes: [ShowAgeClassificationCode!]!
+  ageClassificationsTranslated: [Translated!]!
+  clientId: PositiveInt!
+  countriesTranslated: [Translated!]!
+  countryCodes: [CountryCode!]!
+  createdAt: DateTime!
+  createdBy: PositiveInt!
+  distributions: [ShowDistribution!]!
+  duration: PositiveInt
+  genreCodes: [ShowGenreCode!]!
+  genresTranslated: [Translated!]!
+  globalReleaseDate: Date
+  id: PositiveInt!
+  images(types: [ShowImageType!]): [ShowImage!]!
+  languageCodes: [LanguageCode!]!
+  languagesTranslated: [Translated!]!
+  originalTitle: String
+  primaryImage(type: ShowImageType!): ShowImage
+  productionYear: PositiveInt
+  translations: [ShowTranslation!]!
+  typeCode: ShowTypeCode!
+  typeTranslated: Translated!
+  updatedAt: DateTime!
+  updatedBy: PositiveInt!
+}
+
+enum ShowAgeClassificationCode {
+  cz_not_restricted
+  cz_over2
+  cz_over3
+  cz_over4
+  cz_over5
+  cz_over6
+  cz_over7
+  cz_over8
+  cz_over9
+  cz_over10
+  cz_over11
+  cz_over12
+  cz_over13
+  cz_over14
+  cz_over15
+  cz_over16
+  cz_over17
+  cz_over18
+  sk_not_restricted
+  sk_over2
+  sk_over3
+  sk_over4
+  sk_over5
+  sk_over6
+  sk_over7
+  sk_over8
+  sk_over9
+  sk_over10
+  sk_over11
+  sk_over12
+  sk_over13
+  sk_over14
+  sk_over15
+  sk_over16
+  sk_over17
+  sk_over18
+}
+
+type ShowDistribution {
+  formatAbbreviationTranslated: Translated
+  formatCode: ShowFormatCode
+  formatTranslated: Translated
+  soundMixAbbreviationTranslated: Translated
+  soundMixCode: ShowSoundMixCode
+  soundMixTranslated: Translated
+  versionAbbreviationTranslated: Translated
+  versionCode: ShowVersionCode
+  versionTranslated: Translated
+}
+
+enum ShowFormatCode {
+  analog_16mm
+  analog_35mm
+  analog_70mm
+  digital_2d
+  digital_2d_4d
+  digital_2d_4k
+  digital_2d_hfr
+  digital_3d
+  digital_3d_4d
+  digital_3d_hfr
+  digital_bd
+  digital_dvd
+  live
+  live_stream
+  record
+}
+
+enum ShowGenreCode {
+  a_cappella
+  accounting
+  action
+  adrenaline
+  adult
+  adventure
+  alternative
+  animation
+  antiquity
+  architecture
+  athletics
+  badminton
+  ball
+  ballet
+  basketball
+  beatbox
+  beauty_contest
+  beer
+  biathlon
+  biography
+  black_humor
+  blues
+  body_building
+  boxing
+  brass_band
+  business
+  cabaret
+  calligraphy
+  carnival
+  ceremony
+  chamber_music
+  chanson_francaise
+  choir_singing
+  circus
+  classical_music
+  comedy
+  communication
+  conference
+  contemporary_art
+  country
+  crime
+  cruise
+  curling
+  cycling
+  dance
+  decade_20s
+  decade_30s
+  decade_40s
+  decade_50s
+  decade_60s
+  decade_70s
+  decade_80s
+  decade_90s
+  design
+  disaster
+  disco
+  discoteque
+  documentary
+  drama
+  drawing
+  drinks
+  educational
+  electric_boogie
+  electronic_music
+  erotic
+  escape_room
+  esports
+  experimental
+  fair
+  family
+  fantasy
+  farce
+  fashion
+  fashion_show
+  fauna
+  field_hockey
+  film
+  filmnoir
+  finance
+  fine_art
+  fitness
+  flight
+  floorball
+  flora
+  folk
+  folklore
+  food
+  football
+  funk
+  gala
+  gastronomy
+  golf
+  grotesque
+  gymnastics
+  handball
+  hip_hop
+  history
+  hockey
+  horror
+  house
+  ice_skating
+  illusions
+  instrumental
+  jazz
+  job_fair
+  kids
+  lasertag
+  learning
+  lifestyle
+  literature
+  magic
+  marketing
+  martial_arts
+  massage
+  medieval
+  melodrama
+  metal
+  middle_ages
+  miscellaneous
+  modern
+  modern_times
+  mosaic
+  motosport
+  multimedia
+  music
+  musical
+  mystery
+  nature
+  new_age
+  opera
+  operetta
+  paintball
+  painting
+  pantomime
+  parody
+  party
+  personal_development
+  photography
+  politics
+  pop
+  pottery
+  prehistory
+  prom
+  psychological
+  punk
+  puppetry
+  racing
+  rafting
+  rap
+  reggae
+  relax
+  religious
+  renaissance
+  rhythm_and_blues
+  ride
+  road_movie
+  rock
+  rock_and_roll
+  romance
+  satire
+  science
+  scify
+  sculpture
+  short
+  show
+  sightseeing
+  silent_film
+  sing
+  ski_jumping
+  skiing
+  soul
+  spa
+  sport
+  squash
+  standup_comedy
+  streetfood
+  striptease
+  swimming
+  swing
+  table_tennis
+  talkshow
+  tasting
+  techno
+  tennis
+  theatre
+  thriller
+  tour
+  tourism
+  toys
+  tradeshow
+  tragedy
+  tragicomedy
+  trance
+  traveling
+  travesty_show
+  variety
+  volleyball
+  war
+  waterpolo
+  wellness
+  western
+  wine
+  world_music
+  yoga
+}
+
+type ShowImage {
+  createdAt: DateTime!
+  createdBy: String!
+  height: Int
+  id: Int!
+  key: String!
+  libraryImageId: Int!
+  order: NonNegativeFloat!
+  showId: Int!
+  thumbnail(id: Int!): ShowImageThumbnail
+  thumbnails(sizes: [ShowImageThumbnailSize!]): [ShowImageThumbnail!]!
+  type: ShowImageType!
+  updatedAt: DateTime!
+  updatedBy: String!
+  url: String!
+  width: Int
+}
+
+type ShowImageThumbnail {
+  height: Int
+  id: Int!
+  key: String!
+  size: ShowImageThumbnailSize!
+  type: ThumbnailType
+  url: String!
+  width: Int
+}
+
+enum ShowImageThumbnailSize {
+  large
+  medium
+  small
+}
+
+enum ShowImageType {
+  backdrop
+  banner
+  cover
+  photo
+  poster
+}
+
+enum ShowOrderByKey {
+  clientId
+  createdAt
+  duration
+  globalReleaseDate
+  id
+  originalTitle
+  typeCode
+  updatedAt
+  updatedBy
+}
+
+enum ShowSoundMixCode {
+  dolby_atmos
+  stereo20
+  stereo21
+  surround51
+  surround71
+}
+
+type ShowTranslation {
+  description: String
+  localeCode: LocaleCode!
+  showId: Int!
+  tagline: String
+  title: String!
+}
+
+enum ShowTypeCode {
+  education
+  entertainment
+  exhibition
+  experience
+  festival
+  movie
+  music
+  sport
+  theatre
+}
+
+enum ShowVersionCode {
+  ces
+  deu
+  dubbing_ces
+  dubbing_deu
+  dubbing_eng
+  dubbing_hun
+  dubbing_pol
+  dubbing_slk
+  eng
+  hun
+  original
+  pol
+  rue
+  rus
+  slk
+  subtitles_ces
+  subtitles_ces_deu
+  subtitles_ces_eng
+  subtitles_deu
+  subtitles_eng
+  subtitles_hun
+  subtitles_pol
+  subtitles_slk
+  subtitles_slk_deu
+  subtitles_slk_eng
+  subtitles_slk_hun
+  ukr
+}
+
+input ShowsEventFilter {
+  eventStates: [EventState!]
+  from: DateTime
+  hasEvents: Boolean!
+  to: DateTime
+}
+
+input ShowsFilter {
+  ageClassificationCode: ShowAgeClassificationCode
+  baseListFilter: BaseListFilter
+  countryCode: CountryCode
+  eventsFilter: ShowsEventFilter
+  fromGlobalReleaseDate: Date
+  genreCode: ShowGenreCode
+  hasText: String
+  toGlobalReleaseDate: Date
+  typeCode: ShowTypeCode
+}
+
+input ShowsOrderBy {
+  direction: OrderByDirection!
+  key: ShowOrderByKey!
+}
+
+enum ThumbnailType {
+  photo
+  poster
+}
+
+type TicketItem {
+  appliedDiscounts: [AppliedDiscount!]!
+  checkStatus: TicketItemCheckStatus!
+  checkedInCount: NonNegativeInt!
+  checkedOutCount: NonNegativeInt!
+  createdAt: DateTime!
+  createdBy: String!
+  event: Event!
+  eventId: PositiveInt!
+  eventSeat: EventSeat!
+  id: PositiveInt!
+  passCode: NonEmptyString
+  price: Float!
+  priceBeforeDiscount: NonNegativeFloat!
+  priceLevel: String!
+  priceVatExcluded: Float!
+  totalPassCodeChecksCount: NonNegativeInt!
+  updatedAt: DateTime!
+  updatedBy: String!
+  vat: Float!
+  vatRate: NonNegativeFloat!
+}
+
+enum TicketItemCheckStatus {
+  checkedIn
+  checkedOut
+  unchecked
+}
+
+enum TicketValidityType {
+  validAtSlotDatetimePlusNHours
+  validAtSlotDayPlusNDays
+  validOnlyForTimeSlot
+}
+
+type Tour {
+  clientId: PositiveInt!
+  createdAt: DateTime!
+  createdBy: PositiveInt!
+  divisionId: PositiveInt!
+
+  """Default value for tourTimeSlot"""
+  duration: PositiveInt!
+
+  """Default value for tourTimeSlot"""
+  eCommerceAttendeesLimit: NonNegativeInt
+
+  """Default value for tourTimeSlot"""
+  eCommerceOrderAttendeesLimit: NonNegativeInt
+  id: PositiveInt!
+  internalNote: NonEmptyString
+  name: NonEmptyString!
+
+  """Default value for tourTimeSlot"""
+  retailAttendeesLimit: NonNegativeInt
+
+  """Only for apiGrants with granted resource(s): *shows*"""
+  show: Show!
+  showId: PositiveInt!
+  state: TourState!
+  updatedAt: DateTime!
+  updatedBy: PositiveInt!
+
+  """Only for apiGrants with granted resource(s): *venues*"""
+  venue: Venue
+
+  """Default value for tourTimeSlot"""
+  venueId: PositiveInt
+}
+
+type TourItem {
+  admissionType: AdmissionType!
+  admissionTypeId: PositiveInt!
+  appliedDiscounts: [AppliedDiscount!]!
+  attendeesCount: NonNegativeInt!
+  checkStatus: TourItemCheckStatus!
+  checkedInCount: NonNegativeInt!
+  checkedOutCount: NonNegativeInt!
+  createdAt: DateTime!
+  createdBy: PositiveInt!
+  id: PositiveInt!
+  name: NonEmptyString!
+  passCode: NonEmptyString
+  price: Float!
+  priceBeforeDiscount: NonNegativeFloat!
+  priceVatExcluded: Float!
+  totalPassCodeChecksCount: NonNegativeInt!
+  tourTimeSlot: TourTimeSlot!
+  tourTimeSlotId: PositiveInt!
+  updatedAt: DateTime!
+  updatedBy: PositiveInt!
+  vat: Float!
+  vatRate: NonNegativeFloat!
+}
+
+enum TourItemCheckStatus {
+  checkedIn
+  checkedOut
+
+  """For tour items with multiple attendees (family tickets)"""
+  partiallyChecked
+  unchecked
+}
+
+enum TourState {
+  active
+  draft
+  inactive
+}
+
+type TourTimeSlot {
+  admissionRateId: PositiveInt!
+  ageClassificationCode: ShowAgeClassificationCode
+  attendeesCheckedInCount: NonNegativeInt!
+  attendeesCheckedOutCount: NonNegativeInt!
+  clientId: PositiveInt!
+  costCenterId: PositiveInt
+  createdAt: DateTime!
+  createdBy: PositiveInt!
+  duration: PositiveInt!
+  eCommerceAttendeesLimit: NonNegativeInt
+  eCommerceOrderAttendeesLimit: NonNegativeInt!
+  eCommerceReservationEndsAt: DateTime!
+  eCommerceReservationExpirationExpiresAt: DateTime!
+  eCommerceReservationExpirationLastFor: Int
+  eCommerceReservationExpirationType: DivisionOnlineReservationEnd!
+  eCommerceReservationStartsAt: DateTime!
+  eCommerceSaleEndsAt: DateTime!
+  eCommerceSaleStartsAt: DateTime!
+  endsAt: DateTime!
+  eventCategoryId: PositiveInt
+  gateClosesAt: DateTime!
+  gateOpensAt: DateTime!
+  guideId: PositiveInt
+  id: PositiveInt!
+  isECommerceReservationActive: Boolean!
+  isECommerceSaleActive: Boolean!
+  isRetailReservationActive: Boolean!
+  isRetailSaleActive: Boolean!
+  marketingLabelId: PositiveInt
+  names: Translated!
+  passCodesCheckedInCount: NonNegativeInt!
+  passCodesCheckedOutCount: NonNegativeInt!
+  retailAttendeesLimit: NonNegativeInt
+  retailReservationEndsAt: DateTime!
+  retailReservationExpirationExpiresAt: DateTime!
+  retailReservationExpirationLastFor: Int
+  retailReservationExpirationType: DivisionPOSReservationEnd!
+  retailReservationStartsAt: DateTime!
+  retailSaleEndsAt: DateTime!
+  retailSaleStartsAt: DateTime!
+  showOnWebsiteAndApi: Boolean!
+  startsAt: DateTime!
+  state: TourTimeSlotState!
+  ticketNote: String
+  ticketValidityType: TicketValidityType!
+  ticketValidityValue: PositiveInt
+  tourId: PositiveInt!
+  uniqueCheckedInCount: NonNegativeInt!
+  updatedAt: DateTime!
+  updatedBy: PositiveInt!
+
+  """Only for apiGrants with granted resource(s): *venues*"""
+  venue: Venue!
+  venueId: PositiveInt!
+  versionCode: ShowVersionCode
+}
+
+enum TourTimeSlotState {
+  cancelled
+  draft
+  published
+}
+
+type Translated {
+  cs: String
+  en: String
+  hu: String
+  sk: String
+}
+
+enum VatRegistered {
+  full
+  none
+  part
+}
+
+type Venue {
+  address: Address!
+  clientId: PositiveInt!
+  id: PositiveInt!
+  name: String!
+  secondaryName: String
+}

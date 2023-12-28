@@ -1,6 +1,11 @@
 schema: 'https://api.test.entradio.cz/graphql'
 documents: '**/graphql.ts'
 generates:
+  ### local copy of schema required for IDE type checks and code completion
+  __generated__/schema.graphql:
+    plugins:
+      - 'schema-ast'
+  ### types generated from remote schema
   __generated__/api-types.tsx:
     plugins:
       - 'typescript'
