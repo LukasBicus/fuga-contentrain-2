@@ -708,6 +708,7 @@ export enum DivisionState {
 export type Event = PaginationItem & {
   __typename?: 'Event';
   ageClassificationCode?: Maybe<ShowAgeClassificationCode>;
+  ageClassificationTranslated?: Maybe<Translated>;
   allowedDiscountsSellingChannels: Array<SellingChannel>;
   auditorium: Auditorium;
   auditoriumId: Scalars['PositiveInt']['output'];
@@ -730,7 +731,9 @@ export type Event = PaginationItem & {
   endsAt: Scalars['DateTime']['output'];
   eventCategory?: Maybe<EventCategory>;
   eventCategoryId?: Maybe<Scalars['PositiveInt']['output']>;
+  formatAbbreviationTranslated?: Maybe<Translated>;
   formatCode?: Maybe<ShowFormatCode>;
+  formatTranslated?: Maybe<Translated>;
   gateClosedAt: Scalars['DateTime']['output'];
   gateOpensAt: Scalars['DateTime']['output'];
   id: Scalars['PositiveInt']['output'];
@@ -748,7 +751,9 @@ export type Event = PaginationItem & {
   show: Show;
   showId: Scalars['PositiveInt']['output'];
   showOnWebsiteAndApi: Scalars['Boolean']['output'];
+  soundMixAbbreviationTranslated?: Maybe<Translated>;
   soundMixCode?: Maybe<ShowSoundMixCode>;
+  soundMixTranslated?: Maybe<Translated>;
   startsAt: Scalars['DateTime']['output'];
   state: EventState;
   ticketNote: Scalars['String']['output'];
@@ -756,7 +761,9 @@ export type Event = PaginationItem & {
   updatedAt: Scalars['DateTime']['output'];
   updatedBy: Scalars['PositiveInt']['output'];
   venue: Venue;
+  versionAbbreviationTranslated?: Maybe<Translated>;
   versionCode?: Maybe<ShowVersionCode>;
+  versionTranslated?: Maybe<Translated>;
 };
 
 export type EventCategory = {
@@ -1625,22 +1632,27 @@ export enum SellingChannel {
 export type Show = PaginationItem & {
   __typename?: 'Show';
   ageClassificationCodes: Array<ShowAgeClassificationCode>;
+  ageClassificationsTranslated: Array<Translated>;
   clientId: Scalars['PositiveInt']['output'];
+  countriesTranslated: Array<Translated>;
   countryCodes: Array<CountryCode>;
   createdAt: Scalars['DateTime']['output'];
   createdBy: Scalars['PositiveInt']['output'];
   distributions: Array<ShowDistribution>;
   duration?: Maybe<Scalars['PositiveInt']['output']>;
   genreCodes: Array<ShowGenreCode>;
+  genresTranslated: Array<Translated>;
   globalReleaseDate?: Maybe<Scalars['Date']['output']>;
   id: Scalars['PositiveInt']['output'];
   images: Array<ShowImage>;
   languageCodes: Array<LanguageCode>;
+  languagesTranslated: Array<Translated>;
   originalTitle?: Maybe<Scalars['String']['output']>;
   primaryImage?: Maybe<ShowImage>;
   productionYear?: Maybe<Scalars['PositiveInt']['output']>;
   translations: Array<ShowTranslation>;
   typeCode: ShowTypeCode;
+  typeTranslated: Translated;
   updatedAt: Scalars['DateTime']['output'];
   updatedBy: Scalars['PositiveInt']['output'];
 };
@@ -1696,9 +1708,15 @@ export enum ShowAgeClassificationCode {
 
 export type ShowDistribution = {
   __typename?: 'ShowDistribution';
+  formatAbbreviationTranslated?: Maybe<Translated>;
   formatCode?: Maybe<ShowFormatCode>;
+  formatTranslated?: Maybe<Translated>;
+  soundMixAbbreviationTranslated?: Maybe<Translated>;
   soundMixCode?: Maybe<ShowSoundMixCode>;
+  soundMixTranslated?: Maybe<Translated>;
+  versionAbbreviationTranslated?: Maybe<Translated>;
   versionCode?: Maybe<ShowVersionCode>;
+  versionTranslated?: Maybe<Translated>;
 };
 
 export enum ShowFormatCode {
@@ -2272,13 +2290,15 @@ export type Venue = {
   secondaryName?: Maybe<Scalars['String']['output']>;
 };
 
+export type TranslatedFieldsFragment = { __typename?: 'Translated', en?: string | null, sk?: string | null, cs?: string | null, hu?: string | null };
+
 export type EventQueryVariables = Exact<{
   eventId: Scalars['PositiveInt']['input'];
   type: ShowImageType;
 }>;
 
 
-export type EventQuery = { __typename?: 'Query', event: { __typename?: 'Event', ageClassificationCode?: ShowAgeClassificationCode | null, endsAt: any, duration: any, ecommerceEventURL: string, formatCode?: ShowFormatCode | null, gateOpensAt: any, gateClosedAt: any, id: any, organizerNote: string, soundMixCode?: ShowSoundMixCode | null, startsAt: any, state: EventState, versionCode?: ShowVersionCode | null, auditorium: { __typename?: 'Auditorium', id: any, name: string }, client: { __typename?: 'Client', id: any, name: any }, division: { __typename?: 'Division', id: any, name: any, email?: any | null, phoneNumber?: any | null }, names: { __typename?: 'Translated', cs?: string | null, en?: string | null, hu?: string | null, sk?: string | null }, show: { __typename?: 'Show', id: any, languageCodes: Array<LanguageCode>, images: Array<{ __typename?: 'ShowImage', id: number, key: string, height?: number | null, url: string, width?: number | null }>, primaryImage?: { __typename?: 'ShowImage', id: number, key: string, height?: number | null, width?: number | null, url: string } | null, translations: Array<{ __typename?: 'ShowTranslation', tagline?: string | null, localeCode: LocaleCode, description?: string | null }> }, venue: { __typename?: 'Venue', id: any, name: string, secondaryName?: string | null, address: { __typename?: 'Address', complex: string, country: string, postalCode: string, street: string, town: string } } } };
+export type EventQuery = { __typename?: 'Query', event: { __typename?: 'Event', ageClassificationCode?: ShowAgeClassificationCode | null, endsAt: any, duration: any, ecommerceEventURL: string, formatCode?: ShowFormatCode | null, gateOpensAt: any, gateClosedAt: any, id: any, organizerNote: string, soundMixCode?: ShowSoundMixCode | null, startsAt: any, state: EventState, versionCode?: ShowVersionCode | null, ageClassificationTranslated?: { __typename?: 'Translated', en?: string | null, sk?: string | null, cs?: string | null, hu?: string | null } | null, auditorium: { __typename?: 'Auditorium', id: any, name: string }, client: { __typename?: 'Client', id: any, name: any }, division: { __typename?: 'Division', id: any, name: any, email?: any | null, phoneNumber?: any | null }, formatTranslated?: { __typename?: 'Translated', en?: string | null, sk?: string | null, cs?: string | null, hu?: string | null } | null, names: { __typename?: 'Translated', en?: string | null, sk?: string | null, cs?: string | null, hu?: string | null }, show: { __typename?: 'Show', id: any, languageCodes: Array<LanguageCode>, images: Array<{ __typename?: 'ShowImage', id: number, key: string, height?: number | null, url: string, width?: number | null }>, primaryImage?: { __typename?: 'ShowImage', id: number, key: string, height?: number | null, width?: number | null, url: string } | null, translations: Array<{ __typename?: 'ShowTranslation', tagline?: string | null, localeCode: LocaleCode, description?: string | null }> }, soundMixTranslated?: { __typename?: 'Translated', en?: string | null, sk?: string | null, cs?: string | null, hu?: string | null } | null, versionTranslated?: { __typename?: 'Translated', en?: string | null, sk?: string | null, cs?: string | null, hu?: string | null } | null, venue: { __typename?: 'Venue', id: any, name: string, secondaryName?: string | null, address: { __typename?: 'Address', complex: string, country: string, postalCode: string, street: string, town: string } } } };
 
 export type EventsQueryQueryVariables = Exact<{
   filter?: InputMaybe<EventsFilter>;
