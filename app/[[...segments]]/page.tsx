@@ -1,8 +1,9 @@
 import { LocaleCode } from '@/__generated__/api-types'
 import { getPages } from '@/data'
 import { DEFAULT_LOCALE_CODE } from '@/envs'
+import { ICommonComponentProps } from '@/types'
 import { notFound } from 'next/navigation'
-import { PageComponents } from './PageComponents'
+import { mapPageComponent } from './mapPageComponent'
 
 const mapToSegments = (items: { slug: string }[], prefix?: string) =>
   items.map((item) => ({
@@ -69,12 +70,17 @@ export default async function Page({
     return notFound()
   }
 
+  const commonProps: ICommonComponentProps = {
+    localeCode,
+    currentPath: getPathFromSegments(params.segments),
+    remainingSegments,
+  }
+
   return (
-    <PageComponents
-      page={page}
-      currentPath={getPathFromSegments(params.segments)}
-      localeCode={localeCode}
-      remainingSegments={remainingSegments}
-    />
+    <main className="flex min-h-screen flex-col items-center">
+      {page.components.map((componentData, index) =>
+        mapPageComponent({ componentData, commonProps, index, page })
+      )}
+    </main>
   )
 }

@@ -1,4 +1,3 @@
-import { LocaleCode } from '@/__generated__/api-types'
 import { EventDetail } from '@/components/EventDetail'
 import { Footer } from '@/components/Footer'
 import { Header } from '@/components/Header'
@@ -9,7 +8,7 @@ import { Program } from '@/components/Program'
 import { ICommonComponentProps, IComponentData, IPageData } from '@/types'
 import React from 'react'
 
-const mapComponent = ({
+export const mapPageComponent = ({
   index,
   commonProps,
   componentData,
@@ -45,24 +44,4 @@ const mapComponent = ({
     default:
       throw new Error('Unknown component ' + componentData.type)
   }
-}
-
-export const PageComponents: React.FC<{
-  localeCode: LocaleCode
-  page: IPageData
-  currentPath: string
-  remainingSegments: string[]
-}> = ({ localeCode, page, currentPath, remainingSegments }) => {
-  const commonProps: ICommonComponentProps = {
-    localeCode,
-    currentPath,
-    remainingSegments,
-  }
-  return (
-    <main className="flex min-h-screen flex-col items-center">
-      {page.components.map((componentData, index) =>
-        mapComponent({ componentData, commonProps, index, page })
-      )}
-    </main>
-  )
 }
