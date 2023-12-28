@@ -6,6 +6,7 @@ import { IHeaderData, IPageData } from '@/types'
 import fs from 'fs'
 import matter from 'gray-matter'
 import path, { join } from 'path'
+import headerData from './header/index.json'
 import pageData from './page/index.json'
 
 const loadJsonFile = (filePath: string) => {
@@ -87,14 +88,12 @@ const loadDataFromDir = <T extends object>(
 
 export interface IData {
   page: DataDirectoryContent<IPageData>
-  // header: DataDirectoryContent<IHeaderData>
-  header: ComponentDirectoryContent<IHeaderData>
+  header: DataDirectoryContent<IHeaderData>
 }
 
 const data: IData = {
   page: pageData as DataDirectoryContent<IPageData>,
-  // header: headerData as DataDirectoryContent<IHeaderData>,
-  header: loadDataFromDir<IHeaderData>('header'),
+  header: headerData as DataDirectoryContent<IHeaderData>,
 }
 
 export async function getPages(localeCode: LocaleCode = DEFAULT_LOCALE_CODE) {
@@ -102,5 +101,5 @@ export async function getPages(localeCode: LocaleCode = DEFAULT_LOCALE_CODE) {
 }
 
 export async function getHeaders(localeCode: LocaleCode = DEFAULT_LOCALE_CODE) {
-  return Promise.resolve(Object.values(data.header[localeCode] || {}))
+  return Promise.resolve(data.header[localeCode] || [])
 }
