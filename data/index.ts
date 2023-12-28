@@ -80,10 +80,12 @@ const loadDataFromDir = <T extends object>(
   return result
 }
 
-const data: {
+export interface IData {
   page: ComponentDirectoryContent<IPageData>
   header: ComponentDirectoryContent<IHeaderData>
-} = {
+}
+
+const data: IData = {
   page: loadDataFromDir<IPageData>('page'),
   header: loadDataFromDir<IHeaderData>('header'),
 }

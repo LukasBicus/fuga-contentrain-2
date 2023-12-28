@@ -1,8 +1,10 @@
-export async function apiRequest(
+import { BASE_URL } from '@/envs'
+
+export async function apiRequest<T>(
   apiPath: string,
   nextConfig: NextFetchRequestConfig | undefined = { revalidate: 60 }
 ) {
-  const response = await fetch(apiPath, {
+  const response = await fetch(BASE_URL + apiPath, {
     method: 'GET',
     headers: {
       'Content-Type': 'application/json',
@@ -14,5 +16,5 @@ export async function apiRequest(
   if (data.errors) {
     throw data
   }
-  return data
+  return data as T
 }

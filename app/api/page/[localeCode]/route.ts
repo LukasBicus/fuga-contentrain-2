@@ -1,6 +1,7 @@
 import { LocaleCode } from '@/__generated__/api-types'
 import { getPages } from '@/data'
 import { DEFAULT_LOCALE_CODE } from '@/envs'
+import { NextResponse } from 'next/server'
 
 export async function generateStaticParams(): Promise<
   { localeCode: string }[]
@@ -16,7 +17,8 @@ export async function GET(
   request: Request,
   { params }: { params: { localeCode: string } }
 ) {
-  return Response.json(
-    await getPages((params.localeCode as LocaleCode) || DEFAULT_LOCALE_CODE)
+  return NextResponse.json(
+    await getPages((params.localeCode as LocaleCode) || DEFAULT_LOCALE_CODE),
+    { status: 200 }
   )
 }
