@@ -3,8 +3,8 @@
 import { LocaleCode } from '@/__generated__/api-types'
 import { DEFAULT_LOCALE_CODE } from '@/envs'
 import { IHeaderData, IPageData } from '@/types'
-import headerData from './header/index.json'
-import pageData from './page/index.json'
+import headerData from './header.json'
+import pageData from './page.json'
 
 type DataDirectoryContent<T> = {
   [key in LocaleCode]?: T[]
