@@ -25,7 +25,7 @@ export const Header: React.FC<ICommonComponentProps> = async ({
   localeCode,
   currentPath,
 }) => {
-  const headerData = (await getHeaders()).at(0)
+  const headerData = (await getHeaders(localeCode)).at(0)
   if (!headerData) {
     return null
   }
