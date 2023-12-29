@@ -1,5 +1,5 @@
 'use server'
-import { useTranslation } from '@/i18n'
+import { useServerTranslation } from '@/i18n'
 import { ICommonComponentProps } from '@/types'
 import Image from 'next/image'
 import React from 'react'
@@ -18,7 +18,7 @@ const data = [
 export const Partners: React.FC<ICommonComponentProps> = async ({
   localeCode,
 }) => {
-  const { t } = await useTranslation(localeCode)
+  const { t } = await useServerTranslation(localeCode)
   return (
     <div className="px-24 py-12 bg-white w-full">
       <h3 className="text-center">{t('Partners')}</h3>

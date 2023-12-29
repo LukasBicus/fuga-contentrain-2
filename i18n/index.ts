@@ -18,7 +18,7 @@ const initI18next = async (localeCode: LocaleCode, namespace: string) => {
   return i18nInstance
 }
 
-export async function useTranslation(
+export async function useServerTranslation(
   localeCode: LocaleCode,
   ns: string = defaultNS,
   options: {
