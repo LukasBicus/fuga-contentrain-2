@@ -1,3 +1,4 @@
 {
-  "Partners": "Partneri"
+  "Partners": "Partneri",
+  "currentLocale: {{currentLocale}}": "Akutalny jazyk: {{currentLocale}}"
 }

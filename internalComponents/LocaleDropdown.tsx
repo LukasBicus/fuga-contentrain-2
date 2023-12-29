@@ -1,5 +1,6 @@
 'use client'
 import { LocaleCode } from '@/__generated__/api-types'
+import { useClientTranslation } from '@/i18n/client'
 import { clsx } from 'clsx'
 import Link from 'next/link'
 import React, { useState } from 'react'
@@ -16,6 +17,7 @@ export const LocaleDropdown: React.FC<ILocaleDropdownProps> = ({
   defaultLocale,
 }) => {
   const [isOpen, setIsOpen] = useState<boolean>(false)
+  const { t } = useClientTranslation(currentLocale)
   return (
     <div className="relative">
       <button
@@ -23,8 +25,9 @@ export const LocaleDropdown: React.FC<ILocaleDropdownProps> = ({
         onClick={() => {
           setIsOpen((o) => !o)
         }}
+        suppressHydrationWarning
       >
-        {currentLocale}
+        {t('currentLocale: {{currentLocale}}', { currentLocale })}
       </button>
       <div
         className={clsx(

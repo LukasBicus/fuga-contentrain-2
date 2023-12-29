@@ -1,3 +1,4 @@
 {
-  "Partners": "Partners"
+  "Partners": "Partners",
+  "currentLocale: {{currentLocale}}": "Current locale: {{currentLocale}}"
 }

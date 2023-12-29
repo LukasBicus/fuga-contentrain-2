@@ -16,7 +16,6 @@ export default function RootLayout({
   children: React.ReactNode
   params: { segments?: string[] }
 }) {
-  console.log('params', params)
   const { localeCode } = analyzeSegments(params.segments)
   return (
     <html
