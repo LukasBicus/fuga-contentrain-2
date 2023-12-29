@@ -10,7 +10,10 @@
     "tsc": "tsc --noEmit",
     "format": "prettier --check .",
     "format:fix": "prettier --write --list-different .",
-    "generate:entradio-api-types": "graphql-codegen"
+    "generate:entradio-api-types": "graphql-codegen",
+    "tr-validate": "i18next-scanner --config scripts/i18n/validate.config.js",
+    "tr-extract": "i18next-scanner --config scripts/i18n/extract.config.js",
+    "tr-extract-remove-unused": "i18next-scanner --config scripts/i18n/extractAndRemoveUnused.config.js"
   },
   "dependencies": {
     "assert": "^2.1.0",
@@ -43,6 +46,7 @@
     "eslint": "^8",
     "eslint-config-next": "14.0.3",
     "eslint-config-prettier": "^9.1.0",
+    "i18next-scanner": "^4.4.0",
     "postcss": "^8",
     "prettier": "^3.1.0",
     "tailwindcss": "^3.3.0",
