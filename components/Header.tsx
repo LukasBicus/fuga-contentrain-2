@@ -1,6 +1,7 @@
 import { LocaleCode } from '@/__generated__/api-types'
 import { getHeaders } from '@/data'
 import { DEFAULT_LOCALE_CODE } from '@/envs'
+import { availableLocales } from '@/i18n/settings'
 import { LocaleDropdown } from '@/internalComponents/LocaleDropdown'
 import { transformSlugToRoute } from '@/lib/routes'
 import { ICommonComponentProps } from '@/types'
@@ -14,7 +15,7 @@ import 'server-only'
 const getLogoLink = (currentPath: string) => {
   const slugs = compact(currentPath.split('/'))
   const firstSlug = slugs.at(0)
-  return Object.values(LocaleCode)
+  return availableLocales
     .filter((lc) => lc !== DEFAULT_LOCALE_CODE)
     .includes(firstSlug as LocaleCode)
     ? `/${firstSlug}`

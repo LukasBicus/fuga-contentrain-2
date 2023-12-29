@@ -1,6 +1,5 @@
-import { LocaleCode } from '@/__generated__/api-types'
 import { getPages } from '@/data'
-import { DEFAULT_LOCALE_CODE } from '@/envs'
+import { availableLocales } from '@/i18n/settings'
 import { ICommonComponentProps } from '@/types'
 import { notFound } from 'next/navigation'
 import { mapPageComponent } from './mapPageComponent'
@@ -17,7 +16,7 @@ export async function generateStaticParams(): Promise<
   let allSlugs: { segments: string[] }[] = []
   allSlugs = allSlugs.concat(mapToSegments(await getPages()))
 
-  for (const localeCode of Object.values(LocaleCode)) {
+  for (const localeCode of availableLocales) {
     allSlugs = allSlugs.concat(
       mapToSegments(await getPages(localeCode), localeCode)
     )
