@@ -1,7 +1,7 @@
 'use server'
 
 import { LocaleCode } from '@/__generated__/api-types'
-import { DEFAULT_LOCALE_CODE } from '@/envs'
+import { DEFAULT_LOCALE_CODE } from '@/public-envs'
 import { IHeaderData, IPageData } from '@/types'
 import headerData from './header.json'
 import pageData from './page.json'

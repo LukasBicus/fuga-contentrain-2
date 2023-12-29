@@ -1,6 +1,6 @@
 import { LocaleCode } from '@/__generated__/api-types'
-import { DEFAULT_LOCALE_CODE } from '@/envs'
 import { availableLocales } from '@/i18n/settings'
+import { DEFAULT_LOCALE_CODE } from '@/public-envs'
 
 export const analyzeSegments = (
   segments?: string[]

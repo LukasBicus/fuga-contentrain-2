@@ -6,7 +6,6 @@ import {
   ShowImageType,
 } from '@/__generated__/api-types'
 import { EVENTS_QUERY } from '@/components/Program/graphql'
-import { DEFAULT_LOCALE_CODE } from '@/envs'
 import {
   capitalizeFirstLetter,
   getFormatDayNumeric,
@@ -15,6 +14,7 @@ import {
   joinTroughDot,
 } from '@/lib/format'
 import { graphqlClient } from '@/lib/graphqlClient'
+import { DEFAULT_LOCALE_CODE } from '@/public-envs'
 import { ICommonComponentProps } from '@/types'
 import Image from 'next/image'
 import Link from 'next/link'

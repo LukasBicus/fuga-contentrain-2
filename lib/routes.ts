@@ -1,5 +1,5 @@
 import { LocaleCode } from '@/__generated__/api-types'
-import { DEFAULT_LOCALE_CODE } from '@/envs'
+import { DEFAULT_LOCALE_CODE } from '@/public-envs'
 
 export const transformSlugToRoute = (slug: string, localeCode?: LocaleCode) => {
   if (!localeCode || localeCode === DEFAULT_LOCALE_CODE) {
