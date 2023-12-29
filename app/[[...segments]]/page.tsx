@@ -4,6 +4,7 @@ import { DEFAULT_LOCALE_CODE } from '@/envs'
 import { ICommonComponentProps } from '@/types'
 import { notFound } from 'next/navigation'
 import { mapPageComponent } from './mapPageComponent'
+import { analyzeSegments } from './utils'
 
 const mapToSegments = (items: { slug: string }[], prefix?: string) =>
   items.map((item) => ({
@@ -28,32 +29,6 @@ export const revalidate = 60 // revalidate most often once in 60s
 
 const getPathFromSegments = (segments?: string[]) =>
   `/${(segments ?? []).join('/')}`
-
-const analyzeSegments = (
-  segments?: string[]
-): { localeCode: LocaleCode; slug: string; remainingSegments: string[] } => {
-  const firstSegment = segments?.at(0)
-  if (!Array.isArray(segments) || !firstSegment) {
-    return {
-      localeCode: DEFAULT_LOCALE_CODE,
-      slug: '',
-      remainingSegments: [],
-    }
-  }
-  const secondSegment = segments.at(1)
-  if (Object.values(LocaleCode).includes(firstSegment as LocaleCode)) {
-    return {
-      localeCode: firstSegment as LocaleCode,
-      slug: secondSegment ?? '',
-      remainingSegments: segments.slice(2),
-    }
-  }
-  return {
-    localeCode: DEFAULT_LOCALE_CODE,
-    slug: firstSegment ?? '',
-    remainingSegments: segments.slice(1),
-  }
-}
 
 export default async function Page({
   params,
