@@ -34,7 +34,7 @@ export const mapPageComponent = ({
         />
       )
     case 'partners':
-      return <Partners key={key} />
+      return <Partners key={key} {...commonProps} />
     case 'footer':
       return <Footer key={key} />
     case 'eventDetail':

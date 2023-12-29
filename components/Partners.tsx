@@ -1,3 +1,6 @@
+'use server'
+import { useTranslation } from '@/i18n'
+import { ICommonComponentProps } from '@/types'
 import Image from 'next/image'
 import React from 'react'
 
@@ -12,24 +15,35 @@ const data = [
   { src: '/rtvs.png', name: 'rtvs', url: '#' },
 ]
 
-export const Partners: React.FC = () => {
+export const Partners: React.FC<ICommonComponentProps> = async ({
+  localeCode,
+}) => {
+  const { t } = await useTranslation(localeCode)
   return (
-    <div className="flex items-center justify-center px-24 py-12 bg-white w-full">
-      <div
-        className="my-4 grid grid-cols-2 gap-6 md:grid-cols-4"
-        id="frameworks-integration"
-      >
-        {data.map((item) => (
-          <a
-            key={item.name}
-            className="grid w-full min-w-[7rem] transform cursor-pointer place-items-center rounded-xl border border-blue-gray-50 bg-white px-3 py-2 transition-all hover:scale-105 hover:border-blue-gray-100 hover:bg-blue-gray-50 hover:bg-opacity-25 hover:bg-transparent"
-            href={item.url}
-          >
-            <span className="my-6 grid h-24 w-24 place-items-center">
-              <Image src={item.src} alt={item.name} width={175} height={120} />
-            </span>
-          </a>
-        ))}
+    <div className="px-24 py-12 bg-white w-full">
+      <h3 className="text-center">{t('Partners')}</h3>
+      <div className="flex items-center justify-center w-full">
+        <div
+          className="my-4 grid grid-cols-2 gap-6 md:grid-cols-4"
+          id="frameworks-integration"
+        >
+          {data.map((item) => (
+            <a
+              key={item.name}
+              className="grid w-full min-w-[7rem] transform cursor-pointer place-items-center rounded-xl border border-blue-gray-50 bg-white px-3 py-2 transition-all hover:scale-105 hover:border-blue-gray-100 hover:bg-blue-gray-50 hover:bg-opacity-25 hover:bg-transparent"
+              href={item.url}
+            >
+              <span className="my-6 grid h-24 w-24 place-items-center">
+                <Image
+                  src={item.src}
+                  alt={item.name}
+                  width={175}
+                  height={120}
+                />
+              </span>
+            </a>
+          ))}
+        </div>
       </div>
     </div>
   )
