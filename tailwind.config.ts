@@ -23,8 +23,8 @@ const config: Config = {
           'conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))',
       },
       fontFamily: {
-        mono: ['var(--font-rubik-mono-one)', ...defaultTheme.fontFamily.mono],
-        body: ['var(--font-rubik)', ...defaultTheme.fontFamily.sans],
+        mono: ['var(--primary-mono-one-font)', ...defaultTheme.fontFamily.mono],
+        body: ['var(--primary-font)', ...defaultTheme.fontFamily.sans],
       },
     },
   },

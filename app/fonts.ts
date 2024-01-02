@@ -1,12 +1,22 @@
-import { Rubik, Rubik_Mono_One } from 'next/font/google'
+import localFont from 'next/font/local'
 
-export const primaryMonoOneFont = Rubik_Mono_One({
-  subsets: ['latin'],
-  variable: '--font-rubik-mono-one',
-  weight: ['400'],
+// follow https://nextjs.org/docs/app/api-reference/components/font
+// prefer one of variable fonts https://fonts.google.com/variablefonts
+
+export const primaryFont = localFont({
+  src: [
+    {
+      path: './regular-variable-font.ttf',
+    },
+    {
+      path: './italic-variable-font.ttf',
+      style: 'italic',
+    },
+  ],
+  variable: '--primary-font',
 })
-export const primaryFont = Rubik({
-  subsets: ['latin'],
-  variable: '--font-rubik',
-  // weight: ['400'],
+
+export const primaryMonoOneFont = localFont({
+  src: './regular-mono-one-font.ttf',
+  variable: '--primary-mono-one-font',
 })

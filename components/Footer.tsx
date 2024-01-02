@@ -6,7 +6,7 @@ const data = {
       name: 'PRE NÁVŠTEVNÍKOV',
       body: (
         <>
-          <p>
+          <p className="italic">
             Predaj vstupeniek na mieste je dostupný vždy 45 minút pred
             predstavením.
           </p>
