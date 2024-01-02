@@ -1,5 +1,5 @@
 import type { Metadata } from 'next'
-import { rubik, rubikMonoOne } from '../fonts'
+import { primaryFont, primaryMonoOneFont } from '../fonts'
 import '../globals.css'
 import { analyzeSegments } from './utils'
 
@@ -20,7 +20,7 @@ export default function RootLayout({
   return (
     <html
       lang={localeCode}
-      className={`${rubik.variable} ${rubikMonoOne.variable}`}
+      className={`${primaryFont.variable} ${primaryMonoOneFont.variable}`}
     >
       <body>{children}</body>
     </html>
