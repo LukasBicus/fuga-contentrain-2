@@ -141,7 +141,7 @@ export const EventDetail: React.FC<ICommonComponentProps> = async ({
             </div>
           </div>
           <Link href={event.ecommerceEventURL}>
-            <button className="font-mono dark:bg-white dark:text-gray-900 dark:hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-800 text-base flex items-center justify-center leading-none text-white bg-gray-800 w-full py-4 hover:bg-gray-700">
+            <button className="font-mono focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-800 text-base flex items-center justify-center leading-none text-white bg-primary-dark w-full py-4 hover:bg-primary">
               Prejdi do obchodu
             </button>
           </Link>

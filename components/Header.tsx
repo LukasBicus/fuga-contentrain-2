@@ -59,7 +59,7 @@ export const Header: React.FC<ICommonComponentProps> = async ({
               key={item.path}
               href={item.path}
               className={clsx('mr-4', 'px-2', 'py-1', 'border-l-4', {
-                ['border-l-red-700']: item.path === currentPath,
+                ['border-l-primary-dark']: item.path === currentPath,
                 ['border-l-transparent']: item.path !== currentPath,
               })}
             >

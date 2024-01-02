@@ -21,7 +21,7 @@ export const LocaleDropdown: React.FC<ILocaleDropdownProps> = ({
   return (
     <div className="relative">
       <button
-        className="inline-flex justify-center w-full px-4 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-100 focus:ring-primary-background"
+        className="inline-flex justify-center w-full px-4 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-100 focus:ring-primary-dark"
         onClick={() => {
           setIsOpen((o) => !o)
         }}
@@ -57,7 +57,7 @@ export const LocaleDropdown: React.FC<ILocaleDropdownProps> = ({
             <div
               key={localeCode}
               className={clsx('border-l-4', {
-                ['border-l-red-700']: localeCode === currentLocale,
+                ['border-l-primary-dark']: localeCode === currentLocale,
                 ['border-l-transparent']: localeCode !== currentLocale,
               })}
             >
