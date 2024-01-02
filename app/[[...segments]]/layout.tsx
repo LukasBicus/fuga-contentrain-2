@@ -20,9 +20,9 @@ export default function RootLayout({
   return (
     <html
       lang={localeCode}
-      className={`${primaryFont.variable} ${primaryMonoOneFont.variable}`}
+      className={`${primaryFont.variable} ${primaryMonoOneFont.variable} h-full`}
     >
-      <body>{children}</body>
+      <body className="h-full">{children}</body>
     </html>
   )
 }
