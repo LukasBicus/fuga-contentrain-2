@@ -1,6 +1,7 @@
 'use client'
 
 import { LocaleCode } from '@/__generated__/api-types'
+import { DEFAULT_LOCALE_CODE } from '@/public-envs'
 import i18next from 'i18next'
 import resourcesToBackend from 'i18next-resources-to-backend'
 import {
@@ -19,7 +20,7 @@ i18next
   )
   .init({
     ...getOptions(),
-    lng: undefined, // always require fixed T
+    lng: DEFAULT_LOCALE_CODE, // always require fixed T
     preload: availableLocales,
   })
 
