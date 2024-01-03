@@ -5,7 +5,6 @@ import {
   LocaleCode,
   ShowImageType,
 } from '@/__generated__/api-types'
-import { EVENTS_QUERY } from '@/components/Program/graphql'
 import {
   capitalizeFirstLetter,
   getFormatDayNumeric,
@@ -19,6 +18,7 @@ import { ICommonComponentProps } from '@/types'
 import Image from 'next/image'
 import Link from 'next/link'
 import React from 'react'
+import { EVENTS_QUERY } from './graphql'
 
 const getDetailLink = ({
   detailSlug,
