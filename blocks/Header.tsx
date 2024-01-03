@@ -10,7 +10,6 @@ import { compact, orderBy } from 'lodash'
 import Image from 'next/image'
 import Link from 'next/link'
 import React from 'react'
-import 'server-only'
 
 const getLogoLink = (currentPath: string) => {
   const slugs = compact(currentPath.split('/'))
