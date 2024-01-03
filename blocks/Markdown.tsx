@@ -1,4 +1,4 @@
-import { MarkdownToHtml } from '@/internalComponents/MarkdownToHtml'
+import { MarkdownToHtml } from '@/components/MarkdownToHtml'
 import React from 'react'
 
 export const Markdown: React.FC<{

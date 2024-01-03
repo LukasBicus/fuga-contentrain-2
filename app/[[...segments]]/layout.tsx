@@ -1,4 +1,4 @@
-import ThemeRegistry from '@/internalComponents/ThemeRegistry'
+import ThemeRegistry from '@/components/ThemeRegistry'
 import type { Metadata } from 'next'
 import { primaryFont, primaryMonoOneFont } from '../fonts'
 import '../globals.css'

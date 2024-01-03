@@ -1,7 +1,7 @@
 import { LocaleCode } from '@/__generated__/api-types'
+import { LocaleDropdown } from '@/components/LocaleDropdown'
 import { getHeaders } from '@/data'
 import { availableLocales } from '@/i18n/settings'
-import { LocaleDropdown } from '@/internalComponents/LocaleDropdown'
 import { transformSlugToRoute } from '@/lib/routes'
 import { DEFAULT_LOCALE_CODE } from '@/public-envs'
 import { ICommonBlockProps } from '@/types'
