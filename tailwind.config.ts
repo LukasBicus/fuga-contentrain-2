@@ -3,9 +3,6 @@ import type { Config } from 'tailwindcss'
 const defaultTheme = require('tailwindcss/defaultTheme')
 const themeConfig = require('./theme.config.json')
 
-console.log('themeConfig', themeConfig)
-console.log('themeConfig.colors.primary', themeConfig.colors.primary)
-
 /** @type {import('tailwindcss').Config} */
 const config: Config = {
   mode: 'jit',
