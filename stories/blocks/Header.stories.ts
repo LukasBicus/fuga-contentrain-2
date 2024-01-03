@@ -1,5 +1,7 @@
 import { LocaleCode } from '@/__generated__/api-types'
-import { Header } from '@/blocks/Header'
+import { Header } from '@/components/Header'
+
+import hData from '@/data/header.json'
 import type { Meta, StoryObj } from '@storybook/react'
 
 const meta = {
@@ -21,5 +23,6 @@ export const SlovakLocale: Story = {
     localeCode: LocaleCode.Sk,
     currentPath: '/',
     remainingSegments: [],
+    data: hData.sk[0],
   },
 }
