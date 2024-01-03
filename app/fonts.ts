@@ -1,8 +1,5 @@
 import localFont from 'next/font/local'
 
-// follow https://nextjs.org/docs/app/api-reference/components/font
-// prefer one of variable fonts https://fonts.google.com/variablefonts
-
 export const primaryFont = localFont({
   src: [
     {
