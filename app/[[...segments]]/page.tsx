@@ -52,7 +52,7 @@ export default async function Page({
 
   return (
     <main className="flex min-h-screen flex-col items-center">
-      {page.components.map((componentData, index) =>
+      {page.blocks.map((componentData, index) =>
         mapPageComponent({ componentData, commonProps, index, page })
       )}
     </main>

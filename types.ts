@@ -14,7 +14,7 @@ export interface IHeaderData extends IObjectWithID {
   items: IHeaderItemData[]
 }
 
-export interface IComponentData {
+export interface IBlockData {
   type:
     | 'header'
     | 'eventDetail'
@@ -38,5 +38,5 @@ export interface IPageData extends IObjectWithID {
   content?: string
   createdAt: 1701418374289
   updatedAt?: 1701439444464
-  components: IComponentData[]
+  blocks: IBlockData[]
 }

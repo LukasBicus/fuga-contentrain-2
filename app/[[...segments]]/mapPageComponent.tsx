@@ -5,7 +5,7 @@ import { Hero } from '@/blocks/Hero'
 import { Markdown } from '@/blocks/Markdown'
 import { Partners } from '@/blocks/Partners'
 import { Program } from '@/blocks/Program'
-import { ICommonComponentProps, IComponentData, IPageData } from '@/types'
+import { IBlockData, ICommonComponentProps, IPageData } from '@/types'
 import React from 'react'
 
 export const mapPageComponent = ({
@@ -15,7 +15,7 @@ export const mapPageComponent = ({
   page,
 }: {
   index: number
-  componentData: IComponentData
+  componentData: IBlockData
   commonProps: ICommonComponentProps
   page: IPageData
 }) => {
