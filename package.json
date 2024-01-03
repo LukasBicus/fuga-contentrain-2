@@ -13,7 +13,9 @@
     "generate:entradio-api-types": "graphql-codegen",
     "tr-validate": "i18next-scanner --config scripts/i18n/validate.config.js",
     "tr-extract": "i18next-scanner --config scripts/i18n/extract.config.js",
-    "tr-extract-remove-unused": "i18next-scanner --config scripts/i18n/extractAndRemoveUnused.config.js"
+    "tr-extract-remove-unused": "i18next-scanner --config scripts/i18n/extractAndRemoveUnused.config.js",
+    "storybook": "storybook dev -p 6010",
+    "build-storybook": "storybook build"
   },
   "dependencies": {
     "assert": "^2.1.0",
@@ -37,6 +39,14 @@
     "@graphql-codegen/schema-ast": "^4.0.0",
     "@graphql-codegen/typescript": "^4.0.1",
     "@graphql-codegen/typescript-operations": "^4.0.1",
+    "@storybook/addon-essentials": "^7.6.7",
+    "@storybook/addon-interactions": "^7.6.7",
+    "@storybook/addon-links": "^7.6.7",
+    "@storybook/addon-onboarding": "^1.0.10",
+    "@storybook/blocks": "^7.6.7",
+    "@storybook/nextjs": "^7.6.7",
+    "@storybook/react": "^7.6.7",
+    "@storybook/test": "^7.6.7",
     "@types/lodash": "^4.14.202",
     "@types/node": "^20",
     "@types/react": "^18",
@@ -45,9 +55,11 @@
     "eslint": "^8",
     "eslint-config-next": "14.0.3",
     "eslint-config-prettier": "^9.1.0",
+    "eslint-plugin-storybook": "^0.6.15",
     "i18next-scanner": "^4.4.0",
     "postcss": "^8",
     "prettier": "^3.1.0",
+    "storybook": "^7.6.7",
     "tailwindcss": "^3.3.0",
     "typescript": "^5"
   }
