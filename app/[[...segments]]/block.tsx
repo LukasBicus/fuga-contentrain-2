@@ -8,17 +8,12 @@ import { Program } from '@/blocks/Program'
 import { IBlockData, ICommonBlockProps, IPageData } from '@/types'
 import React from 'react'
 
-export const mapPageComponent = ({
-  index,
-  commonProps,
-  blockData,
-  page,
-}: {
+export const Block: React.FC<{
   index: number
   blockData: IBlockData
   commonProps: ICommonBlockProps
   page: IPageData
-}) => {
+}> = ({ index, commonProps, blockData, page }) => {
   const key = `${blockData.type}-${index}`
   switch (blockData.type) {
     case 'header':

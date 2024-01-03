@@ -2,7 +2,7 @@ import { getPages } from '@/data'
 import { availableLocales } from '@/i18n/settings'
 import { ICommonBlockProps } from '@/types'
 import { notFound } from 'next/navigation'
-import { mapPageComponent } from './mapPageComponent'
+import { Block } from './block'
 import { analyzeSegments } from './utils'
 
 const mapToSegments = (items: { slug: string }[], prefix?: string) =>
@@ -52,9 +52,15 @@ export default async function Page({
 
   return (
     <main className="flex min-h-screen flex-col items-center">
-      {page.blocks.map((componentData, index) =>
-        mapPageComponent({ blockData: componentData, commonProps, index, page })
-      )}
+      {page.blocks.map((blockData, index) => (
+        <Block
+          key={`${blockData.type}-${index}`}
+          blockData={blockData}
+          commonProps={commonProps}
+          index={index}
+          page={page}
+        />
+      ))}
     </main>
   )
 }
