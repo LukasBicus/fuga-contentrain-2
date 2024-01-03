@@ -29,9 +29,13 @@ Open [http://localhost:8081](http://localhost:8081) with your browser to see the
 
 ### Customize fonts
 
-- read [docs](https://nextjs.org/docs/app/building-your-application/optimizing/fonts#local-fonts)
+- read [nextjs local font docs](https://nextjs.org/docs/app/building-your-application/optimizing/fonts#local-fonts)
 - download fonts from https://fonts.google.com/; prefer [variable fonts](https://fonts.google.com/variablefonts)
 - save fonts in [[...segments]] folder like
   - italic-variable-font.ttf
   - regular-mono-one-font.ttf
   - regular-variable-font.ttf
+
+### Customize theme colors
+
+- find `theme.config.json` file. Edit value on `colors.primary` and on `colors.primaryDark` paths.
