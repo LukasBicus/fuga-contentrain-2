@@ -1,6 +1,6 @@
 import { getPages } from '@/data'
 import { availableLocales } from '@/i18n/settings'
-import { ICommonComponentProps } from '@/types'
+import { ICommonBlockProps } from '@/types'
 import { notFound } from 'next/navigation'
 import { mapPageComponent } from './mapPageComponent'
 import { analyzeSegments } from './utils'
@@ -44,7 +44,7 @@ export default async function Page({
     return notFound()
   }
 
-  const commonProps: ICommonComponentProps = {
+  const commonProps: ICommonBlockProps = {
     localeCode,
     currentPath: getPathFromSegments(params.segments),
     remainingSegments,
@@ -53,7 +53,7 @@ export default async function Page({
   return (
     <main className="flex min-h-screen flex-col items-center">
       {page.blocks.map((componentData, index) =>
-        mapPageComponent({ componentData, commonProps, index, page })
+        mapPageComponent({ blockData: componentData, commonProps, index, page })
       )}
     </main>
   )

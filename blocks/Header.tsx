@@ -4,7 +4,7 @@ import { availableLocales } from '@/i18n/settings'
 import { LocaleDropdown } from '@/internalComponents/LocaleDropdown'
 import { transformSlugToRoute } from '@/lib/routes'
 import { DEFAULT_LOCALE_CODE } from '@/public-envs'
-import { ICommonComponentProps } from '@/types'
+import { ICommonBlockProps } from '@/types'
 import { clsx } from 'clsx'
 import { compact, orderBy } from 'lodash'
 import Image from 'next/image'
@@ -22,7 +22,7 @@ const getLogoLink = (currentPath: string) => {
     : `/`
 }
 
-export const Header: React.FC<ICommonComponentProps> = async ({
+export const Header: React.FC<ICommonBlockProps> = async ({
   localeCode,
   currentPath,
 }) => {

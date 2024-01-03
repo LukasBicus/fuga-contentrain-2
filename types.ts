@@ -26,7 +26,7 @@ export interface IBlockData {
   props: Record<string, any>
 }
 
-export interface ICommonComponentProps {
+export interface ICommonBlockProps {
   localeCode: LocaleCode
   currentPath: string
   remainingSegments: string[]

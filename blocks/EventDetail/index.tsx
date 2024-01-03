@@ -6,7 +6,7 @@ import {
 import { getFormatDayNumeric, getFormatTime, joinTroughDot } from '@/lib/format'
 import { getTranslation } from '@/lib/getters'
 import { graphqlClient } from '@/lib/graphqlClient'
-import { ICommonComponentProps } from '@/types'
+import { ICommonBlockProps } from '@/types'
 import Image from 'next/image'
 import Link from 'next/link'
 import { notFound } from 'next/navigation'
@@ -39,7 +39,7 @@ const getData = async (eventId: number) => {
   }
 }
 
-export const EventDetail: React.FC<ICommonComponentProps> = async ({
+export const EventDetail: React.FC<ICommonBlockProps> = async ({
   localeCode,
   remainingSegments,
 }) => {

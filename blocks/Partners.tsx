@@ -1,6 +1,6 @@
 'use server'
 import { useServerTranslation } from '@/i18n'
-import { ICommonComponentProps } from '@/types'
+import { ICommonBlockProps } from '@/types'
 import Image from 'next/image'
 import React from 'react'
 
@@ -15,9 +15,7 @@ const data = [
   { src: '/rtvs.png', name: 'rtvs', url: '#' },
 ]
 
-export const Partners: React.FC<ICommonComponentProps> = async ({
-  localeCode,
-}) => {
+export const Partners: React.FC<ICommonBlockProps> = async ({ localeCode }) => {
   const { t } = await useServerTranslation(localeCode)
   return (
     <div className="px-24 py-12 bg-white w-full">

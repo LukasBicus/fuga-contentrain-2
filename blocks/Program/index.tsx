@@ -14,7 +14,7 @@ import {
 } from '@/lib/format'
 import { graphqlClient } from '@/lib/graphqlClient'
 import { DEFAULT_LOCALE_CODE } from '@/public-envs'
-import { ICommonComponentProps } from '@/types'
+import { ICommonBlockProps } from '@/types'
 import Image from 'next/image'
 import Link from 'next/link'
 import React from 'react'
@@ -33,7 +33,7 @@ const getDetailLink = ({
     ? `/${detailSlug}/${id}`
     : `/${localeCode}/${detailSlug}/${id}`
 
-interface IProgramProps extends ICommonComponentProps {
+interface IProgramProps extends ICommonBlockProps {
   detailSlug?: string
 }
 

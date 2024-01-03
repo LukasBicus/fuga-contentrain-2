@@ -5,22 +5,22 @@ import { Hero } from '@/blocks/Hero'
 import { Markdown } from '@/blocks/Markdown'
 import { Partners } from '@/blocks/Partners'
 import { Program } from '@/blocks/Program'
-import { IBlockData, ICommonComponentProps, IPageData } from '@/types'
+import { IBlockData, ICommonBlockProps, IPageData } from '@/types'
 import React from 'react'
 
 export const mapPageComponent = ({
   index,
   commonProps,
-  componentData,
+  blockData,
   page,
 }: {
   index: number
-  componentData: IBlockData
-  commonProps: ICommonComponentProps
+  blockData: IBlockData
+  commonProps: ICommonBlockProps
   page: IPageData
 }) => {
-  const key = `${componentData.type}-${index}`
-  switch (componentData.type) {
+  const key = `${blockData.type}-${index}`
+  switch (blockData.type) {
     case 'header':
       return <Header key={key} {...commonProps} />
     case 'hero':
@@ -30,7 +30,7 @@ export const mapPageComponent = ({
         <Program
           key={key}
           {...commonProps}
-          detailSlug={componentData.props.detailSlug}
+          detailSlug={blockData.props.detailSlug}
         />
       )
     case 'partners':
@@ -42,6 +42,6 @@ export const mapPageComponent = ({
     case 'markdown':
       return <Markdown key={key} content={page.content || 'No content'} />
     default:
-      throw new Error('Unknown component ' + componentData.type)
+      throw new Error('Unknown block ' + blockData.type)
   }
 }
