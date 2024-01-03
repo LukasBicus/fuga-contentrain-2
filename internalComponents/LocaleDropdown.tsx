@@ -1,6 +1,7 @@
 'use client'
 import { LocaleCode } from '@/__generated__/api-types'
 import { useClientTranslation } from '@/i18n/client'
+import { Button } from '@mui/material'
 import { clsx } from 'clsx'
 import Link from 'next/link'
 import React, { useState } from 'react'
@@ -20,6 +21,7 @@ export const LocaleDropdown: React.FC<ILocaleDropdownProps> = ({
   const { t } = useClientTranslation(currentLocale)
   return (
     <div className="relative">
+      <Button variant="contained">Mui client button</Button>
       <button
         className="inline-flex justify-center w-full px-4 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-100 focus:ring-primary-dark"
         onClick={() => {

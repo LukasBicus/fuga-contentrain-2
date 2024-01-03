@@ -1,3 +1,4 @@
+import ThemeRegistry from '@/internalComponents/ThemeRegistry'
 import type { Metadata } from 'next'
 import { primaryFont, primaryMonoOneFont } from '../fonts'
 import '../globals.css'
@@ -22,7 +23,9 @@ export default function RootLayout({
       lang={localeCode}
       className={`${primaryFont.variable} ${primaryMonoOneFont.variable} h-full`}
     >
-      <body className="h-full">{children}</body>
+      <body className="h-full">
+        <ThemeRegistry>{children}</ThemeRegistry>
+      </body>
     </html>
   )
 }
