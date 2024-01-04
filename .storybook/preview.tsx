@@ -14,6 +14,7 @@ const preview: Preview = {
   },
 }
 
+console.log('primaryFont.variable', primaryFont.variable)
 export const decorators = [
   (Story) => (
     <div
