@@ -2,8 +2,6 @@ const _ = require('lodash')
 
 const { commonConfig, UNTRANSLATED_VALUE } = require('./common.config')
 
-console.log('commonConfig,', commonConfig)
-
 const MISSING_KEY = '__I18N_MISSING_KEY__'
 
 const isEmpty = (key) => key === UNTRANSLATED_VALUE
