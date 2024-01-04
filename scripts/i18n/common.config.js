@@ -5,7 +5,7 @@ const UNTRANSLATED_VALUE = ''
 const DEFAULT_LANG = 'en'
 
 const commonConfig = {
-  input: ['app/**/*.tsx', 'components/**/*.tsx', 'internalComponents/**/*.tsx'],
+  input: ['app/**/*.tsx', 'components/**/*.tsx', 'blocks/**/*.tsx'],
   output: './i18n/locales',
   options: {
     debug: true,
