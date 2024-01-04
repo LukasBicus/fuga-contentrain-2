@@ -1,6 +1,9 @@
 import '@/app/globals.css'
+import { CssBaseline, ThemeProvider } from '@mui/material'
+import { withThemeFromJSXProvider } from '@storybook/addon-themes'
 import type { Preview } from '@storybook/react'
 import { primaryFont, primaryMonoOneFont } from '../app/fonts'
+import theme from '../components/ThemeRegistry/theme'
 
 const preview: Preview = {
   parameters: {
@@ -23,6 +26,15 @@ export const decorators = [
       <Story />
     </div>
   ),
+  withThemeFromJSXProvider({
+    themes: {
+      light: theme,
+      dark: theme,
+    },
+    defaultTheme: 'light',
+    Provider: ThemeProvider,
+    GlobalStyles: CssBaseline,
+  }),
 ]
 
 export default preview
