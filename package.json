@@ -1,6 +1,6 @@
 {
-  "name": "fuga-contentrain-2",
-  "version": "0.2.0",
+  "name": "entradio-website-template",
+  "version": "0.3.0",
   "private": true,
   "scripts": {
     "dev": "next dev -p 8081",

@@ -1,4 +1,4 @@
-# Entradio presentation web template
+# Entradio website template
 
 ## Getting Started
 
