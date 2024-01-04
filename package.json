@@ -14,8 +14,8 @@
     "tr-validate": "i18next-scanner --config scripts/i18n/validate.config.js",
     "tr-extract": "i18next-scanner --config scripts/i18n/extract.config.js",
     "tr-extract-remove-unused": "i18next-scanner --config scripts/i18n/extractAndRemoveUnused.config.js",
-    "storybook": "storybook dev -p 6010",
-    "build-storybook": "storybook build"
+    "storybook": "storybook dev -p 6010 -s ../public",
+    "build-storybook": "storybook build -s ../public"
   },
   "dependencies": {
     "@emotion/cache": "^11.11.0",
