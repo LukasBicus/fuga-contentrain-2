@@ -1,5 +1,6 @@
 import '@/app/globals.css'
 import type { Preview } from '@storybook/react'
+import { primaryFont, primaryMonoOneFont } from '../app/fonts'
 
 const preview: Preview = {
   parameters: {
@@ -12,5 +13,15 @@ const preview: Preview = {
     },
   },
 }
+
+export const decorators = [
+  (Story) => (
+    <div
+      className={`${primaryFont.variable} ${primaryMonoOneFont.variable} h-full`}
+    >
+      <Story />
+    </div>
+  ),
+]
 
 export default preview
